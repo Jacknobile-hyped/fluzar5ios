@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1095391771291",
+    "firebase_url": "https://share-magica-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "share-magica",
+    "storage_bucket": "share-magica.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095391771291:android:977f23de07c86ac8a1e43e",
+        "android_client_info": {
+          "package_name": "com.viralyst.online"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095391771291-8kt5sjfe26rftvmr3o8pnpmj9v4iv7u4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.viralyst.online",
+            "certificate_hash": "c1ce5b4aace92f194e793738f5c41da20c462849"
+          }
+        },
+        {
+          "client_id": "1095391771291-cqpq4ci6m4ahvqeea21u9c9g4r4ekr02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcqQOKXVB2Y-2R73ytvlT9Hww92mD6MEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095391771291-cqpq4ci6m4ahvqeea21u9c9g4r4ekr02.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1095391771291-ner3467g5fqv14j0l5886qe5u7sho8a2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.viralyst.online"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

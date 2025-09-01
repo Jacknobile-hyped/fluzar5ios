@@ -1,0 +1,56 @@
+{
+  "accounts": {
+    "Facebook": [
+      {
+        "account_display_name": "Viralyst 2 ",
+        "account_id": "716823178174553",
+        "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+        "account_username": "Viralyst 2 ",
+        "description": "😆",
+        "worker_id": "1753350755346_akwiAKCu1oh5fOACbyHCp792QmR2"
+      },
+      {
+        "account_display_name": "Viralyst",
+        "account_id": "612887388580338",
+        "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+        "account_username": "Viralyst",
+        "description": "😆",
+        "media_id": "1128043469168412",
+        "post_id": "1128043469168412",
+        "worker_id": "1753350755346_akwiAKCu1oh5fOACbyHCp792QmR2"
+      }
+    ],
+    "Instagram": [
+      {
+        "account_display_name": "lampadina_coatta",
+        "account_id": "9518475014909039",
+        "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+        "account_username": "lampadina_coatta",
+        "description": "😆",
+        "worker_id": "1753350755346_akwiAKCu1oh5fOACbyHCp792QmR2"
+      },
+      {
+        "account_display_name": "share_magica",
+        "account_id": "17841472105935620",
+        "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+        "account_username": "share_magica",
+        "description": "😆",
+        "worker_id": "1753350755346_akwiAKCu1oh5fOACbyHCp792QmR2"
+      }
+    ]
+  },
+  "created_at": 1753352407670,
+  "error": "Errore nella creazione del container Instagram: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"fbtrace_id\":\"AwjuJkGS91D6k0ryjLDCTB1\"}}",
+  "is_multi_platform": true,
+  "media_type": "video",
+  "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1753350755852_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+  "platforms_count": 4,
+  "scheduled_time": 1753352400000,
+  "status": "failed",
+  "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1753350764630_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+  "unique_post_id": "1753350755346_akwiAKCu1oh5fOACbyHCp792QmR2",
+  "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+  "video_duration_minutes": 0,
+  "video_duration_remaining_seconds": 4,
+  "video_duration_seconds": 4
+}

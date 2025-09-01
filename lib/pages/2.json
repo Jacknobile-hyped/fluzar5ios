@@ -1,0 +1,1177 @@
+{
+  "FACEBOOKTREND": [
+    {
+      "category": "Facebook meme",
+      "data_points": [
+        {
+          "daily_views": 8000000,
+          "date": "2025-07-02",
+          "engagement_rate": 5.9
+        },
+        {
+          "daily_views": 8800000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.2
+        },
+        {
+          "daily_views": 9200000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.3
+        }
+      ],
+      "description": "Meme format where users joke about turning into their parents when doing mundane tasks.",
+      "growth_rate": "+13% (ultima settimana)",
+      "hashtags": [
+        "#immydadnow",
+        "#parentmode",
+        "#growingup"
+      ],
+      "platform": "Facebook",
+      "source_url": "https://www.facebook.com/trending",
+      "trend_name": "You Know You're Old When...",
+      "virality_score": 77
+    },
+    {
+      "category": "Food trend",
+      "data_points": [
+        {
+          "daily_views": 10000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.6
+        },
+        {
+          "daily_views": 11000000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.9
+        },
+        {
+          "daily_views": 12000000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.2
+        }
+      ],
+      "description": "Making ice cream in a bag with kids resurfaces as a summer family trend.",
+      "growth_rate": "+20% (ultima settimana)",
+      "hashtags": [
+        "#icecreambag",
+        "#familyfun",
+        "#DIYdessert"
+      ],
+      "platform": "Facebook",
+      "source_url": "https://www.facebook.com/familyfun",
+      "trend_name": "Bag Ice Cream DIY",
+      "virality_score": 82
+    },
+    {
+      "category": "Inspirational",
+      "data_points": [
+        {
+          "daily_views": 7000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.4
+        },
+        {
+          "daily_views": 7600000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.7
+        },
+        {
+          "daily_views": 8200000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.1
+        }
+      ],
+      "description": "Short videos showing morning affirmations or daily motivation with calm music.",
+      "growth_rate": "+18% (ultima settimana)",
+      "hashtags": [
+        "#yougotthis",
+        "#morningenergy",
+        "#motivationclip"
+      ],
+      "platform": "Facebook",
+      "source_url": "https://www.facebook.com/uplifting",
+      "trend_name": "Start Strong",
+      "virality_score": 79
+    }
+  ],
+  "INSTAGRAMTREND": [
+    {
+      "category": "Lifestyle Reel",
+      "data_points": [
+        {
+          "daily_views": 18000000,
+          "date": "2025-07-02",
+          "engagement_rate": 7.4
+        },
+        {
+          "daily_views": 19500000,
+          "date": "2025-07-03",
+          "engagement_rate": 7.7
+        },
+        {
+          "daily_views": 21000000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.8
+        }
+      ],
+      "description": "Showcasing minimalist summer routines with soft background music and captions.",
+      "growth_rate": "+15% (ultima settimana)",
+      "hashtags": [
+        "#simplifyyourlife",
+        "#minimalmornings",
+        "#reelroutine"
+      ],
+      "platform": "Instagram",
+      "source_url": "https://www.instagram.com/explore",
+      "trend_name": "Morning Calm Reels",
+      "virality_score": 86
+    },
+    {
+      "category": "Audio Meme",
+      "data_points": [
+        {
+          "daily_views": 21000000,
+          "date": "2025-07-02",
+          "engagement_rate": 8.1
+        },
+        {
+          "daily_views": 23000000,
+          "date": "2025-07-03",
+          "engagement_rate": 8.4
+        },
+        {
+          "daily_views": 24000000,
+          "date": "2025-07-04",
+          "engagement_rate": 8.6
+        }
+      ],
+      "description": "An exaggerated 'internal monologue' meme trend using the same sarcastic audio clip.",
+      "growth_rate": "+25% (ultima settimana)",
+      "hashtags": [
+        "#thatvoiceinside",
+        "#relatablememe",
+        "#innerthoughts"
+      ],
+      "platform": "Instagram",
+      "source_url": "https://www.instagram.com/reels",
+      "trend_name": "That Voice Inside",
+      "virality_score": 90
+    },
+    {
+      "category": "Beauty Hack",
+      "data_points": [
+        {
+          "daily_views": 14000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.8
+        },
+        {
+          "daily_views": 14800000,
+          "date": "2025-07-03",
+          "engagement_rate": 7.1
+        },
+        {
+          "daily_views": 15300000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.3
+        }
+      ],
+      "description": "A mascara hack using baby powder resurfaces, sparking debate in the beauty community.",
+      "growth_rate": "+17% (ultima settimana)",
+      "hashtags": [
+        "#beautyhack",
+        "#mascaratrick",
+        "#throwbacktrend"
+      ],
+      "platform": "Instagram",
+      "source_url": "https://www.instagram.com/beauty",
+      "trend_name": "Baby Powder Lashes",
+      "virality_score": 84
+    }
+  ],
+  "THREADSTREND": [
+    {
+      "category": "Thread story",
+      "data_points": [
+        {
+          "daily_views": 850000,
+          "date": "2025-07-02",
+          "engagement_rate": 11
+        },
+        {
+          "daily_views": 920000,
+          "date": "2025-07-03",
+          "engagement_rate": 11.4
+        },
+        {
+          "daily_views": 1000000,
+          "date": "2025-07-04",
+          "engagement_rate": 11.8
+        }
+      ],
+      "description": "Users share real-life creepy stories in long text threads with cliffhanger endings.",
+      "growth_rate": "+40% (ultima settimana)",
+      "hashtags": [
+        "#creepythread",
+        "#truestory",
+        "#longread"
+      ],
+      "platform": "Threads",
+      "source_url": "https://www.threads.net/trending",
+      "trend_name": "Don't Read at Night",
+      "virality_score": 91
+    },
+    {
+      "category": "Hot takes",
+      "data_points": [
+        {
+          "daily_views": 720000,
+          "date": "2025-07-02",
+          "engagement_rate": 9.1
+        },
+        {
+          "daily_views": 800000,
+          "date": "2025-07-03",
+          "engagement_rate": 9.3
+        },
+        {
+          "daily_views": 860000,
+          "date": "2025-07-04",
+          "engagement_rate": 9.5
+        }
+      ],
+      "description": "Bold opinions on culture and trends spark debates in comments and duets.",
+      "growth_rate": "+22% (ultima settimana)",
+      "hashtags": [
+        "#hotopinion",
+        "#controversialtake",
+        "#threadtalk"
+      ],
+      "platform": "Threads",
+      "source_url": "https://www.threads.net/debate",
+      "trend_name": "Unpopular but True",
+      "virality_score": 85
+    },
+    {
+      "category": "Nostalgia meme",
+      "data_points": [
+        {
+          "daily_views": 500000,
+          "date": "2025-07-02",
+          "engagement_rate": 7
+        },
+        {
+          "daily_views": 530000,
+          "date": "2025-07-03",
+          "engagement_rate": 7.2
+        },
+        {
+          "daily_views": 580000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.5
+        }
+      ],
+      "description": "Comparing 2000s internet humor with today's memes in ironic formats.",
+      "growth_rate": "+11% (ultima settimana)",
+      "hashtags": [
+        "#2000svibes",
+        "#oldmemes",
+        "#threadnostalgia"
+      ],
+      "platform": "Threads",
+      "source_url": "https://www.threads.net/memes",
+      "trend_name": "Back When Memes Were Weird",
+      "virality_score": 79
+    }
+  ],
+  "TIKTOKTREND": [
+    {
+      "category": "Viral audio",
+      "data_points": [
+        {
+          "daily_views": 85000000,
+          "date": "2025-07-02",
+          "engagement_rate": 7.1
+        },
+        {
+          "daily_views": 95000000,
+          "date": "2025-07-03",
+          "engagement_rate": 7.8
+        },
+        {
+          "daily_views": 108000000,
+          "date": "2025-07-04",
+          "engagement_rate": 8.3
+        },
+        {
+          "daily_views": 116000000,
+          "date": "2025-07-05",
+          "engagement_rate": 8.6
+        },
+        {
+          "daily_views": 120000000,
+          "date": "2025-07-06",
+          "engagement_rate": 8.9
+        }
+      ],
+      "description": "Creators use Justin Bieber's audio to express frustration in relatable situations with dramatic humor.",
+      "growth_rate": "+18% (ultima settimana)",
+      "hashtags": [
+        "#notclocking",
+        "#justinbieberaudio",
+        "#frustrationmeme"
+      ],
+      "platform": "TikTok",
+      "source_url": "https://www.ramd.am/blog/trends-tiktok",
+      "trend_name": "It’s just not clocking to you",
+      "virality_score": 94
+    },
+    {
+      "category": "Dance challenge",
+      "data_points": [
+        {
+          "daily_views": 45000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.2
+        },
+        {
+          "daily_views": 51000000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.5
+        },
+        {
+          "daily_views": 58000000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.9
+        }
+      ],
+      "description": "A quick 7-second summer dance set to an upbeat remix of a 2000s hit song.",
+      "growth_rate": "+28% (ultima settimana)",
+      "hashtags": [
+        "#summergroove",
+        "#7secdance",
+        "#throwbackremix"
+      ],
+      "platform": "TikTok",
+      "source_url": "https://www.tiktok.com/trending",
+      "trend_name": "7-Second Groove",
+      "virality_score": 91
+    },
+    {
+      "category": "Comedy skit",
+      "data_points": [
+        {
+          "daily_views": 32000000,
+          "date": "2025-07-02",
+          "engagement_rate": 5.3
+        },
+        {
+          "daily_views": 34000000,
+          "date": "2025-07-03",
+          "engagement_rate": 5.9
+        },
+        {
+          "daily_views": 37000000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.1
+        }
+      ],
+      "description": "Short skits showing 'expectation vs reality' of summer vacations, often exaggerated for laughs.",
+      "growth_rate": "+12% (ultima settimana)",
+      "hashtags": [
+        "#summerfails",
+        "#realitycheck",
+        "#funnyvacay"
+      ],
+      "platform": "TikTok",
+      "source_url": "https://www.tiktok.com/funny-trends",
+      "trend_name": "Expectation vs Reality: Summer Edition",
+      "virality_score": 85
+    }
+  ],
+  "TWITTERTREND": [
+    {
+      "category": "Text meme",
+      "data_points": [
+        {
+          "daily_views": 6000000,
+          "date": "2025-07-02",
+          "engagement_rate": 5.7
+        },
+        {
+          "daily_views": 6300000,
+          "date": "2025-07-03",
+          "engagement_rate": 5.8
+        },
+        {
+          "daily_views": 6700000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.1
+        }
+      ],
+      "description": "Tweets comparing adult life to childhood expectations using ironic one-liners.",
+      "growth_rate": "+16% (ultima settimana)",
+      "hashtags": [
+        "#adulting",
+        "#lifegoals",
+        "#tweettruths"
+      ],
+      "platform": "Twitter",
+      "source_url": "https://twitter.com/explore",
+      "trend_name": "Expectation vs Reality (Tweets)",
+      "virality_score": 80
+    },
+    {
+      "category": "Breaking news reaction",
+      "data_points": [
+        {
+          "daily_views": 11000000,
+          "date": "2025-07-02",
+          "engagement_rate": 8.2
+        },
+        {
+          "daily_views": 12300000,
+          "date": "2025-07-03",
+          "engagement_rate": 8.6
+        },
+        {
+          "daily_views": 12900000,
+          "date": "2025-07-04",
+          "engagement_rate": 8.9
+        }
+      ],
+      "description": "Users reply to viral news with memes, gifs, and sarcasm to process absurd headlines.",
+      "growth_rate": "+27% (ultima settimana)",
+      "hashtags": [
+        "#whatisthis",
+        "#newsreaction",
+        "#2025crazy"
+      ],
+      "platform": "Twitter",
+      "source_url": "https://twitter.com/news",
+      "trend_name": "How is this real?",
+      "virality_score": 88
+    }
+  ],
+  "YOUTUBETREND": [
+    {
+      "category": "Explainer",
+      "data_points": [
+        {
+          "daily_views": 12000000,
+          "date": "2025-07-02",
+          "engagement_rate": 9
+        },
+        {
+          "daily_views": 13500000,
+          "date": "2025-07-03",
+          "engagement_rate": 9.3
+        },
+        {
+          "daily_views": 14200000,
+          "date": "2025-07-04",
+          "engagement_rate": 9.5
+        }
+      ],
+      "description": "Creators explain bizarre animal behaviors in under 60 seconds using humor and fast cuts.",
+      "growth_rate": "+30% (ultima settimana)",
+      "hashtags": [
+        "#whyanimalsdothat",
+        "#quickexplainer",
+        "#weirdnature"
+      ],
+      "platform": "YouTube",
+      "source_url": "https://www.youtube.com/trending",
+      "trend_name": "Why animals do THAT",
+      "virality_score": 89
+    },
+    {
+      "category": "Challenge",
+      "data_points": [
+        {
+          "daily_views": 9000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.4
+        },
+        {
+          "daily_views": 9400000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.7
+        },
+        {
+          "daily_views": 10100000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.8
+        }
+      ],
+      "description": "YouTubers try to survive 24 hours with $1 in different cities, showing resourcefulness and humor.",
+      "growth_rate": "+19% (ultima settimana)",
+      "hashtags": [
+        "#1dollarchallenge",
+        "#survivalvlog",
+        "#citylife"
+      ],
+      "platform": "YouTube",
+      "source_url": "https://www.youtube.com/challenges",
+      "trend_name": "$1 for 24 Hours",
+      "virality_score": 87
+    },
+    {
+      "category": "Reaction",
+      "data_points": [
+        {
+          "daily_views": 25000000,
+          "date": "2025-07-02",
+          "engagement_rate": 5.6
+        },
+        {
+          "daily_views": 27000000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.1
+        },
+        {
+          "daily_views": 29500000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.3
+        }
+      ],
+      "description": "Reactions to AI-generated songs mimicking famous artists go viral, sparking debates.",
+      "growth_rate": "+22% (ultima settimana)",
+      "hashtags": [
+        "#AIsongs",
+        "#fakemusichype",
+        "#deepfakemusic"
+      ],
+      "platform": "YouTube",
+      "source_url": "https://www.youtube.com/ai-trends",
+      "trend_name": "AI or Real?",
+      "virality_score": 92
+    }
+  ],
+  "email_sent": {
+    "fhdgv@gmail_com": {
+      "email_id": "205feac3-6835-4ec1-99f0-c7ddece91845",
+      "plan": "Annual Pro",
+      "sent_at": "2025-07-12T18:57:28.215Z"
+    },
+    "gianmarcocremonesi12@gmail_com": {
+      "email_id": "09c28ce1-4f41-449e-bae6-b81152687597",
+      "plan": "Annual Pro",
+      "sent_at": "2025-07-12T19:58:24.499Z"
+    },
+    "giuseppemaria162@gmail_com": {
+      "email_id": "7af759c9-025c-4a42-ae89-d3013e995468",
+      "plan": "Annual Pro",
+      "sent_at": "2025-07-12T18:59:39.955Z"
+    },
+    "jacopoberto19@gmail_com": {
+      "email_id": "78c91ecd-b472-4593-9856-28de719658d9",
+      "plan": "Annual Pro",
+      "sent_at": "2025-07-12T18:58:20.984Z"
+    },
+    "rivod46353@endibit_com": {
+      "-OV0P3u2KdRSb5ctd0-W": {
+        "email_id": "dbcde9bf-4dcc-4712-bd78-4099cd69a161",
+        "plan": "Monthly Pro",
+        "sent_at": "2025-07-13T01:31:09.834Z"
+      }
+    },
+    "viralyst_info@gmail_com": {
+      "-OV0C1ZBgDQHUMucQyH-": {
+        "email_id": "acf65abb-82c4-4468-ad81-57292d9acb92",
+        "plan": "Annual Pro",
+        "sent_at": "2025-07-13T00:34:12.371Z"
+      },
+      "-OV0EuSM3BzZioo3yzAJ": {
+        "email_id": "1d0e167d-291a-4e5a-8d57-59c9d15913c6",
+        "plan": "Annual Pro",
+        "sent_at": "2025-07-13T00:46:45.601Z"
+      },
+      "-OV0FKW_92qfCn01lDef": {
+        "email_id": "f853f975-72d2-4bf5-9f56-15afb606b552",
+        "plan": "Monthly Pro",
+        "sent_at": "2025-07-13T00:48:36.463Z"
+      },
+      "-OV0Haib5gGWCbzfgnoC": {
+        "email_id": "cf3151f0-70e4-4212-b7df-28ff54709835",
+        "plan": "Annual Pro",
+        "sent_at": "2025-07-13T00:58:31.213Z"
+      },
+      "-OV0Lwj2c9bU1N6fUnVB": {
+        "email_id": "4e1260fc-8e55-46cf-9559-06886c8f4fce",
+        "plan": "Annual Pro",
+        "sent_at": "2025-07-13T01:17:29.886Z"
+      },
+      "-OV0S4hnGkaH-O219B_c": {
+        "email_id": "596c7218-32db-4320-b5b7-e8a9a7c9a559",
+        "plan": "Annual Pro",
+        "sent_at": "2025-07-13T01:44:19.579Z"
+      },
+      "-OV0V7pKeOVynyA6wyEX": {
+        "email_id": "db32dabe-0697-4c9d-9291-80ec9771c259",
+        "plan": "Annual Pro",
+        "sent_at": "2025-07-13T01:57:38.780Z"
+      },
+      "-OV0YLXmMdKF33Zr7yLt": {
+        "email_id": "8920234b-3f2a-48e8-9e1a-237a620c7dea",
+        "plan": "Annual Pro",
+        "sent_at": "2025-07-13T02:11:41.369Z"
+      },
+      "-OV5P65GDrou3-AjXupG": {
+        "email_id": "797fe2ba-6ef0-4141-b27f-5a39fd65f083",
+        "plan": "Monthly Pro",
+        "sent_at": "2025-07-14T00:49:24.890Z"
+      },
+      "-OV5R2aj-W55j14buR5r": {
+        "email_id": "68de3d68-3da4-46a3-ab52-ae5fcba870b1",
+        "plan": "Monthly Pro",
+        "sent_at": "2025-07-14T00:57:54.852Z"
+      },
+      "-OV5RyYHhFDONuav0cty": {
+        "email_id": "e25e2cc6-0bcc-4b9d-9fc7-78a8314035b0",
+        "plan": "Monthly Pro",
+        "sent_at": "2025-07-14T01:01:56.314Z"
+      },
+      "email_id": "9fcff508-e956-4fa8-940e-9cbceb7aecc6",
+      "plan": "Annual Pro",
+      "sent_at": "2025-07-12T23:15:56.459Z"
+    }
+  },
+  "registered_emails": {
+    "bajito1631_endibit_com": {
+      "email": "bajito1631@endibit.com",
+      "is_verified": true,
+      "registered_at": 1752435968746,
+      "uid": "WCqSRGqPyVVqy3NRNHieNSVAKqB3",
+      "user_data": {
+        "credits": 500,
+        "referral_code": "VIRWCQSRG968657",
+        "referral_count": 0,
+        "uid": "WCqSRGqPyVVqy3NRNHieNSVAKqB3"
+      }
+    },
+    "cabele6939_coderdir_com": {
+      "email": "cabele6939@coderdir.com",
+      "is_verified": true,
+      "registered_at": 1752534719293,
+      "uid": "IrK1Q5uDv3aMZxIuIFj6lOrwc8Q2"
+    },
+    "gofevi8351_coderdir_com": {
+      "email": "gofevi8351@coderdir.com",
+      "is_verified": true,
+      "registered_at": 1752499468864,
+      "uid": "dl2kt5Pw90QDmi8aED6YPZDSd3k2"
+    },
+    "honacin450_endibit_com": {
+      "email": "honacin450@endibit.com",
+      "is_verified": true,
+      "registered_at": 1752539868394,
+      "uid": "gWClwrer3zXcctHDvTXHQ5SLJcB3"
+    },
+    "lobim36078_coderdir_com": {
+      "email": "lobim36078@coderdir.com",
+      "is_verified": true,
+      "registered_at": 1752438940203,
+      "uid": "NQXxeAi29BSfZkHngJAU9uLGpC73"
+    },
+    "terote3512_endibit_com": {
+      "email": "terote3512@endibit.com",
+      "is_verified": true,
+      "registered_at": 1752438464522,
+      "uid": "LrQzy7dL7hdU3DZmacj6k8ubMSz1"
+    }
+  },
+  "social_accounts_index": {
+    "twitter": {
+      "cag8_": "gWClwrer3zXcctHDvTXHQ5SLJcB3"
+    }
+  },
+  "users": {
+    "akwiAKCu1oh5fOACbyHCp792QmR2": {
+      "facebook": {
+        "612887388580338": {
+          "access_token": "EAAR3GZCc6XlUBPDLZCRj10ZA1k1u0rMFZAzitSf4XyiSC62hTueqePlqFyFSi3CTNn1NP8gu0dE22J7cdZCTIIDqPUr0v9wgP9ZADtsZBfwxGitWEPEi2rbvub4IkxMpZB1iysol2zDCBkyA9hmp6g7NgxXuvE3ukGNPeH0ujOjp0heptZAxSaM6bw9MlU0Us4rZC7S6UH",
+          "category_list": [
+            {
+              "id": "530553733821238",
+              "name": "Agenzia di social media"
+            }
+          ],
+          "created_at": 1752158791583,
+          "display_name": "Viralyst",
+          "followers_count": 1,
+          "last_sync": 1752158791583,
+          "name": "Viralyst",
+          "page_id": "612887388580338",
+          "page_type": "Agenzia di social media",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+          "status": "active",
+          "verification_status": "not_verified"
+        },
+        "716823178174553": {
+          "access_token": "EAAR3GZCc6XlUBPHTBmA45QM6I0IHutEBnaQwXZBE27rFjKZAS14sA6ZA3bb7LcaWZA0fwAyKOZAfaJUkojTxdAD9hs6glQL26zZBFCjMp17wg85HixMaZAvW0l3OjTyNZA0v5IJwWObXHpYcy5gDJr4nzOfPJSp5C2oHF8dsQLgAXGxERuhK8EeM62p6iWJ3iRXZApnZAL7",
+          "category_list": [
+            {
+              "id": "673445767199285",
+              "name": "Scienza e tecnologia"
+            }
+          ],
+          "created_at": 1752158790179,
+          "display_name": "Viralyst 2 ",
+          "followers_count": 0,
+          "last_sync": 1752158790179,
+          "name": "Viralyst 2 ",
+          "page_id": "716823178174553",
+          "page_type": "Scienza e tecnologia",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+          "status": "active",
+          "verification_status": "not_verified"
+        }
+      },
+      "instagram": {
+        "9518475014909039": {
+          "access_token": "IGAAi5KUAnOd1BZAE16Tmp6X3FoS295U3djenoxVzgzQ2oxejlFRmtuNjZAWZAmdNUGlFUklsRlJ5eEpYYW5pYk5iZAGE4RllkOS1iOHBNdi1UT25lQ09oTmxEamR3VWtPNDJjNGlNc0pxeUpMTkk4YzNZAYjJ3",
+          "account_type": "MEDIA_CREATOR",
+          "created_at": 1751189606040,
+          "display_name": "lampadina_coatta",
+          "followers_count": 2,
+          "is_business_account": false,
+          "last_sync": 1751189606040,
+          "media_count": 0,
+          "permissions": "",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+          "status": "active",
+          "token_expires_in": 5184000,
+          "user_id": "9518475014909039",
+          "username": "lampadina_coatta"
+        },
+        "9774624469289828": {
+          "access_token": "IGAAi5KUAnOd1BZAFBOVUJiVnVNOWZAUVkFJX1g2WVEzbmJtMGNqR2F6ZAnNPaTRqdVd0ZA01DbnZAqRFlIa1J6TTNHczdtVTAtUXU2LUpWc0xhcGMzRDFUNXlYd1pKbHQ0RDJkR01WZAWFUMHRRV09WS2UxR1pn",
+          "account_type": "BUSINESS",
+          "created_at": 1751298782193,
+          "display_name": "share_magica",
+          "followers_count": 176,
+          "is_business_account": true,
+          "last_sync": 1751298782193,
+          "media_count": 8,
+          "permissions": "",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+          "status": "active",
+          "token_expires_in": 5184000,
+          "user_id": "9774624469289828",
+          "username": "share_magica"
+        }
+      },
+      "instagram_pending_auth": {
+        "status": "pending",
+        "timestamp": 1751378056732
+      },
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "status": "active",
+        "subscription_id": "sub_1Rin0lPXu7NNq0NK76mCXO6b",
+        "updated_at": 1752027747310
+      },
+      "tiktok": {
+        "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf": {
+          "access_token": "act.u92UM6tA6kYtZU1VpgNGM4Bz5pzWMBrvByIlL4Xdo5VPy2vGlsqfU5mIW2Bj!5169.e1",
+          "bio": "",
+          "created_at": 1751189567272,
+          "display_name": "Jacob_Tikofficial",
+          "followers_count": 1,
+          "following_count": 3,
+          "is_verified": false,
+          "last_sync": 1751189567272,
+          "likes_count": 25,
+          "name": "Jacob_Tikofficial",
+          "open_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+          "profile_deep_link": "",
+          "profile_image_large_url": "",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+          "profile_image_url_100": "",
+          "refresh_token": "rft.v0Nuf50oohGlD2gyHaNWvIXPtE9r5H2CeHVNBNub8C64lfGYcIanyCBFdTAp!5201.e1",
+          "refresh_token_expires_at": 1782725567274,
+          "scopes": "user.info.basic,video.publish,user.info.stats,video.list,video.upload",
+          "status": "active",
+          "token_expires_at": 1751275967272,
+          "union_id": "",
+          "username": "",
+          "video_count": 2
+        }
+      },
+      "youtube": {
+        "UCOkQ64XpF42EiF62KNbNKJw": {
+          "channel_id": "UCOkQ64XpF42EiF62KNbNKJw",
+          "channel_name": "jacopo berto",
+          "last_sync": 1752411878237,
+          "status": "active",
+          "subscriber_count": 0,
+          "thumbnail_url": "https://yt3.ggpht.com/funhv3FYUrxLogezjW66kopKXJwBgytUkJbFiqE68dmICCrKvewIkLlSgpMvLILB3LTuBk8V=s88-c-k-c0x00ffffff-no-rj",
+          "video_count": 63
+        },
+        "UCwQJuegd58WVCa7QhYkGE7g": {
+          "channel_id": "UCwQJuegd58WVCa7QhYkGE7g",
+          "channel_name": "Viralyst ",
+          "last_sync": 1752411468062,
+          "status": "active",
+          "subscriber_count": 0,
+          "thumbnail_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+          "video_count": 11
+        }
+      },
+      "youtube_tokens": {
+        "access_token": "ya29.a0AS3H6NywKQc9fmCKQmlx1XzPNxoBYWvdQwKDw94hAfLBUilgFE_EQZ3-eDJRTqTHjfoTPh2iJ9uoEd0k8PrIMSjudjsfr60lrViO_fUDYhoiGJdSeBcL2zJ5ofMBQa27F3PcQYLz4YN5n2zDXhU0-eYYyqz7Xl0un_W9wstsDrUsGKqVFiw48HYQD6HZhjwHPXUXZI2RK1IuFjT_RchhgjEZO7-HuZJduHGtCxTEj0aSBgaCgYKAV4SARISFQHGX2MiXhFq17oEWDUdfr_lpeiPPw0245",
+        "expires_at": 1752418207920,
+        "refresh_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhlOGZjOGU1NTZmN2E3NmQwOGQzNTgyOWQ2ZjkwYWUyZTEyY2ZkMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDk1MzkxNzcxMjkxLThrdDVzamZlMjZyZnR2bXIzbzhwbnBtajl2NGl2N3U0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTA5NTM5MTc3MTI5MS1jcXBxNGNpNm00YWh2cWVlYTIxdTljOWc0cjRla3IwMi5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMjAxMDM4NDk0ODIzMzg5MTkzMSIsImVtYWlsIjoiamFjb3BvYmVydG8xOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6ImphY29wbyBiZXJ0byIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJcTBJZF9mclNnUkdPRndrY1ZiTDZWalJfM2R5eHRSdFU5TFRHdGxVNnlyNjlpeFE9czk2LWMiLCJnaXZlbl9uYW1lIjoiamFjb3BvIiwiZmFtaWx5X25hbWUiOiJiZXJ0byIsImlhdCI6MTc1MjQxMTMwOSwiZXhwIjoxNzUyNDE0OTA5fQ.YjEKho2iV31vCdnXaWT3LaOq28x83Z46JPxO9cFvB8MFKNGhac_83bhjvTp15NxFn85WBp5sTe1OPNXm-4d1Rt2lCe1Vk4zJYtwVKB630l_MHCJ7AOHoAYfZBDJ2WgfJX96ExolEDEQfm70VVpSIi5xmUpCFPFwiraUPeQulIVeesX6zLalNs_A1EogBnPidnAtI5n-G2Wzn0zgVT8-MgIVLS2ewc_vgkpAWo8YKQ-w7mgENJ4lReXFeTmJsMAU_EwwvLiRw8QT2VmhlWE82i7Me8Oj2CHasQariEQUXcy6zaiuk7gpG7fMfH_QO5y4wEIssPduoZALuUY54DJUBEg",
+        "updated_at": 1752414607920
+      }
+    },
+    "gWClwrer3zXcctHDvTXHQ5SLJcB3": {
+      "facebook": {
+        "612887388580338": {
+          "access_token": "EAAR3GZCc6XlUBPJs5iv43wZCDuhyMPiqdGd0GCdPGhlZA7yTQ1E5cleD7mZBeKSOfFNC4FnVhbyXcMBua9mGRh20I50omHwtj9nUWPUjPnuABHVhOoNmHebE2GFZAPnDcm2MzIxtShErGelh60RCRhonQLpBYsDjRqZAkGvlpoZCmbo1yIO0HdMdF5tjZCIb8uGk4fHt",
+          "category_list": [
+            {
+              "id": "530553733821238",
+              "name": "Agenzia di social media"
+            }
+          ],
+          "created_at": 1752584756452,
+          "display_name": "Viralyst",
+          "followers_count": 1,
+          "instagram_business_account_id": "17841472105935620",
+          "instagram_followers_count": 175,
+          "instagram_media_count": 18,
+          "instagram_profile_picture_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/ig_17841472105935620.jpg",
+          "instagram_username": "share_magica",
+          "last_sync": 1752584756452,
+          "name": "Viralyst",
+          "page_id": "612887388580338",
+          "page_type": "Agenzia di social media",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+          "status": "active",
+          "verification_status": "not_verified"
+        },
+        "716823178174553": {
+          "access_token": "EAAR3GZCc6XlUBPFP0euV1YV1vKbh1nfgYoB8U4BTa7i4WjyGzuE0ljDZC0mS2LovlwFNPQj5dXjxekzZB0kJojwA4TtzZBtXyhJZAchYiQBuKa0rZCCNWcaEMlRAlfYze6RLDAbsWeirOBU9SXsubYqZAbDpMXpdFN5qvLeCH9Jh68H5a8TkZCDtPynyVhonDILgSBZBI",
+          "category_list": [
+            {
+              "id": "673445767199285",
+              "name": "Scienza e tecnologia"
+            }
+          ],
+          "created_at": 1752584754699,
+          "display_name": "Viralyst 2 ",
+          "followers_count": 0,
+          "last_sync": 1752584754699,
+          "name": "Viralyst 2 ",
+          "page_id": "716823178174553",
+          "page_type": "Scienza e tecnologia",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+          "status": "active",
+          "verification_status": "not_verified"
+        }
+      },
+      "instagram": {
+        "17841472105935620": {
+          "access_token": "IGAAi5KUAnOd1BZAE9Qbk1PNE93MmZAmNjNST0FCZAGhZAUU1MNERQTVJ5WHNkTU1mS3Iyc0hFUmFWbVlMR1VhNE03MW81a2JhUlRTaEpodEFELVhFQ0xmVlVtX0k0V3FYT3VGcGFaSG9lMk1CV2hTSHZAIZAnBn",
+          "account_type": "BUSINESS",
+          "biography": "",
+          "created_at": 1752546572315,
+          "display_name": "share_magica",
+          "facebook_access_token": "EAAR3GZCc6XlUBPHOtax78BmdepELat7D7jCADyXsBPpOkUlwv4IKmlZCnwBzpdm7SHin9xl2LDUZBLAswx4JgaeQfJGVqWEBwLmVH8lCbYeHYNu08vDGNuCZCPcdIXGJVD8J2CKf5TW5YJZAExZC7qC09v6sZBLdP9PWF8FhLbU9qUT1pNNBDZBGUpTa2QOcdzpB5eOPS06B",
+          "followers_count": 175,
+          "is_business_account": true,
+          "last_sync": 1752546572315,
+          "media_count": 18,
+          "permissions": "",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+          "status": "active",
+          "token_expires_in": 5140311,
+          "user_id": "9774624469289828",
+          "username": "share_magica",
+          "website": ""
+        }
+      },
+      "instagram_pending_auth": {
+        "status": "pending",
+        "timestamp": 1752582439378
+      },
+      "tiktok": {
+        "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf": {
+          "access_token": "act.hMzdIBqPud6qp9TG4OQW4nqaLqI7HDtYw6jiAlQScu6EIGWaQnXosaBBgfQ6!5164.e1",
+          "bio": "",
+          "created_at": 1752622513146,
+          "display_name": "Jacob_Tikofficial",
+          "followers_count": 0,
+          "following_count": 3,
+          "is_verified": false,
+          "last_sync": 1752622513146,
+          "likes_count": 25,
+          "name": "Jacob_Tikofficial",
+          "open_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+          "profile_deep_link": "",
+          "profile_image_large_url": "",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+          "profile_image_url_100": "",
+          "refresh_token": "rft.d9NkKbvvHswyILlHdazgKuZNnJOvR2iv3ehTlMp7QYhKD8Vj8CUxe2zugwQ4!5190.e1",
+          "refresh_token_expires_at": 1784158513146,
+          "scopes": "user.info.basic,video.list,video.upload,video.publish,user.info.stats",
+          "status": "active",
+          "token_expires_at": 1752708913146,
+          "union_id": "",
+          "username": "",
+          "video_count": 2
+        }
+      },
+      "youtube": {
+        "UCwQJuegd58WVCa7QhYkGE7g": {
+          "channel_id": "UCwQJuegd58WVCa7QhYkGE7g",
+          "channel_name": "Viralyst ",
+          "last_sync": 1752622730105,
+          "status": "active",
+          "subscriber_count": 0,
+          "thumbnail_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+          "video_count": 12
+        }
+      }
+    },
+    "users": {
+      "gWClwrer3zXcctHDvTXHQ5SLJcB3": {
+        "credits": 498,
+        "first_subscription_date": 1752622643874,
+        "has_used_trial": true,
+        "isPremium": true,
+        "profile": {
+          "display_name": "DailyKnowledge",
+          "last_updated": 1752581353473,
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg"
+        },
+        "referral_code": "VIRGWCLWR868341",
+        "referral_count": 0,
+        "social_accounts": {
+          "threads": {
+            "9793937124001540": {
+              "access_token": "THAATZCFA13f05BUVNJei1LYU9pZAV95cUxFN0N1UkxTb0RJTEtUdVVQbVhsWGlSUEZAKSVNHWUFTbVgtMjY0UjRTY2RVeDVMS3Fad19IOTdPRkdhWlFzeFdEcmtGTms1VFVzQXZAZALVJkU29GNDl6OGRKTVZA3cENfMUczTmt6ZA2k2YzF1ZAwZDZD",
+              "created_at": 1752622556067,
+              "display_name": "share_magica",
+              "last_sync": 1752622556067,
+              "profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+              "status": "active",
+              "token_type": "long_lived",
+              "user_id": 9793937124001540,
+              "username": "share_magica"
+            }
+          },
+          "twitter": {
+            "-OVCzI8ExYG4IwyLOcXh": {
+              "access_token": "1854892180193624064-DTblJdRTeYVNLpgAZPDomab286q7VB",
+              "access_token_secret": "NxhkhdQifTYU7J5ek1i962RRqECPCs9CyaNDzr8YjLCMw",
+              "api_key": "sTn3lkEWn47KiQl41zfGhjYb4",
+              "api_key_secret": "Z5UvLwLysPoX2fzlbebCIn63cQ3yBo0uXiqxK88v1fXcz3YrYA",
+              "bearer_token": "AAAAAAAAAAAAAAAAAAAAABSU0QEAAAAAo4YuWM0KL95fvPVsVk0EuIp%2B8tM%3DMh7GqySbNJX4qoTC3lpEycVl3x9cqQaRvbt1mwckSXszlBLmzM",
+              "created_at": 1752581353473,
+              "description": "Fresh News on tech and scientific advancements. Discover the future today!",
+              "display_name": "DailyKnowledge",
+              "followers_count": 51,
+              "following_count": 31,
+              "last_sync": 1752581353473,
+              "location": "Los Angeles, CA",
+              "profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+              "status": "active",
+              "tweet_count": 122,
+              "twitter_id": "1854892180193624064",
+              "username": "cag8_",
+              "username_key": "cag8_"
+            }
+          }
+        },
+        "subscription": {
+          "cancel_at_period_end": false,
+          "current_period_end": 1755214643,
+          "plan_type": "monthly",
+          "status": "active",
+          "subscription_id": "pi_3RlIPJPXu7NNq0NK2JO3hsjq",
+          "updated_at": 1752622646368
+        },
+        "trial_used_at": 1752622643874,
+        "uid": "gWClwrer3zXcctHDvTXHQ5SLJcB3",
+        "videos": {
+          "-OVAZEHsHZH9kDYcdqB0": {
+            "accounts": {
+              "Instagram": [
+                {
+                  "display_name": "share_magica",
+                  "followers_count": "0",
+                  "id": "9774624469289828",
+                  "media_id": "18065503550140906",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                  "username": "share_magica"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1752540675734_gWClwrer3zXcctHDvTXHQ5SLJcB3.mp4",
+            "is_image": false,
+            "platforms": [
+              "Instagram"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1752540680054_gWClwrer3zXcctHDvTXHQ5SLJcB3.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1752540680054_gWClwrer3zXcctHDvTXHQ5SLJcB3.jpg",
+            "timestamp": 1752540705975,
+            "title": "",
+            "user_id": "gWClwrer3zXcctHDvTXHQ5SLJcB3",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 7,
+            "video_duration_seconds": 7,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1752540675734_gWClwrer3zXcctHDvTXHQ5SLJcB3.mp4"
+          },
+          "-OVFSFnjXwgYExV2l3pB": {
+            "accounts": {
+              "Facebook": [
+                {
+                  "description": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch",
+                  "display_name": "Viralyst",
+                  "followers_count": "1",
+                  "id": "612887388580338",
+                  "media_id": "",
+                  "post_id": "1133814138605982",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                  "username": "Viralyst"
+                }
+              ],
+              "Instagram": [
+                {
+                  "description": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch",
+                  "display_name": "share_magica",
+                  "followers_count": "175",
+                  "id": "17841472105935620",
+                  "media_id": "18378676873126486",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                  "username": "share_magica"
+                }
+              ],
+              "Threads": [
+                {
+                  "description": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch",
+                  "display_name": "share_magica",
+                  "followers_count": "0",
+                  "id": "9793937124001540",
+                  "media_id": "",
+                  "post_id": "18142744840404891",
+                  "profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                  "username": "share_magica"
+                }
+              ],
+              "TikTok": [
+                {
+                  "description": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch",
+                  "display_name": "Jacob_Tikofficial",
+                  "followers_count": "0",
+                  "id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                  "media_id": "",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                  "username": ""
+                }
+              ],
+              "Twitter": [
+                {
+                  "description": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch",
+                  "display_name": "DailyKnowledge",
+                  "followers_count": "51",
+                  "id": "-OVCzI8ExYG4IwyLOcXh",
+                  "media_id": "",
+                  "post_id": "1945266896544104875",
+                  "profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                  "username": "cag8_"
+                }
+              ],
+              "YouTube": [
+                {
+                  "description": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch",
+                  "display_name": "Viralyst ",
+                  "followers_count": "0",
+                  "id": "UCwQJuegd58WVCa7QhYkGE7g",
+                  "media_id": "",
+                  "post_id": "YqLgv2REfyc",
+                  "profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                  "title": "See this now",
+                  "username": "Viralyst ",
+                  "youtube_video_id": "YqLgv2REfyc"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1752622703631_gWClwrer3zXcctHDvTXHQ5SLJcB3.mp4",
+            "is_image": false,
+            "platform_descriptions": {
+              "Facebook": {
+                "612887388580338": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch"
+              },
+              "Instagram": {
+                "17841472105935620": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch"
+              },
+              "Threads": {
+                "9793937124001540": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch"
+              },
+              "TikTok": {
+                "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch"
+              },
+              "Twitter": {
+                "-OVCzI8ExYG4IwyLOcXh": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch"
+              },
+              "YouTube": {
+                "UCwQJuegd58WVCa7QhYkGE7g": "Check out this trending phenomenon! Join the fun and see what everyone is talking about. Don't miss out on the latest buzz! #TrendAlert #MustWatch",
+                "UCwQJuegd58WVCa7QhYkGE7g_title": "See this now"
+              }
+            },
+            "platforms": [
+              "Instagram",
+              "YouTube",
+              "Twitter",
+              "Threads",
+              "Facebook",
+              "TikTok"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1752622710819_gWClwrer3zXcctHDvTXHQ5SLJcB3.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1752622710819_gWClwrer3zXcctHDvTXHQ5SLJcB3.jpg",
+            "timestamp": 1752622763243,
+            "title": "See this now",
+            "user_id": "gWClwrer3zXcctHDvTXHQ5SLJcB3",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 15,
+            "video_duration_seconds": 15,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1752622703631_gWClwrer3zXcctHDvTXHQ5SLJcB3.mp4"
+          }
+        }
+      }
+    }
+  },
+  "verification_codes": {
+    "bajito1631_endibit_com": {
+      "code": "760159",
+      "created_at": 1752437890109,
+      "email": "bajito1631@endibit.com",
+      "expires_at": 1752438490109,
+      "used": false
+    },
+    "jacopoberto19_gmail_com": {
+      "code": "049440",
+      "created_at": 1752438362065,
+      "email": "jacopoberto19@gmail.com",
+      "expires_at": 1752438962065,
+      "used": false
+    },
+    "miwoj35483_coderdir_com": {
+      "code": "143059",
+      "created_at": 1752435073252,
+      "email": "miwoj35483@coderdir.com",
+      "expires_at": 1752435673252,
+      "used": false
+    }
+  }
+}

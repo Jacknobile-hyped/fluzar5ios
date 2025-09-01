@@ -1,0 +1,3577 @@
+{
+  "FACEBOOKTREND": [
+    {
+      "category": "Facebook meme",
+      "data_points": [
+        {
+          "daily_views": 8000000,
+          "date": "2025-07-02",
+          "engagement_rate": 5.9
+        },
+        {
+          "daily_views": 8800000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.2
+        },
+        {
+          "daily_views": 9200000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.3
+        }
+      ],
+      "description": "Meme format where users joke about turning into their parents when doing mundane tasks.",
+      "growth_rate": "+13% (ultima settimana)",
+      "hashtags": [
+        "#immydadnow",
+        "#parentmode",
+        "#growingup"
+      ],
+      "platform": "Facebook",
+      "source_url": "https://www.facebook.com/trending",
+      "trend_name": "You Know You're Old When...",
+      "virality_score": 77
+    },
+    {
+      "category": "Food trend",
+      "data_points": [
+        {
+          "daily_views": 10000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.6
+        },
+        {
+          "daily_views": 11000000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.9
+        },
+        {
+          "daily_views": 12000000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.2
+        }
+      ],
+      "description": "Making ice cream in a bag with kids resurfaces as a summer family trend.",
+      "growth_rate": "+20% (ultima settimana)",
+      "hashtags": [
+        "#icecreambag",
+        "#familyfun",
+        "#DIYdessert"
+      ],
+      "platform": "Facebook",
+      "source_url": "https://www.facebook.com/familyfun",
+      "trend_name": "Bag Ice Cream DIY",
+      "virality_score": 82
+    },
+    {
+      "category": "Inspirational",
+      "data_points": [
+        {
+          "daily_views": 7000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.4
+        },
+        {
+          "daily_views": 7600000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.7
+        },
+        {
+          "daily_views": 8200000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.1
+        }
+      ],
+      "description": "Short videos showing morning affirmations or daily motivation with calm music.",
+      "growth_rate": "+18% (ultima settimana)",
+      "hashtags": [
+        "#yougotthis",
+        "#morningenergy",
+        "#motivationclip"
+      ],
+      "platform": "Facebook",
+      "source_url": "https://www.facebook.com/uplifting",
+      "trend_name": "Start Strong",
+      "virality_score": 79
+    }
+  ],
+  "INSTAGRAMTREND": [
+    {
+      "category": "Lifestyle Reel",
+      "data_points": [
+        {
+          "daily_views": 18000000,
+          "date": "2025-07-02",
+          "engagement_rate": 7.4
+        },
+        {
+          "daily_views": 19500000,
+          "date": "2025-07-03",
+          "engagement_rate": 7.7
+        },
+        {
+          "daily_views": 21000000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.8
+        }
+      ],
+      "description": "Showcasing minimalist summer routines with soft background music and captions.",
+      "growth_rate": "+15% (ultima settimana)",
+      "hashtags": [
+        "#simplifyyourlife",
+        "#minimalmornings",
+        "#reelroutine"
+      ],
+      "platform": "Instagram",
+      "source_url": "https://www.instagram.com/explore",
+      "trend_name": "Morning Calm Reels",
+      "virality_score": 86
+    },
+    {
+      "category": "Audio Meme",
+      "data_points": [
+        {
+          "daily_views": 21000000,
+          "date": "2025-07-02",
+          "engagement_rate": 8.1
+        },
+        {
+          "daily_views": 23000000,
+          "date": "2025-07-03",
+          "engagement_rate": 8.4
+        },
+        {
+          "daily_views": 24000000,
+          "date": "2025-07-04",
+          "engagement_rate": 8.6
+        }
+      ],
+      "description": "An exaggerated 'internal monologue' meme trend using the same sarcastic audio clip.",
+      "growth_rate": "+25% (ultima settimana)",
+      "hashtags": [
+        "#thatvoiceinside",
+        "#relatablememe",
+        "#innerthoughts"
+      ],
+      "platform": "Instagram",
+      "source_url": "https://www.instagram.com/reels",
+      "trend_name": "That Voice Inside",
+      "virality_score": 90
+    },
+    {
+      "category": "Beauty Hack",
+      "data_points": [
+        {
+          "daily_views": 14000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.8
+        },
+        {
+          "daily_views": 14800000,
+          "date": "2025-07-03",
+          "engagement_rate": 7.1
+        },
+        {
+          "daily_views": 15300000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.3
+        }
+      ],
+      "description": "A mascara hack using baby powder resurfaces, sparking debate in the beauty community.",
+      "growth_rate": "+17% (ultima settimana)",
+      "hashtags": [
+        "#beautyhack",
+        "#mascaratrick",
+        "#throwbacktrend"
+      ],
+      "platform": "Instagram",
+      "source_url": "https://www.instagram.com/beauty",
+      "trend_name": "Baby Powder Lashes",
+      "virality_score": 84
+    }
+  ],
+  "THREADSTREND": [
+    {
+      "category": "Thread story",
+      "data_points": [
+        {
+          "daily_views": 850000,
+          "date": "2025-07-02",
+          "engagement_rate": 11
+        },
+        {
+          "daily_views": 920000,
+          "date": "2025-07-03",
+          "engagement_rate": 11.4
+        },
+        {
+          "daily_views": 1000000,
+          "date": "2025-07-04",
+          "engagement_rate": 11.8
+        }
+      ],
+      "description": "Users share real-life creepy stories in long text threads with cliffhanger endings.",
+      "growth_rate": "+40% (ultima settimana)",
+      "hashtags": [
+        "#creepythread",
+        "#truestory",
+        "#longread"
+      ],
+      "platform": "Threads",
+      "source_url": "https://www.threads.net/trending",
+      "trend_name": "Don't Read at Night",
+      "virality_score": 91
+    },
+    {
+      "category": "Hot takes",
+      "data_points": [
+        {
+          "daily_views": 720000,
+          "date": "2025-07-02",
+          "engagement_rate": 9.1
+        },
+        {
+          "daily_views": 800000,
+          "date": "2025-07-03",
+          "engagement_rate": 9.3
+        },
+        {
+          "daily_views": 860000,
+          "date": "2025-07-04",
+          "engagement_rate": 9.5
+        }
+      ],
+      "description": "Bold opinions on culture and trends spark debates in comments and duets.",
+      "growth_rate": "+22% (ultima settimana)",
+      "hashtags": [
+        "#hotopinion",
+        "#controversialtake",
+        "#threadtalk"
+      ],
+      "platform": "Threads",
+      "source_url": "https://www.threads.net/debate",
+      "trend_name": "Unpopular but True",
+      "virality_score": 85
+    },
+    {
+      "category": "Nostalgia meme",
+      "data_points": [
+        {
+          "daily_views": 500000,
+          "date": "2025-07-02",
+          "engagement_rate": 7
+        },
+        {
+          "daily_views": 530000,
+          "date": "2025-07-03",
+          "engagement_rate": 7.2
+        },
+        {
+          "daily_views": 580000,
+          "date": "2025-07-04",
+          "engagement_rate": 7.5
+        }
+      ],
+      "description": "Comparing 2000s internet humor with today's memes in ironic formats.",
+      "growth_rate": "+11% (ultima settimana)",
+      "hashtags": [
+        "#2000svibes",
+        "#oldmemes",
+        "#threadnostalgia"
+      ],
+      "platform": "Threads",
+      "source_url": "https://www.threads.net/memes",
+      "trend_name": "Back When Memes Were Weird",
+      "virality_score": 79
+    }
+  ],
+  "TIKTOKTREND": [
+    {
+      "category": "Viral audio",
+      "data_points": [
+        {
+          "daily_views": 85000000,
+          "date": "2025-07-02",
+          "engagement_rate": 7.1
+        },
+        {
+          "daily_views": 95000000,
+          "date": "2025-07-03",
+          "engagement_rate": 7.8
+        },
+        {
+          "daily_views": 108000000,
+          "date": "2025-07-04",
+          "engagement_rate": 8.3
+        },
+        {
+          "daily_views": 116000000,
+          "date": "2025-07-05",
+          "engagement_rate": 8.6
+        },
+        {
+          "daily_views": 120000000,
+          "date": "2025-07-06",
+          "engagement_rate": 8.9
+        }
+      ],
+      "description": "Creators use Justin Bieber's audio to express frustration in relatable situations with dramatic humor.",
+      "growth_rate": "+18% (ultima settimana)",
+      "hashtags": [
+        "#notclocking",
+        "#justinbieberaudio",
+        "#frustrationmeme"
+      ],
+      "platform": "TikTok",
+      "source_url": "https://www.ramd.am/blog/trends-tiktok",
+      "trend_name": "It’s just not clocking to you",
+      "virality_score": 94
+    },
+    {
+      "category": "Dance challenge",
+      "data_points": [
+        {
+          "daily_views": 45000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.2
+        },
+        {
+          "daily_views": 51000000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.5
+        },
+        {
+          "daily_views": 58000000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.9
+        }
+      ],
+      "description": "A quick 7-second summer dance set to an upbeat remix of a 2000s hit song.",
+      "growth_rate": "+28% (ultima settimana)",
+      "hashtags": [
+        "#summergroove",
+        "#7secdance",
+        "#throwbackremix"
+      ],
+      "platform": "TikTok",
+      "source_url": "https://www.tiktok.com/trending",
+      "trend_name": "7-Second Groove",
+      "virality_score": 91
+    },
+    {
+      "category": "Comedy skit",
+      "data_points": [
+        {
+          "daily_views": 32000000,
+          "date": "2025-07-02",
+          "engagement_rate": 5.3
+        },
+        {
+          "daily_views": 34000000,
+          "date": "2025-07-03",
+          "engagement_rate": 5.9
+        },
+        {
+          "daily_views": 37000000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.1
+        }
+      ],
+      "description": "Short skits showing 'expectation vs reality' of summer vacations, often exaggerated for laughs.",
+      "growth_rate": "+12% (ultima settimana)",
+      "hashtags": [
+        "#summerfails",
+        "#realitycheck",
+        "#funnyvacay"
+      ],
+      "platform": "TikTok",
+      "source_url": "https://www.tiktok.com/funny-trends",
+      "trend_name": "Expectation vs Reality: Summer Edition",
+      "virality_score": 85
+    }
+  ],
+  "TWITTERTREND": [
+    {
+      "category": "Text meme",
+      "data_points": [
+        {
+          "daily_views": 6000000,
+          "date": "2025-07-02",
+          "engagement_rate": 5.7
+        },
+        {
+          "daily_views": 6300000,
+          "date": "2025-07-03",
+          "engagement_rate": 5.8
+        },
+        {
+          "daily_views": 6700000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.1
+        }
+      ],
+      "description": "Tweets comparing adult life to childhood expectations using ironic one-liners.",
+      "growth_rate": "+16% (ultima settimana)",
+      "hashtags": [
+        "#adulting",
+        "#lifegoals",
+        "#tweettruths"
+      ],
+      "platform": "Twitter",
+      "source_url": "https://twitter.com/explore",
+      "trend_name": "Expectation vs Reality (Tweets)",
+      "virality_score": 80
+    },
+    {
+      "category": "Breaking news reaction",
+      "data_points": [
+        {
+          "daily_views": 11000000,
+          "date": "2025-07-02",
+          "engagement_rate": 8.2
+        },
+        {
+          "daily_views": 12300000,
+          "date": "2025-07-03",
+          "engagement_rate": 8.6
+        },
+        {
+          "daily_views": 12900000,
+          "date": "2025-07-04",
+          "engagement_rate": 8.9
+        }
+      ],
+      "description": "Users reply to viral news with memes, gifs, and sarcasm to process absurd headlines.",
+      "growth_rate": "+27% (ultima settimana)",
+      "hashtags": [
+        "#whatisthis",
+        "#newsreaction",
+        "#2025crazy"
+      ],
+      "platform": "Twitter",
+      "source_url": "https://twitter.com/news",
+      "trend_name": "How is this real?",
+      "virality_score": 88
+    }
+  ],
+  "YOUTUBETREND": [
+    {
+      "category": "Explainer",
+      "data_points": [
+        {
+          "daily_views": 12000000,
+          "date": "2025-07-02",
+          "engagement_rate": 9
+        },
+        {
+          "daily_views": 13500000,
+          "date": "2025-07-03",
+          "engagement_rate": 9.3
+        },
+        {
+          "daily_views": 14200000,
+          "date": "2025-07-04",
+          "engagement_rate": 9.5
+        }
+      ],
+      "description": "Creators explain bizarre animal behaviors in under 60 seconds using humor and fast cuts.",
+      "growth_rate": "+30% (ultima settimana)",
+      "hashtags": [
+        "#whyanimalsdothat",
+        "#quickexplainer",
+        "#weirdnature"
+      ],
+      "platform": "YouTube",
+      "source_url": "https://www.youtube.com/trending",
+      "trend_name": "Why animals do THAT",
+      "virality_score": 89
+    },
+    {
+      "category": "Challenge",
+      "data_points": [
+        {
+          "daily_views": 9000000,
+          "date": "2025-07-02",
+          "engagement_rate": 6.4
+        },
+        {
+          "daily_views": 9400000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.7
+        },
+        {
+          "daily_views": 10100000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.8
+        }
+      ],
+      "description": "YouTubers try to survive 24 hours with $1 in different cities, showing resourcefulness and humor.",
+      "growth_rate": "+19% (ultima settimana)",
+      "hashtags": [
+        "#1dollarchallenge",
+        "#survivalvlog",
+        "#citylife"
+      ],
+      "platform": "YouTube",
+      "source_url": "https://www.youtube.com/challenges",
+      "trend_name": "$1 for 24 Hours",
+      "virality_score": 87
+    },
+    {
+      "category": "Reaction",
+      "data_points": [
+        {
+          "daily_views": 25000000,
+          "date": "2025-07-02",
+          "engagement_rate": 5.6
+        },
+        {
+          "daily_views": 27000000,
+          "date": "2025-07-03",
+          "engagement_rate": 6.1
+        },
+        {
+          "daily_views": 29500000,
+          "date": "2025-07-04",
+          "engagement_rate": 6.3
+        }
+      ],
+      "description": "Reactions to AI-generated songs mimicking famous artists go viral, sparking debates.",
+      "growth_rate": "+22% (ultima settimana)",
+      "hashtags": [
+        "#AIsongs",
+        "#fakemusichype",
+        "#deepfakemusic"
+      ],
+      "platform": "YouTube",
+      "source_url": "https://www.youtube.com/ai-trends",
+      "trend_name": "AI or Real?",
+      "virality_score": 92
+    }
+  ],
+  "social_accounts_index": {
+    "twitter": {
+      "cag8_": "akwiAKCu1oh5fOACbyHCp792QmR2"
+    }
+  },
+  "users": {
+    "2Nvz7941lbaJrWm5kwFf7iA1EeQ2": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754788209,
+        "status": "active",
+        "subscription_id": "pi_3RjVT7PXu7NNq0NK02g2dhSt",
+        "updated_at": 1752196212052
+      }
+    },
+    "6gOfql4W8dUDsotH74JnqrXZfz53": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754663547,
+        "status": "active",
+        "subscription_id": "pi_3Riz2ZPXu7NNq0NK1LcOk2i2",
+        "updated_at": 1752071550062
+      }
+    },
+    "BxinehifqpQWXaWTS4RGZYUR2Oj1": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754694631,
+        "status": "active",
+        "subscription_id": "pi_3Rj77zPXu7NNq0NK3eJpWfEo",
+        "updated_at": 1752102633183
+      }
+    },
+    "MuIDQgowvdQegDJmPfQCy0Vy9nr2": {
+      "youtube": {
+        "UCOkQ64XpF42EiF62KNbNKJw": {
+          "channel_id": "UCOkQ64XpF42EiF62KNbNKJw",
+          "channel_name": "jacopo berto",
+          "last_sync": 1750678712807,
+          "status": "active",
+          "subscriber_count": 0,
+          "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_mk0EVK9eC8m7jRB_Fl3RH8WyZgMhb34hPrbbzDEnM=s88-c-k-c0x00ffffff-no-rj",
+          "video_count": 46
+        }
+      }
+    },
+    "QoZ9bYU13efi7MGFZ65Rx1VYVci1": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754866372,
+        "status": "active",
+        "subscription_id": "pi_3RjpnxPXu7NNq0NK2ohfzueb",
+        "updated_at": 1752274375554
+      }
+    },
+    "SBkazm2UCaN5qmArxwM5qCDpn2z1": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754784985,
+        "status": "active",
+        "subscription_id": "pi_3RjUcsPXu7NNq0NK206nbs9t",
+        "updated_at": 1752192987582
+      }
+    },
+    "Sc8OW3vrUJWxJ3nNiZJ6zkfpiLl1": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754786585,
+        "status": "active",
+        "subscription_id": "pi_3RjV2qPXu7NNq0NK1RKk8ISr",
+        "updated_at": 1752194587861
+      }
+    },
+    "TAbVTEUEUraoFlNPojDsMIgS3l32": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754869548,
+        "status": "active",
+        "subscription_id": "pi_3RjqcrPXu7NNq0NK3nrsmxT4",
+        "updated_at": 1752277551075
+      }
+    },
+    "TnJmFAWUuobdqWGWHXU4ODWTJP52": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754748438,
+        "status": "active",
+        "subscription_id": "pi_3RjL7rPXu7NNq0NK3R4o69i3",
+        "updated_at": 1752156440265
+      }
+    },
+    "Va73WAI26SWDD1W4CrtVg7FT3wr2": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754691480,
+        "status": "active",
+        "subscription_id": "pi_3Rj6JAPXu7NNq0NK3TSt9K1c",
+        "updated_at": 1752099482393
+      }
+    },
+    "VfWEGQizbpWIm5pSidGrm858WII2": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754693466,
+        "status": "active",
+        "subscription_id": "pi_3Rj6ooPXu7NNq0NK0U88Wps6",
+        "updated_at": 1752101468876
+      }
+    },
+    "XIsyu2xZ4hODVFvqoEYmMMD8xrc2": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754695543,
+        "status": "active",
+        "subscription_id": "pi_3Rj7MePXu7NNq0NK23mWKLka",
+        "updated_at": 1752103545407
+      }
+    },
+    "akwiAKCu1oh5fOACbyHCp792QmR2": {
+      "facebook": {
+        "612887388580338": {
+          "access_token": "EAAR3GZCc6XlUBPDLZCRj10ZA1k1u0rMFZAzitSf4XyiSC62hTueqePlqFyFSi3CTNn1NP8gu0dE22J7cdZCTIIDqPUr0v9wgP9ZADtsZBfwxGitWEPEi2rbvub4IkxMpZB1iysol2zDCBkyA9hmp6g7NgxXuvE3ukGNPeH0ujOjp0heptZAxSaM6bw9MlU0Us4rZC7S6UH",
+          "category_list": [
+            {
+              "id": "530553733821238",
+              "name": "Agenzia di social media"
+            }
+          ],
+          "created_at": 1752158791583,
+          "display_name": "Viralyst",
+          "followers_count": 1,
+          "last_sync": 1752158791583,
+          "name": "Viralyst",
+          "page_id": "612887388580338",
+          "page_type": "Agenzia di social media",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+          "status": "active",
+          "verification_status": "not_verified"
+        },
+        "716823178174553": {
+          "access_token": "EAAR3GZCc6XlUBPHTBmA45QM6I0IHutEBnaQwXZBE27rFjKZAS14sA6ZA3bb7LcaWZA0fwAyKOZAfaJUkojTxdAD9hs6glQL26zZBFCjMp17wg85HixMaZAvW0l3OjTyNZA0v5IJwWObXHpYcy5gDJr4nzOfPJSp5C2oHF8dsQLgAXGxERuhK8EeM62p6iWJ3iRXZApnZAL7",
+          "category_list": [
+            {
+              "id": "673445767199285",
+              "name": "Scienza e tecnologia"
+            }
+          ],
+          "created_at": 1752158790179,
+          "display_name": "Viralyst 2 ",
+          "followers_count": 0,
+          "last_sync": 1752158790179,
+          "name": "Viralyst 2 ",
+          "page_id": "716823178174553",
+          "page_type": "Scienza e tecnologia",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+          "status": "active",
+          "verification_status": "not_verified"
+        }
+      },
+      "instagram": {
+        "9518475014909039": {
+          "access_token": "IGAAi5KUAnOd1BZAE16Tmp6X3FoS295U3djenoxVzgzQ2oxejlFRmtuNjZAWZAmdNUGlFUklsRlJ5eEpYYW5pYk5iZAGE4RllkOS1iOHBNdi1UT25lQ09oTmxEamR3VWtPNDJjNGlNc0pxeUpMTkk4YzNZAYjJ3",
+          "account_type": "MEDIA_CREATOR",
+          "created_at": 1751189606040,
+          "display_name": "lampadina_coatta",
+          "followers_count": 2,
+          "is_business_account": false,
+          "last_sync": 1751189606040,
+          "media_count": 0,
+          "permissions": "",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+          "status": "active",
+          "token_expires_in": 5184000,
+          "user_id": "9518475014909039",
+          "username": "lampadina_coatta"
+        },
+        "9774624469289828": {
+          "access_token": "IGAAi5KUAnOd1BZAFBOVUJiVnVNOWZAUVkFJX1g2WVEzbmJtMGNqR2F6ZAnNPaTRqdVd0ZA01DbnZAqRFlIa1J6TTNHczdtVTAtUXU2LUpWc0xhcGMzRDFUNXlYd1pKbHQ0RDJkR01WZAWFUMHRRV09WS2UxR1pn",
+          "account_type": "BUSINESS",
+          "created_at": 1751298782193,
+          "display_name": "share_magica",
+          "followers_count": 176,
+          "is_business_account": true,
+          "last_sync": 1751298782193,
+          "media_count": 8,
+          "permissions": "",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+          "status": "active",
+          "token_expires_in": 5184000,
+          "user_id": "9774624469289828",
+          "username": "share_magica"
+        }
+      },
+      "instagram_pending_auth": {
+        "status": "pending",
+        "timestamp": 1751378056732
+      },
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "status": "active",
+        "subscription_id": "sub_1Rin0lPXu7NNq0NK76mCXO6b",
+        "updated_at": 1752027747310
+      },
+      "tiktok": {
+        "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf": {
+          "access_token": "act.u92UM6tA6kYtZU1VpgNGM4Bz5pzWMBrvByIlL4Xdo5VPy2vGlsqfU5mIW2Bj!5169.e1",
+          "bio": "",
+          "created_at": 1751189567272,
+          "display_name": "Jacob_Tikofficial",
+          "followers_count": 1,
+          "following_count": 3,
+          "is_verified": false,
+          "last_sync": 1751189567272,
+          "likes_count": 25,
+          "name": "Jacob_Tikofficial",
+          "open_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+          "profile_deep_link": "",
+          "profile_image_large_url": "",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+          "profile_image_url_100": "",
+          "refresh_token": "rft.v0Nuf50oohGlD2gyHaNWvIXPtE9r5H2CeHVNBNub8C64lfGYcIanyCBFdTAp!5201.e1",
+          "refresh_token_expires_at": 1782725567274,
+          "scopes": "user.info.basic,video.publish,user.info.stats,video.list,video.upload",
+          "status": "active",
+          "token_expires_at": 1751275967272,
+          "union_id": "",
+          "username": "",
+          "video_count": 2
+        }
+      },
+      "youtube": {
+        "UCOkQ64XpF42EiF62KNbNKJw": {
+          "channel_id": "UCOkQ64XpF42EiF62KNbNKJw",
+          "channel_name": "jacopo berto",
+          "last_sync": 1751594665930,
+          "status": "active",
+          "subscriber_count": 0,
+          "thumbnail_url": "https://yt3.ggpht.com/funhv3FYUrxLogezjW66kopKXJwBgytUkJbFiqE68dmICCrKvewIkLlSgpMvLILB3LTuBk8V=s88-c-k-c0x00ffffff-no-rj",
+          "video_count": 62
+        },
+        "UCwQJuegd58WVCa7QhYkGE7g": {
+          "channel_id": "UCwQJuegd58WVCa7QhYkGE7g",
+          "channel_name": "Viralyst ",
+          "last_sync": 1751926121307,
+          "status": "active",
+          "subscriber_count": 0,
+          "thumbnail_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+          "video_count": 10
+        }
+      },
+      "youtube_tokens": {
+        "access_token": "ya29.a0AS3H6Nx8Vqwl8meao4mZhfoc0wUIF4IHjazuxKCFsf9CCre_u1iMYBEDw1h9572GyhPKUKqGxxp_UP1UglwxMm2cPFFClyv-NXrNfrn34m1uaEiG6BUrU2vWgTmn5t6ZIgHivu3jVmGIkwlx_iyn5r6afEHwmE-lEcEX0KKbtGe_1s403tBk-V0P0JwppzB2wtR29NFYphUffffe1TYMQICIkvLEr6719PojbdFx7L60xkAaCgYKAdgSARISFQHGX2MiX2n0sMuatP3kuWx7HSkPwg0246",
+        "expires_at": 1751898544919,
+        "refresh_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhlOGZjOGU1NTZmN2E3NmQwOGQzNTgyOWQ2ZjkwYWUyZTEyY2ZkMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDk1MzkxNzcxMjkxLThrdDVzamZlMjZyZnR2bXIzbzhwbnBtajl2NGl2N3U0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTA5NTM5MTc3MTI5MS1jcXBxNGNpNm00YWh2cWVlYTIxdTljOWc0cjRla3IwMi5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMjAxMDM4NDk0ODIzMzg5MTkzMSIsImVtYWlsIjoiamFjb3BvYmVydG8xOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6ImphY29wbyBiZXJ0byIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJcTBJZF9mclNnUkdPRndrY1ZiTDZWalJfM2R5eHRSdFU5TFRHdGxVNnlyNjlpeFE9czk2LWMiLCJnaXZlbl9uYW1lIjoiamFjb3BvIiwiZmFtaWx5X25hbWUiOiJiZXJ0byIsImlhdCI6MTc1MTg5NDkzMywiZXhwIjoxNzUxODk4NTMzfQ.LKCKSatzOYob3RRD8U3qEuqn6lzAgHhUMAl-wFSxHiDQQSw6ySTFS_7dY0Zgng6KledGZPg79VVhMfpZnj9wruKVWzT596ruRjwFYCONH2fv0uI8Idkn-bAXxfLeHPOc8fLimifbG4oBrnrEsPXspolHKlIsji2J8J5V14_ljPoKigoXjf6P0EaWre1pofvUwxVdsYVBhXfwLPjLRnslWtEFIN3NnM85AhrWEMK7pOuJdqlWlKLBRSzNzwoIfo-X4PCX_vKd_6RQHnl6uo28hw3cJStdlH3Jzb25W0r6bVkNA0ygkWtik-hrdD35hES6i3UuQv44FWkI8f429d6OyA",
+        "updated_at": 1751894944919
+      }
+    },
+    "gIxyzkTf55eVMOWz5VKhBe3wEeA3": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754691177,
+        "status": "active",
+        "subscription_id": "pi_3Rj6E9PXu7NNq0NK2egh6HME",
+        "updated_at": 1752099179600
+      }
+    },
+    "l9mp1jaNvmVXUJ3FVtAdYyrTg5o2": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754748289,
+        "status": "active",
+        "subscription_id": "pi_3RjL5PPXu7NNq0NK3e2Ra48C",
+        "updated_at": 1752156291906
+      }
+    },
+    "lkz9NJ02Vrf5RzaG3texny0TgRg2": {
+      "isPremium": true,
+      "subscription": {
+        "cancel_at_period_end": false,
+        "current_period_end": 1754694476,
+        "status": "active",
+        "subscription_id": "pi_3Rj75UPXu7NNq0NK0YavZCcB",
+        "updated_at": 1752102478881
+      }
+    },
+    "users": {
+      "2Nvz7941lbaJrWm5kwFf7iA1EeQ2": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIR2NVZ79600698",
+        "referral_count": 0,
+        "subscription": {
+          "created_at": 1752196208930,
+          "has_trial": true,
+          "isPremium": true,
+          "payment_method_id": "pm_1RjVTVPXu7NNq0NKzLpL3Pf9",
+          "plan_type": "monthly",
+          "status": "trialing",
+          "subscription_id": "sub_1RjVT5PXu7NNq0NKjIUJD64K",
+          "trial_days": 3
+        },
+        "uid": "2Nvz7941lbaJrWm5kwFf7iA1EeQ2"
+      },
+      "46w9VeUm8WanUjg942HUqgLrwMM2": {
+        "credits": 750,
+        "referral_code": "VIR46W9VE533932",
+        "referral_count": 0,
+        "uid": "46w9VeUm8WanUjg942HUqgLrwMM2"
+      },
+      "6gOfql4W8dUDsotH74JnqrXZfz53": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIR6GOFQL257449",
+        "referral_count": 0,
+        "uid": "6gOfql4W8dUDsotH74JnqrXZfz53"
+      },
+      "BxinehifqpQWXaWTS4RGZYUR2Oj1": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIRBXINEH540235",
+        "referral_count": 0,
+        "subscription": {
+          "created_at": 1752102630979,
+          "has_trial": true,
+          "isPremium": true,
+          "plan_type": "annual",
+          "status": "trialing",
+          "subscription_id": "sub_1Rj78FPXu7NNq0NKOlMdMSTj",
+          "trial_days": 3,
+          "trial_start": 1752102631
+        },
+        "uid": "BxinehifqpQWXaWTS4RGZYUR2Oj1"
+      },
+      "QoZ9bYU13efi7MGFZ65Rx1VYVci1": {
+        "credits": 500,
+        "first_subscription_date": 1752274373609,
+        "has_used_trial": true,
+        "referral_code": "VIRQOZ9BY291278",
+        "referral_count": 0,
+        "subscription": {
+          "created_at": 1752274372636,
+          "has_trial": true,
+          "isPremium": true,
+          "payment_method_id": "pm_1RjpoDPXu7NNq0NKxPcT41L5",
+          "plan_type": "monthly",
+          "status": "trialing",
+          "subscription_id": "sub_1RjpnvPXu7NNq0NKm4HD4AY7",
+          "trial_days": 3
+        },
+        "trial_used_at": 1752274373609,
+        "uid": "QoZ9bYU13efi7MGFZ65Rx1VYVci1"
+      },
+      "SBkazm2UCaN5qmArxwM5qCDpn2z1": {
+        "isPremium": true,
+        "subscription": {
+          "created_at": 1752192985044,
+          "has_trial": true,
+          "isPremium": true,
+          "plan_type": "monthly",
+          "status": "trialing",
+          "subscription_id": "sub_1RjUdaPXu7NNq0NKuM0ZRD53",
+          "trial_days": 3,
+          "trial_start": 1752192985
+        }
+      },
+      "Sc8OW3vrUJWxJ3nNiZJ6zkfpiLl1": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIRSC8OW3984318",
+        "referral_count": 0,
+        "uid": "Sc8OW3vrUJWxJ3nNiZJ6zkfpiLl1"
+      },
+      "TAbVTEUEUraoFlNPojDsMIgS3l32": {
+        "credits": 500,
+        "first_subscription_date": 1752276812685,
+        "has_used_trial": true,
+        "isPremium": true,
+        "referral_code": "VIRTABVTE775648",
+        "referral_count": 0,
+        "subscription": {
+          "created_at": 1752277547979,
+          "has_trial": true,
+          "isPremium": true,
+          "payment_method_id": "pm_1RjqdQPXu7NNq0NK06nOUaDQ",
+          "plan_type": "monthly",
+          "status": "incomplete",
+          "subscription_id": "sub_1RjqcpPXu7NNq0NKpWl6P7vX",
+          "trial_days": 3
+        },
+        "trial_used_at": 1752276812685,
+        "uid": "TAbVTEUEUraoFlNPojDsMIgS3l32"
+      },
+      "TnJmFAWUuobdqWGWHXU4ODWTJP52": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIRTNJMFA416994",
+        "referral_count": 0,
+        "subscription": {
+          "created_at": 1752156437992,
+          "has_trial": true,
+          "isPremium": true,
+          "plan_type": "annual",
+          "status": "trialing",
+          "subscription_id": "sub_1RjL87PXu7NNq0NKQRA8oBQx",
+          "trial_days": 3,
+          "trial_start": 1752156438
+        },
+        "uid": "TnJmFAWUuobdqWGWHXU4ODWTJP52"
+      },
+      "Va73WAI26SWDD1W4CrtVg7FT3wr2": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIRVA73WA452675",
+        "referral_count": 0,
+        "uid": "Va73WAI26SWDD1W4CrtVg7FT3wr2"
+      },
+      "VfWEGQizbpWIm5pSidGrm858WII2": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIRVFWEGQ422488",
+        "referral_count": 0,
+        "uid": "VfWEGQizbpWIm5pSidGrm858WII2"
+      },
+      "XIsyu2xZ4hODVFvqoEYmMMD8xrc2": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIRXISYU2448628",
+        "referral_count": 0,
+        "subscription": {
+          "created_at": 1752103543036,
+          "has_trial": true,
+          "isPremium": true,
+          "plan_type": "annual",
+          "status": "trialing",
+          "subscription_id": "sub_1Rj7MxPXu7NNq0NKUzUS92rD",
+          "trial_days": 3,
+          "trial_start": 1752103543
+        },
+        "uid": "XIsyu2xZ4hODVFvqoEYmMMD8xrc2"
+      },
+      "akwiAKCu1oh5fOACbyHCp792QmR2": {
+        "credits": 999,
+        "isPremium": true,
+        "profile": {
+          "display_name": "DailyKnowledge",
+          "last_updated": 1751189664012,
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg"
+        },
+        "referral_code": "VIRAKWIAK468559",
+        "referral_count": 0,
+        "scheduled_posts": {
+          "1751505669299_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "7227e175-32da-420c-9ec2-ea799deaa829"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "insta 12",
+                "worker_id": "1751505669299_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 12",
+                "worker_id": "0dc023b2-0fa3-4597-8d48-d49866fbe6b3"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "Jacob_Tikofficial",
+                "description": "generale 12",
+                "worker_id": "2f8f384b-65dc-47f9-9850-bfa4b01a6c37"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "Twitter  12",
+                "worker_id": "b36e46af-3432-409a-b8af-c3f75ba7f474"
+              }
+            },
+            "created_at": 1751505677514,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751505669806_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751592060000,
+            "status": "scheduled",
+            "text": "generale 12",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751505674754_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751505669299_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "1751555423599_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst",
+                "account_id": "612887388580338",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                "account_username": "Viralyst",
+                "worker_id": "1751555423599_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "worker_id": "1751555423599_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751555430935,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751555424104_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 2,
+            "scheduled_time": 1751555580000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751555429370_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751555423599_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "1751556897244_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst",
+                "account_id": "612887388580338",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                "account_username": "Viralyst",
+                "worker_id": "1751556897244_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "worker_id": "1751556897244_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "threads 50",
+                "worker_id": "1751556897244_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751556904006,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751556897749_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 3,
+            "scheduled_time": 1751557200000,
+            "status": "scheduled",
+            "text": "",
+            "unique_post_id": "1751556897244_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "1751559125388_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "description": "face 55",
+                "worker_id": "1751559125388_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "worker_id": "1751559125388_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751559140017,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751559125901_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 2,
+            "scheduled_time": 1751559360000,
+            "status": "scheduled",
+            "text": "generare ",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751559138255_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751559125388_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "1751634543382_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "YouTube": {
+                "account_display_name": "Viralyst ",
+                "account_id": "UCwQJuegd58WVCa7QhYkGE7g",
+                "account_profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                "account_username": "Viralyst ",
+                "description": "generale ",
+                "title": "che bello questo titolo di yt ",
+                "worker_id": "S5qwoCx7yCk",
+                "youtube_video_id": "S5qwoCx7yCk"
+              }
+            },
+            "created_at": 1751634556121,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751634543963_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751731200000,
+            "status": "scheduled",
+            "text": "generale ",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751634549201_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751634543382_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 12,
+            "video_duration_seconds": 12
+          },
+          "1751636906209_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "description": "generale ",
+                "worker_id": "1751636906209_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751636916450,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751636906750_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751637960000,
+            "status": "scheduled",
+            "text": "generale ",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751636910158_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751636906209_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 7,
+            "video_duration_seconds": 7
+          },
+          "1751637733332_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "YouTube": {
+                "account_display_name": "jacopo berto",
+                "account_id": "UCOkQ64XpF42EiF62KNbNKJw",
+                "account_profile_image_url": "https://yt3.ggpht.com/funhv3FYUrxLogezjW66kopKXJwBgytUkJbFiqE68dmICCrKvewIkLlSgpMvLILB3LTuBk8V=s88-c-k-c0x00ffffff-no-rj",
+                "account_username": "jacopo berto",
+                "title": "titolo",
+                "worker_id": "XVzARc1Nbkk",
+                "youtube_video_id": "XVzARc1Nbkk"
+              }
+            },
+            "created_at": 1751637746786,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751637733900_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751638800000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751637739217_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751637733332_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "1751649009725_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "worker_id": "1751649009725_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751649023502,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751649010826_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751735340000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751649020773_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751649009725_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 15,
+            "video_duration_seconds": 15
+          },
+          "1751650231617_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "worker_id": "1751650231617_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751650236709,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751650232768_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751735700000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751650234854_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751650231617_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 13,
+            "video_duration_seconds": 13
+          },
+          "1751650703259_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "worker_id": "1751650703259_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751650716138,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751650704465_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751735700000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751650714144_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751650703259_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "1751669484361_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "worker_id": "1751669484361_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751669489735,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751669485325_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751735700000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751669487876_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751669484361_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 10,
+            "video_duration_seconds": 10
+          },
+          "1751669529953_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "Jacob_Tikofficial",
+                "worker_id": "1751669529953_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751669535202,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751669530703_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751734800000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751669533761_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751669529953_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 21,
+            "video_duration_seconds": 21
+          },
+          "1751731744851_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "YouTube": {
+                "account_display_name": "Viralyst ",
+                "account_id": "UCwQJuegd58WVCa7QhYkGE7g",
+                "account_profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                "account_username": "Viralyst ",
+                "description": "generale finale",
+                "title": "titolo yt finale",
+                "worker_id": "Bkr76TCspJg",
+                "youtube_video_id": "Bkr76TCspJg"
+              }
+            },
+            "created_at": 1751731800874,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751731745529_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751733000000,
+            "status": "scheduled",
+            "text": "generale finale",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751731791218_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751731744851_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 12,
+            "video_duration_seconds": 12
+          },
+          "1751889775570_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "Jacob_Tikofficial",
+                "worker_id": "1751889775570_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751889790243,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751889776725_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751889780000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751889788459_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751889775570_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "1751890004598_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst",
+                "account_id": "612887388580338",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                "account_username": "Viralyst",
+                "worker_id": "1751890004598_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751890020451,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751890005654_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751890800000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751890018510_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751890004598_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 15,
+            "video_duration_seconds": 15
+          },
+          "1751891765788_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "worker_id": "1751891765788_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751891784290,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751891767193_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751891880000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751891782140_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751891765788_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 10,
+            "video_duration_seconds": 10
+          },
+          "1751892130207_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst",
+                "account_id": "612887388580338",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                "account_username": "Viralyst",
+                "worker_id": "1751892130207_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751892137988,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751892131372_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751896500000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751892135992_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751892130207_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 11,
+            "video_duration_seconds": 11
+          },
+          "1751892188333_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "worker_id": "1751892188333_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751892193859,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751892189555_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751892840000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751892192038_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751892188333_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 4,
+            "video_duration_seconds": 4
+          },
+          "1751892820602_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "worker_id": "1751892820602_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751892870209,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751892821690_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751893500000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751892868403_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751892820602_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 7,
+            "video_duration_seconds": 7
+          },
+          "1751894888046_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "YouTube": {
+                "account_display_name": "jacopo berto",
+                "account_id": "UCOkQ64XpF42EiF62KNbNKJw",
+                "account_profile_image_url": "https://yt3.ggpht.com/funhv3FYUrxLogezjW66kopKXJwBgytUkJbFiqE68dmICCrKvewIkLlSgpMvLILB3LTuBk8V=s88-c-k-c0x00ffffff-no-rj",
+                "account_username": "jacopo berto",
+                "description": "ciao",
+                "title": "10",
+                "worker_id": "TXjV7l9eHR4",
+                "youtube_video_id": "TXjV7l9eHR4"
+              }
+            },
+            "created_at": 1751894945317,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751894888707_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751896140000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751894930252_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751894888046_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 15,
+            "video_duration_seconds": 15
+          },
+          "1751896430210_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "worker_id": "1751896430210_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751896444486,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751896431374_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751982780000,
+            "status": "scheduled",
+            "text": "",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751896442416_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751896430210_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 11,
+            "video_duration_seconds": 11
+          }
+        },
+        "social_accounts": {
+          "threads": {
+            "9793937124001540": {
+              "access_token": "THAATZCFA13f05BUVM3T2xSTkMteEtRRUdLdlY5cG5ZAZA0JrVVRQWm9jZA2xFbFpOTTlSQXZApSGZAUcFNyaV9WZAEM3Nk4wcEo1QXpETVdYaVF4UURuTjNIaWstMHJUbHJCY3cxVkpIeGE3MUo4Vm9HZAkNhZAUp4aE84WFl6VGpPZAlV3R19nUQZDZD",
+              "created_at": 1751189645787,
+              "display_name": "share_magica",
+              "last_sync": 1751189645787,
+              "profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+              "status": "active",
+              "token_type": "long_lived",
+              "user_id": 9793937124001540,
+              "username": "share_magica"
+            }
+          },
+          "twitter": {
+            "-OTv1Q8Po4QwXSFda2Lb": {
+              "access_token": "1854892180193624064-DTblJdRTeYVNLpgAZPDomab286q7VB",
+              "access_token_secret": "NxhkhdQifTYU7J5ek1i962RRqECPCs9CyaNDzr8YjLCMw",
+              "api_key": "sTn3lkEWn47KiQl41zfGhjYb4",
+              "api_key_secret": "Z5UvLwLysPoX2fzlbebCIn63cQ3yBo0uXiqxK88v1fXcz3YrYA",
+              "bearer_token": "AAAAAAAAAAAAAAAAAAAAABSU0QEAAAAAo4YuWM0KL95fvPVsVk0EuIp%2B8tM%3DMh7GqySbNJX4qoTC3lpEycVl3x9cqQaRvbt1mwckSXszlBLmzM",
+              "created_at": 1751189664012,
+              "description": "Fresh News on tech and scientific advancements. Discover the future today!",
+              "display_name": "DailyKnowledge",
+              "followers_count": 54,
+              "following_count": 31,
+              "last_sync": 1751189664012,
+              "location": "Los Angeles, CA",
+              "profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+              "status": "active",
+              "tweet_count": 118,
+              "twitter_id": "1854892180193624064",
+              "username": "cag8_",
+              "username_key": "cag8_"
+            }
+          }
+        },
+        "uid": "akwiAKCu1oh5fOACbyHCp792QmR2",
+        "videos": {
+          "-OUFJEOKD7R-tX72G1Uy": {
+            "accounts": {
+              "Facebook": [
+                {
+                  "display_name": "Viralyst 2 ",
+                  "followers_count": "0",
+                  "id": "716823178174553",
+                  "media_id": "",
+                  "post_id": "1058686225859912",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                  "username": "Viralyst 2 "
+                }
+              ],
+              "Instagram": [
+                {
+                  "display_name": "lampadina_coatta",
+                  "followers_count": "2",
+                  "id": "9518475014909039",
+                  "media_id": "18057867854036810",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                  "username": "lampadina_coatta"
+                }
+              ],
+              "Threads": [
+                {
+                  "display_name": "share_magica",
+                  "followers_count": "0",
+                  "id": "9793937124001540",
+                  "media_id": "",
+                  "post_id": "18088475173678693",
+                  "profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                  "username": "share_magica"
+                }
+              ],
+              "TikTok": [
+                {
+                  "display_name": "Jacob_Tikofficial",
+                  "followers_count": "1",
+                  "id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                  "media_id": "",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                  "username": ""
+                }
+              ],
+              "Twitter": [
+                {
+                  "display_name": "DailyKnowledge",
+                  "followers_count": "54",
+                  "id": "-OTv1Q8Po4QwXSFda2Lb",
+                  "media_id": "",
+                  "post_id": "1940753405183455358",
+                  "profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                  "username": "cag8_"
+                }
+              ],
+              "YouTube": [
+                {
+                  "display_name": "Viralyst ",
+                  "followers_count": "0",
+                  "id": "UCwQJuegd58WVCa7QhYkGE7g",
+                  "media_id": "",
+                  "post_id": "CQRSGM0_o90",
+                  "profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                  "username": "Viralyst "
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751546565432_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "Instagram",
+              "YouTube",
+              "Twitter",
+              "Threads",
+              "Facebook",
+              "TikTok"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751546585661_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751546585661_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751546656340,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 12,
+            "video_duration_seconds": 12,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751546565432_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUHchFDwhrZGrOL4LdO": {
+            "accounts": {
+              "TikTok": [
+                {
+                  "display_name": "Jacob_Tikofficial",
+                  "followers_count": "1",
+                  "id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                  "media_id": "",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                  "username": ""
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751585563118_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "TikTok"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751585568353_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751585568353_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751585575945,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751585563118_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUHw6CFzYUvmY90ajAa": {
+            "accounts": {
+              "Facebook": [
+                {
+                  "display_name": "Viralyst",
+                  "followers_count": "1",
+                  "id": "612887388580338",
+                  "media_id": "",
+                  "post_id": "1400612134480486",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                  "username": "Viralyst"
+                }
+              ],
+              "Instagram": [
+                {
+                  "display_name": "lampadina_coatta",
+                  "followers_count": "2",
+                  "id": "9518475014909039",
+                  "media_id": "18080958658854773",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                  "username": "lampadina_coatta"
+                }
+              ],
+              "TikTok": [
+                {
+                  "display_name": "Jacob_Tikofficial",
+                  "followers_count": "1",
+                  "id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                  "media_id": "",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                  "username": ""
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751590607442_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "Instagram",
+              "Facebook",
+              "TikTok"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751590612807_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751590612807_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751590662987,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 12,
+            "video_duration_seconds": 12,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751590607442_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUI0F2d7F0IOnANPFy4": {
+            "accounts": {
+              "Facebook": [
+                {
+                  "display_name": "Viralyst 2 ",
+                  "followers_count": "0",
+                  "id": "716823178174553",
+                  "media_id": "",
+                  "post_id": "727263539661055",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                  "username": "Viralyst 2 "
+                }
+              ],
+              "Instagram": [
+                {
+                  "description": "insta 2 ",
+                  "display_name": "share_magica",
+                  "followers_count": "176",
+                  "id": "9774624469289828",
+                  "media_id": "17885682642302599",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                  "username": "share_magica"
+                }
+              ],
+              "TikTok": [
+                {
+                  "description": "generale 2 ",
+                  "display_name": "Jacob_Tikofficial",
+                  "followers_count": "1",
+                  "id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                  "media_id": "",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                  "username": ""
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751591952675_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "Instagram",
+              "Facebook",
+              "TikTok"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751591958906_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751591958906_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751592009961,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 7,
+            "video_duration_seconds": 7,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751591952675_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUI22ssRLosmEtYkscE": {
+            "accounts": {
+              "YouTube": [
+                {
+                  "description": "descrizione yt",
+                  "display_name": "Viralyst ",
+                  "followers_count": "0",
+                  "id": "UCwQJuegd58WVCa7QhYkGE7g",
+                  "media_id": "",
+                  "post_id": "58NtJNQy0OU",
+                  "profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                  "title": "generale titolo ",
+                  "username": "Viralyst ",
+                  "youtube_video_id": "58NtJNQy0OU"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751592470040_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "YouTube"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751592474965_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751592474965_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751592484407,
+            "title": "generale titolo ",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 13,
+            "video_duration_seconds": 13,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751592470040_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUI57X9JfHks00NxwEG": {
+            "accounts": {
+              "Threads": [
+                {
+                  "display_name": "share_magica",
+                  "followers_count": "0",
+                  "id": "9793937124001540",
+                  "media_id": "",
+                  "post_id": "18509744419028667",
+                  "profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                  "username": "share_magica"
+                }
+              ],
+              "TikTok": [
+                {
+                  "description": "descrizione generale ",
+                  "display_name": "Jacob_Tikofficial",
+                  "followers_count": "1",
+                  "id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                  "media_id": "",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                  "title": "titolo generale ",
+                  "username": ""
+                }
+              ],
+              "YouTube": [
+                {
+                  "description": "descrizione yt nuova  ",
+                  "display_name": "jacopo berto",
+                  "followers_count": "0",
+                  "id": "UCOkQ64XpF42EiF62KNbNKJw",
+                  "media_id": "",
+                  "post_id": "bswZsquh4y8",
+                  "profile_image_url": "https://yt3.ggpht.com/funhv3FYUrxLogezjW66kopKXJwBgytUkJbFiqE68dmICCrKvewIkLlSgpMvLILB3LTuBk8V=s88-c-k-c0x00ffffff-no-rj",
+                  "title": "titolo generale ",
+                  "username": "jacopo berto",
+                  "youtube_video_id": "bswZsquh4y8"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751593248084_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "YouTube",
+              "Threads",
+              "TikTok"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751593251228_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751593251228_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751593289865,
+            "title": "titolo generale ",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 10,
+            "video_duration_seconds": 10,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751593248084_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUI7Oto6rnotggTXOvG": {
+            "accounts": {
+              "Facebook": [
+                {
+                  "display_name": "Viralyst",
+                  "followers_count": "1",
+                  "id": "612887388580338",
+                  "media_id": "",
+                  "post_id": "1779900199610985",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                  "username": "Viralyst"
+                }
+              ],
+              "TikTok": [
+                {
+                  "description": "descrizione generale 3",
+                  "display_name": "Jacob_Tikofficial",
+                  "followers_count": "1",
+                  "id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                  "media_id": "",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                  "title": "titolo generale 3",
+                  "username": ""
+                }
+              ],
+              "YouTube": [
+                {
+                  "description": "descrizione yt 3",
+                  "display_name": "jacopo berto",
+                  "followers_count": "0",
+                  "id": "UCOkQ64XpF42EiF62KNbNKJw",
+                  "media_id": "",
+                  "post_id": "NAJ4SvHTzHQ",
+                  "profile_image_url": "https://yt3.ggpht.com/funhv3FYUrxLogezjW66kopKXJwBgytUkJbFiqE68dmICCrKvewIkLlSgpMvLILB3LTuBk8V=s88-c-k-c0x00ffffff-no-rj",
+                  "title": "titolo generale 3",
+                  "username": "jacopo berto",
+                  "youtube_video_id": "NAJ4SvHTzHQ"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751593818858_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "YouTube",
+              "Facebook",
+              "TikTok"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751593826165_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751593826165_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751593885300,
+            "title": "titolo generale 3",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751593818858_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUIAXYj9ArLIH_JID7b": {
+            "accounts": {
+              "Facebook": [
+                {
+                  "display_name": "Viralyst",
+                  "followers_count": "1",
+                  "id": "612887388580338",
+                  "media_id": "",
+                  "post_id": "1225501489308304",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                  "username": "Viralyst"
+                }
+              ],
+              "YouTube": [
+                {
+                  "description": "descrizione yt nuovissimo ",
+                  "display_name": "jacopo berto",
+                  "followers_count": "0",
+                  "id": "UCOkQ64XpF42EiF62KNbNKJw",
+                  "media_id": "",
+                  "post_id": "r5R5TwW0uHw",
+                  "profile_image_url": "https://yt3.ggpht.com/funhv3FYUrxLogezjW66kopKXJwBgytUkJbFiqE68dmICCrKvewIkLlSgpMvLILB3LTuBk8V=s88-c-k-c0x00ffffff-no-rj",
+                  "title": "",
+                  "username": "jacopo berto",
+                  "youtube_video_id": "r5R5TwW0uHw"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751594650883_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "YouTube",
+              "Facebook"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751594654602_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751594654602_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751594707182,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 7,
+            "video_duration_seconds": 7,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751594650883_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUID00hJ8ykGyc_BHiK": {
+            "accounts": {
+              "YouTube": [
+                {
+                  "description": "descrizione yt fine",
+                  "display_name": "Viralyst ",
+                  "followers_count": "0",
+                  "id": "UCwQJuegd58WVCa7QhYkGE7g",
+                  "media_id": "",
+                  "post_id": "BlkkkRl_Ag8",
+                  "profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                  "title": "",
+                  "username": "Viralyst ",
+                  "youtube_video_id": "BlkkkRl_Ag8"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751595316383_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "YouTube"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751595334387_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751595334387_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751595356268,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 10,
+            "video_duration_seconds": 10,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751595316383_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUKPHGOkmXOQ4jyfqhd": {
+            "accounts": {
+              "YouTube": [
+                {
+                  "display_name": "Viralyst ",
+                  "followers_count": "0",
+                  "id": "UCwQJuegd58WVCa7QhYkGE7g",
+                  "media_id": "",
+                  "post_id": "Betn7NO-Aho",
+                  "profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                  "title": "titolo yt nuovo governo ",
+                  "username": "Viralyst ",
+                  "youtube_video_id": "Betn7NO-Aho"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751632114380_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platform_descriptions": {
+              "YouTube": {
+                "UCwQJuegd58WVCa7QhYkGE7g_title": "titolo yt nuovo governo "
+              }
+            },
+            "platforms": [
+              "YouTube"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751632118024_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751632118024_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751632127063,
+            "title": "titolo yt nuovo governo ",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 10,
+            "video_duration_seconds": 10,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751632114380_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUNCfHfXxtbqAQHi7uJ": {
+            "accounts": {
+              "instagram": [
+                {
+                  "display_name": "share_magica",
+                  "followers_count": "176",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                  "username": "share_magica"
+                }
+              ],
+              "tiktok": [
+                {
+                  "display_name": "Jacob_Tikofficial",
+                  "followers_count": "1",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                  "username": ""
+                }
+              ]
+            },
+            "id": "-OUNCfHfXxtbqAQHi7uJ",
+            "is_image": false,
+            "platforms": [
+              "TikTok",
+              "Instagram"
+            ],
+            "status": "draft",
+            "thumbnail_path": "/data/user/0/com.viralyst.online/cache/edited_video_1751679140999_thumbnail.jpg",
+            "timestamp": 1751679153477,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 4,
+            "video_duration_seconds": 4,
+            "video_path": "/data/user/0/com.viralyst.online/app_flutter/edited_video_1751679140999.mp4"
+          },
+          "-OUNNHJ39h6VyBhoYaTC": {
+            "accounts": {
+              "twitter": [
+                {
+                  "display_name": "DailyKnowledge",
+                  "followers_count": "54",
+                  "profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                  "username": "cag8_"
+                }
+              ]
+            },
+            "id": "-OUNNHJ39h6VyBhoYaTC",
+            "is_image": false,
+            "platforms": [
+              "Twitter"
+            ],
+            "status": "draft",
+            "thumbnail_path": "/data/user/0/com.viralyst.online/cache/edited_video_1751681792793_thumbnail.jpg",
+            "timestamp": 1751681934847,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 4,
+            "video_duration_seconds": 4,
+            "video_path": "/data/user/0/com.viralyst.online/app_flutter/edited_video_1751681792793.mp4"
+          },
+          "-OUavmIt1UFnxjIwnjk5": {
+            "accounts": {
+              "YouTube": [
+                {
+                  "display_name": "Viralyst ",
+                  "followers_count": "0",
+                  "id": "UCwQJuegd58WVCa7QhYkGE7g",
+                  "media_id": "",
+                  "post_id": "b7APiul7CI8",
+                  "profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                  "title": "Gumball ",
+                  "username": "Viralyst ",
+                  "youtube_video_id": "b7APiul7CI8"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751925973302_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platform_descriptions": {
+              "YouTube": {
+                "UCwQJuegd58WVCa7QhYkGE7g_title": "Gumball "
+              }
+            },
+            "platforms": [
+              "YouTube"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751926050511_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751926050511_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751926121719,
+            "title": "Gumball ",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 7,
+            "video_duration_remaining_seconds": 41,
+            "video_duration_seconds": 461,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751925973302_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUaxS-WPRdjJx18dpqU": {
+            "accounts": {
+              "Instagram": [
+                {
+                  "display_name": "lampadina_coatta",
+                  "followers_count": "2",
+                  "id": "9518475014909039",
+                  "media_id": "17986616117693031",
+                  "post_id": "",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                  "username": "lampadina_coatta"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751926483434_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "Instagram"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751926485824_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751926485824_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751926558751,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751926483434_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "-OUazbijJyy6wlcsKlPv": {
+            "accounts": {
+              "Threads": [
+                {
+                  "display_name": "share_magica",
+                  "followers_count": "0",
+                  "id": "9793937124001540",
+                  "media_id": "",
+                  "post_id": "18082887607830055",
+                  "profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                  "username": "share_magica"
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751927087630_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "is_image": false,
+            "platforms": [
+              "Threads"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751927090138_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751927090138_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "timestamp": 1751927126958,
+            "title": "",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751927087630_akwiAKCu1oh5fOACbyHCp792QmR2.mp4"
+          },
+          "0fa1103d-f38a-44c8-ab18-89c090bc1761": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "0fa1103d-f38a-44c8-ab18-89c090bc1761"
+              },
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "description": "insta 13🩸",
+                "worker_id": "0fa1103d-f38a-44c8-ab18-89c090bc1761"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 13🧡",
+                "worker_id": "0fa1103d-f38a-44c8-ab18-89c090bc1761"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 13🧡",
+                "worker_id": "0fa1103d-f38a-44c8-ab18-89c090bc1761"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 13🧡",
+                "worker_id": "0fa1103d-f38a-44c8-ab18-89c090bc1761"
+              }
+            },
+            "created_at": 1751559311330,
+            "error": "Errore nel recupero delle informazioni del creator: {\"data\":{},\"error\":{\"code\":\"access_token_invalid\",\"message\":\"The access token is invalid or not found in the request.\",\"log_id\":\"20250703161509A05183DB048F31922F53\"}}",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751505951974_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751506080000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751505958252_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "0fa1103d-f38a-44c8-ab18-89c090bc1761",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "1751468697461_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "description": "🧡",
+                "worker_id": "1751468697461_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "🧡",
+                "worker_id": "1751468697461_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "🧡",
+                "worker_id": "1751468697461_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "🧡",
+                "worker_id": "1751468697461_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "🧡",
+                "worker_id": "1751468697461_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751582800253,
+            "error": "Twitter API error: 403 IPv6",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3cd9209da4d0a20e311d486fc37f1a71.r2.dev/media_1751468698005_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751555040000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751468707148_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751468697461_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "1751504739814_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "1751504739814_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "descrizione per instagram 💜",
+                "worker_id": "1751504739814_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "descrizione generale 😀",
+                "worker_id": "1751504739814_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "descrizione per tiktok 🎸",
+                "worker_id": "1751504739814_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "descrizione generale 😀",
+                "worker_id": "1751504739814_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751582141719,
+            "error": "Twitter API error: 403 IPv6",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3cd9209da4d0a20e311d486fc37f1a71.r2.dev/media_1751504740321_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751505000000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751504745259_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751504739814_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "1751505951467_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "1751505951467_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "description": "insta 13🩸",
+                "media_id": "17928144864079648",
+                "post_id": "17928144864079648",
+                "worker_id": "1751505951467_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 13🧡",
+                "worker_id": "1751505951467_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 13🧡",
+                "worker_id": "1751505951467_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 13🧡",
+                "worker_id": "1751505951467_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751506156594,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751505951974_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751506080000,
+            "status": "published",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751505958252_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751505951467_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 15,
+            "video_duration_seconds": 15
+          },
+          "1751551783438_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst",
+                "account_id": "612887388580338",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                "account_username": "Viralyst",
+                "worker_id": "1751551783438_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "description": "insta 1",
+                "worker_id": "1751551783438_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 1",
+                "worker_id": "1751551783438_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 1",
+                "worker_id": "1751551783438_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 1",
+                "worker_id": "1751551783438_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751583039605,
+            "error": "Twitter API error: 403 IPv6",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3cd9209da4d0a20e311d486fc37f1a71.r2.dev/media_1751551783958_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751551980000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751551789007_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751551783438_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "1751552984050_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "1751552984050_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "insta 2",
+                "worker_id": "1751552984050_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 2",
+                "worker_id": "1751552984050_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 2",
+                "worker_id": "1751552984050_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 2",
+                "worker_id": "1751552984050_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751553467289,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751552984557_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751553360000,
+            "status": "published",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751552992212_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751552984050_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "1751554000858_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "1751554000858_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "insta 3",
+                "worker_id": "1751554000858_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 3",
+                "worker_id": "1751554000858_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 3",
+                "worker_id": "1751554000858_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 3",
+                "worker_id": "1751554000858_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751582081973,
+            "error": "Twitter API error: 403 IPv6",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3cd9209da4d0a20e311d486fc37f1a71.r2.dev/media_1751554001362_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751554140000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751554002767_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751554000858_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 13,
+            "video_duration_seconds": 13
+          },
+          "1751554687020_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "1751554687020_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "description": "indta 4",
+                "worker_id": "1751554687020_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 4",
+                "media_id": "17940881372900402",
+                "post_id": "17940881372900402",
+                "worker_id": "1751554687020_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 4",
+                "worker_id": "1751554687020_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 4",
+                "worker_id": "1751554687020_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751554942693,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751554687525_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751554860000,
+            "status": "published",
+            "thumbnail_url": "",
+            "unique_post_id": "1751554687020_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "1751556101825_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst",
+                "account_id": "612887388580338",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                "account_username": "Viralyst",
+                "worker_id": "1751556101825_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "insta 5",
+                "worker_id": "1751556101825_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 5",
+                "media_id": "18072926602790907",
+                "post_id": "18072926602790907",
+                "worker_id": "1751556101825_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 5",
+                "worker_id": "1751556101825_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 5",
+                "worker_id": "1751556101825_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751556323759,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751556102331_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751556240000,
+            "status": "published",
+            "thumbnail_url": "",
+            "unique_post_id": "1751556101825_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 10,
+            "video_duration_seconds": 10
+          },
+          "1751557340368_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst",
+                "account_id": "612887388580338",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                "account_username": "Viralyst",
+                "worker_id": "1751557340368_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "worker_id": "1751557340368_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "media_id": "17853032844434104",
+                "post_id": "17853032844434104",
+                "worker_id": "1751557340368_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751557995301,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751557340871_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 3,
+            "scheduled_time": 1751557920000,
+            "status": "published",
+            "thumbnail_url": "",
+            "unique_post_id": "1751557340368_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "1751558304878_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst",
+                "account_id": "612887388580338",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                "account_username": "Viralyst",
+                "worker_id": "1751558304878_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "worker_id": "1751558304878_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "media_id": "18070825721488560",
+                "post_id": "18070825721488560",
+                "worker_id": "1751558304878_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751558835198,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751558305397_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 3,
+            "scheduled_time": 1751558760000,
+            "status": "published",
+            "thumbnail_url": "",
+            "unique_post_id": "1751558304878_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "1751559490945_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "1751559490945_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "insta 60",
+                "worker_id": "1751559490945_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 60",
+                "worker_id": "1751559490945_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 60",
+                "worker_id": "1751559490945_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 60",
+                "worker_id": "1751559490945_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751582860045,
+            "error": "Twitter API error: 403 IPv6",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3cd9209da4d0a20e311d486fc37f1a71.r2.dev/media_1751559491450_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751559660000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751559507811_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751559490945_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "1751581225427_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst",
+                "account_id": "612887388580338",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+                "account_username": "Viralyst",
+                "worker_id": "1751581225427_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "description": "generale",
+                "worker_id": "1751581225427_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale",
+                "worker_id": "1751581225427_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "tiktok descrizione ",
+                "worker_id": "1751581225427_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "teit",
+                "worker_id": "1751581225427_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751581420844,
+            "error": "Errore nel recupero delle informazioni del creator: {\"data\":{},\"error\":{\"code\":\"access_token_invalid\",\"message\":\"The access token is invalid or not found in the request.\",\"log_id\":\"202507032223405BC830A4D0F05EB0F241\"}}",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751581225953_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751581380000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751581229426_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751581225427_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 7,
+            "video_duration_seconds": 7
+          },
+          "1751582091276_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "1751582091276_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Instagram": {
+                "account_display_name": "share_magica",
+                "account_id": "9774624469289828",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9774624469289828.jpg",
+                "account_username": "share_magica",
+                "description": " insta g ",
+                "worker_id": "1751582091276_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "Gerardo generale ",
+                "worker_id": "1751582091276_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "Gerardo generale ",
+                "worker_id": "1751582091276_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "Gerardo generale ",
+                "worker_id": "1751582091276_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751582261527,
+            "error": "Twitter API error: 403 IPv6",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751582091781_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751582220000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751582094960_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751582091276_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 7,
+            "video_duration_seconds": 7
+          },
+          "1751583007083_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "insta ",
+                "worker_id": "1751583007083_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "worker_id": "1751583007083_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "twitter ",
+                "worker_id": "1751583007083_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751583219675,
+            "error": "Twitter API error: 403 IPv6",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751583007587_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 3,
+            "scheduled_time": 1751583180000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751583010776_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751583007083_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 7,
+            "video_duration_seconds": 7
+          },
+          "1751634916765_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "descrizione insta ",
+                "media_id": "17938691634040306",
+                "post_id": "17938691634040306",
+                "worker_id": "1751634916765_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "YouTube": {
+                "account_display_name": "Viralyst ",
+                "account_id": "UCwQJuegd58WVCa7QhYkGE7g",
+                "account_profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                "account_username": "Viralyst ",
+                "description": "generale descrizione per la radice di un n due non si può fare il ",
+                "worker_id": "1751634916765_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751636133382,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751634917291_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 2,
+            "scheduled_time": 1751636040000,
+            "status": "published",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751634922427_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751634916765_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 7,
+            "video_duration_seconds": 7
+          },
+          "1751639568906_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "dec in",
+                "media_id": "17859495069442575",
+                "post_id": "17859495069442575",
+                "worker_id": "1751639568906_akwiAKCu1oh5fOACbyHCp792QmR2"
+              },
+              "YouTube": {
+                "account_display_name": "Viralyst ",
+                "account_id": "UCwQJuegd58WVCa7QhYkGE7g",
+                "account_profile_image_url": "https://yt3.ggpht.com/32QddfcqbLCNVkC1hh8p5ZaPKK_1an8DdOwOpkYlZLEpTRuh1bbHrliykaPr86r9d_FEDGkx=s88-c-k-c0x00ffffff-no-rj",
+                "account_username": "Viralyst ",
+                "description": "desc",
+                "title": "titolo ",
+                "worker_id": "1751639568906_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751643992596,
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751639569435_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 2,
+            "scheduled_time": 1751643960000,
+            "status": "published",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751639576299_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751639568906_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "1751890596886_akwiAKCu1oh5fOACbyHCp792QmR2": {
+            "accounts": {
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "trallallero ",
+                "media_id": "18281598190257639",
+                "post_id": "18281598190257639",
+                "worker_id": "1751890596886_akwiAKCu1oh5fOACbyHCp792QmR2"
+              }
+            },
+            "created_at": 1751890787161,
+            "is_multi_platform": false,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751890601228_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751890740000,
+            "status": "published",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751890623012_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1751890596886_akwiAKCu1oh5fOACbyHCp792QmR2",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 15,
+            "video_duration_seconds": 15
+          },
+          "1ae09353-f32e-4028-928e-08f1d67cfb02": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "1ae09353-f32e-4028-928e-08f1d67cfb02"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "insta 2",
+                "worker_id": "1ae09353-f32e-4028-928e-08f1d67cfb02"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 2",
+                "worker_id": "1ae09353-f32e-4028-928e-08f1d67cfb02"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 2",
+                "worker_id": "1ae09353-f32e-4028-928e-08f1d67cfb02"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 2",
+                "worker_id": "1ae09353-f32e-4028-928e-08f1d67cfb02"
+              }
+            },
+            "created_at": 1751559370126,
+            "error": "Errore nel recupero delle informazioni del creator: {\"data\":{},\"error\":{\"code\":\"access_token_invalid\",\"message\":\"The access token is invalid or not found in the request.\",\"log_id\":\"20250703161608F2AD9D7C8EE40593B8F6\"}}",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751552984557_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751553360000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751552992212_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "1ae09353-f32e-4028-928e-08f1d67cfb02",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "50285033-0283-4d97-bf24-3a6c9c1aa837": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "description": "💙",
+                "worker_id": "50285033-0283-4d97-bf24-3a6c9c1aa837"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "💙",
+                "worker_id": "50285033-0283-4d97-bf24-3a6c9c1aa837"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "💙",
+                "worker_id": "50285033-0283-4d97-bf24-3a6c9c1aa837"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "💙",
+                "worker_id": "50285033-0283-4d97-bf24-3a6c9c1aa837"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "💙",
+                "worker_id": "50285033-0283-4d97-bf24-3a6c9c1aa837"
+              }
+            },
+            "created_at": 1751559426862,
+            "error": "Errore nel recupero delle informazioni del creator: {\"data\":{},\"error\":{\"code\":\"access_token_invalid\",\"message\":\"The access token is invalid or not found in the request.\",\"log_id\":\"202507031617054F9A2BBAD60D856422C9\"}}",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751468698005_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751555040000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751468707148_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "50285033-0283-4d97-bf24-3a6c9c1aa837",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          },
+          "cae23d5a-5a5e-4319-b900-fc3b3df5643f": {
+            "accounts": {
+              "Facebook": {
+                "account_display_name": "Viralyst 2 ",
+                "account_id": "716823178174553",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                "account_username": "Viralyst 2 ",
+                "worker_id": "cae23d5a-5a5e-4319-b900-fc3b3df5643f"
+              },
+              "Instagram": {
+                "account_display_name": "lampadina_coatta",
+                "account_id": "9518475014909039",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/9518475014909039.jpg",
+                "account_username": "lampadina_coatta",
+                "description": "insta 60",
+                "worker_id": "cae23d5a-5a5e-4319-b900-fc3b3df5643f"
+              },
+              "Threads": {
+                "account_display_name": "share_magica",
+                "account_id": "9793937124001540",
+                "account_profile_image_url": "https://ui-avatars.com/api/?name=S&background=E0F1FF&color=1E4C6B&size=256&bold=true&format=png&rounded=true&length=1",
+                "account_username": "share_magica",
+                "description": "generale 60",
+                "worker_id": "cae23d5a-5a5e-4319-b900-fc3b3df5643f"
+              },
+              "TikTok": {
+                "account_display_name": "Jacob_Tikofficial",
+                "account_id": "-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf",
+                "account_profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/-000UdXFkO_E1qFPT3QJ3xuk7Jp2hBiQIeOf.jpg",
+                "account_username": "",
+                "description": "generale 60",
+                "worker_id": "cae23d5a-5a5e-4319-b900-fc3b3df5643f"
+              },
+              "Twitter": {
+                "account_display_name": "DailyKnowledge",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "https://pbs.twimg.com/profile_images/1894126655339151360/z-AnKwaN_normal.jpg",
+                "account_username": "cag8_",
+                "description": "generale 60",
+                "worker_id": "cae23d5a-5a5e-4319-b900-fc3b3df5643f"
+              }
+            },
+            "created_at": 1751559721904,
+            "error": "Errore nel recupero delle informazioni del creator: {\"data\":{},\"error\":{\"code\":\"access_token_invalid\",\"message\":\"The access token is invalid or not found in the request.\",\"log_id\":\"2025070316215966F84A996E0D4E8A64FF\"}}",
+            "is_multi_platform": true,
+            "media_type": "video",
+            "media_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1751559491450_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 5,
+            "scheduled_time": 1751559660000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751559507811_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "unique_post_id": "cae23d5a-5a5e-4319-b900-fc3b3df5643f",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 3,
+            "video_duration_seconds": 3
+          },
+          "undefined": {
+            "accounts": {
+              "Twitter": {
+                "account_display_name": "cag8_",
+                "account_id": "-OTv1Q8Po4QwXSFda2Lb",
+                "account_profile_image_url": "",
+                "account_username": "cag8_",
+                "description": "twiyt"
+              }
+            },
+            "created_at": 1751582022186,
+            "error": "Twitter API error: 403 IPv6",
+            "is_multi_platform": false,
+            "media_type": "video",
+            "media_url": "https://pub-3cd9209da4d0a20e311d486fc37f1a71.r2.dev/media_1751463463476_akwiAKCu1oh5fOACbyHCp792QmR2.mp4",
+            "platforms_count": 1,
+            "scheduled_time": 1751463780000,
+            "status": "failed",
+            "thumbnail_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1751463468801_akwiAKCu1oh5fOACbyHCp792QmR2.jpg",
+            "user_id": "akwiAKCu1oh5fOACbyHCp792QmR2"
+          }
+        }
+      },
+      "gIxyzkTf55eVMOWz5VKhBe3wEeA3": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIRGIXYZK628624",
+        "referral_count": 0,
+        "uid": "gIxyzkTf55eVMOWz5VKhBe3wEeA3"
+      },
+      "jHHGHdVKJEWeIbGfFqeQ8A8nvvD2": {
+        "credits": 500,
+        "referral_code": "VIRJHHGHD439674",
+        "referral_count": 0,
+        "uid": "jHHGHdVKJEWeIbGfFqeQ8A8nvvD2"
+      },
+      "l9mp1jaNvmVXUJ3FVtAdYyrTg5o2": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIRL9MP1J263374",
+        "referral_count": 0,
+        "subscription": {
+          "created_at": 1752156289521,
+          "has_trial": true,
+          "isPremium": true,
+          "plan_type": "annual",
+          "status": "trialing",
+          "subscription_id": "sub_1RjL5iPXu7NNq0NKZjp7WtoZ",
+          "trial_days": 3,
+          "trial_start": 1752156290
+        },
+        "uid": "l9mp1jaNvmVXUJ3FVtAdYyrTg5o2"
+      },
+      "lkz9NJ02Vrf5RzaG3texny0TgRg2": {
+        "credits": 500,
+        "isPremium": true,
+        "referral_code": "VIRLKZ9NJ366696",
+        "referral_count": 0,
+        "subscription": {
+          "created_at": 1752102476598,
+          "has_trial": true,
+          "isPremium": true,
+          "plan_type": "monthly",
+          "status": "trialing",
+          "subscription_id": "sub_1Rj75lPXu7NNq0NKCw7b2gAl",
+          "trial_days": 3,
+          "trial_start": 1752102477
+        },
+        "uid": "lkz9NJ02Vrf5RzaG3texny0TgRg2"
+      },
+      "u0bsNHaLBbaZApoJzYhVRf53oPs1": {
+        "credits": 500,
+        "referral_code": "VIRU0BSNH963820",
+        "referral_count": 0,
+        "uid": "u0bsNHaLBbaZApoJzYhVRf53oPs1"
+      },
+      "uLCLQP5cBXSCiYIH3pBMIZ5BOEt2": {
+        "credits": 1250,
+        "referral_code": "VIRULCLQP661749",
+        "referral_count": 0,
+        "uid": "uLCLQP5cBXSCiYIH3pBMIZ5BOEt2"
+      },
+      "vtvIlFtu3wPnt7BMoOy9OMl8qHv2": {
+        "credits": 495,
+        "referral_code": "VIRVTVILF355588",
+        "referral_count": 0,
+        "uid": "vtvIlFtu3wPnt7BMoOy9OMl8qHv2",
+        "videos": {
+          "-OUot51zGvGwSUMpKlxZ": {
+            "accounts": {
+              "Facebook": [
+                {
+                  "description": "I love using Facebook ",
+                  "display_name": "Viralyst 2 ",
+                  "followers_count": "0",
+                  "id": "716823178174553",
+                  "media_id": "",
+                  "post_id": "1441041790374200",
+                  "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+                  "username": "Viralyst 2 "
+                }
+              ]
+            },
+            "cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1752160218628_vtvIlFtu3wPnt7BMoOy9OMl8qHv2.mp4",
+            "is_image": false,
+            "platform_descriptions": {
+              "Facebook": {
+                "716823178174553": "I love using Facebook "
+              }
+            },
+            "platforms": [
+              "Facebook"
+            ],
+            "status": "published",
+            "thumbnail_cloudflare_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1752160233116_vtvIlFtu3wPnt7BMoOy9OMl8qHv2.jpg",
+            "thumbnail_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/thumb_1752160233116_vtvIlFtu3wPnt7BMoOy9OMl8qHv2.jpg",
+            "timestamp": 1752160297145,
+            "title": "",
+            "user_id": "vtvIlFtu3wPnt7BMoOy9OMl8qHv2",
+            "video_duration_minutes": 0,
+            "video_duration_remaining_seconds": 15,
+            "video_duration_seconds": 15,
+            "video_path": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/media_1752160218628_vtvIlFtu3wPnt7BMoOy9OMl8qHv2.mp4"
+          }
+        }
+      }
+    },
+    "uy8GaNoHwGRDHOe3Um8swJbadWk2": {
+      "instagram": {
+        "10011117538955940": {
+          "access_token": "IGAAi5KUAnOd1BZAFBxeDZAsaDBVZAmE0VlJYZA203UHlReGtiMnlvU05kNTlJcmdvNHFXUEF6U2kxNDMtbEo2UzRiX2s5clRhc3pCTVpDMGNRZAktsWHlfY0RVTk90eUt1bThHTlFlTjNJdE1Hc1VkNGQ4U1ln",
+          "account_type": "MEDIA_CREATOR",
+          "created_at": 1750717312402,
+          "display_name": "somogionoro",
+          "followers_count": 0,
+          "is_business_account": false,
+          "last_sync": 1750717312402,
+          "media_count": 0,
+          "permissions": "",
+          "profile_image_url": "https://scontent.cdninstagram.com/v/t51.75761-19/503642360_17846009613509910_760988253623664883_n.jpg?stp=dst-jpg_s206x206_tt6&_nc_cat=105&ccb=1-7&_nc_sid=bf7eb4&_nc_ohc=WrzLrkBBirAQ7kNvwHz58zz&_nc_oc=Adl5TgxdKCX0KXzdTi9OlUHLRzJ1i0V6A9DQdlRYmuZmVMEY-ygoSfdWjjlV8jpCyV4&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&edm=AP4hL3IEAAAA&_nc_gid=chI8FepmaIKUcL29Np-UWw&oh=00_AfPU9N-z5gwYR0T8xTS1zWzN0bcX72XE8xjtfdKvp7AXnA&oe=685FB330",
+          "status": "active",
+          "token_expires_in": 5163147,
+          "user_id": "10011117538955940",
+          "username": "somogionoro"
+        }
+      },
+      "tiktok": {
+        "-000W2kqTWrj5hsr_jrgipphhMgEOVKoMDzD": {
+          "access_token": "act.nzkzy8UexsEOTahd6Q3r9dyqJhp1QkqfchHFlnD8UajP8dq8fgClRbEUReyR!5218.e1",
+          "bio": "",
+          "created_at": 1750716737299,
+          "display_name": "Thebest_creator",
+          "followers_count": 0,
+          "following_count": 0,
+          "is_verified": false,
+          "last_sync": 1750716737299,
+          "likes_count": 0,
+          "name": "Thebest_creator",
+          "open_id": "-000W2kqTWrj5hsr_jrgipphhMgEOVKoMDzD",
+          "profile_deep_link": "",
+          "profile_image_large_url": "",
+          "profile_image_url": "https://p16-pu-sign-no.tiktokcdn-eu.com/tos-no1a-avt-0068c001-no/74495ebc483d2c8da9ff8318cb1b023a~tplv-tiktokx-cropcenter:168:168.jpeg?dr=10397&refresh_token=69517eac&x-expires=1750888800&x-signature=MwgKJ%2FRlkLWlHLZGzqFbWn6xbC8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=8aecc5ac&idc=no1a",
+          "profile_image_url_100": "",
+          "refresh_token": "rft.UEVmr1g43kSkQhtMcFU59E0KjK9WOVat5EPPbgVssPy7yygsRmqxCOlyLgQP!5242.e1",
+          "refresh_token_expires_at": 1782252737306,
+          "scopes": "video.publish,user.info.basic,user.info.stats,video.list,video.upload",
+          "status": "active",
+          "token_expires_at": 1750803137300,
+          "union_id": "",
+          "username": "",
+          "video_count": 0
+        }
+      }
+    },
+    "vtvIlFtu3wPnt7BMoOy9OMl8qHv2": {
+      "facebook": {
+        "612887388580338": {
+          "access_token": "EAAR3GZCc6XlUBPAU55kkKJ15KVbqDvdAaDRGvBQtwwnJVkqZAgN4mEilRGE5ZA8owZCa09VQeiOjcc7AcZAcagrqv3pSCafSTiTGsZCcS8c9L1QKZCXc5CRZBBr0wHfexkETIQPvXOc77LA3MN89SAkB1te7hfc5fDbFg81YqqJH6OOoto6MVO3ZCRwKfSiyZBp6ZAmunFJ6q33",
+          "category_list": [
+            {
+              "id": "530553733821238",
+              "name": "Agenzia di social media"
+            }
+          ],
+          "created_at": 1752160103602,
+          "display_name": "Viralyst",
+          "followers_count": 1,
+          "last_sync": 1752160103602,
+          "name": "Viralyst",
+          "page_id": "612887388580338",
+          "page_type": "Agenzia di social media",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/612887388580338.png",
+          "status": "active",
+          "verification_status": "not_verified"
+        },
+        "716823178174553": {
+          "access_token": "EAAR3GZCc6XlUBPPmFVdp8LH2vT5VjA0u97KRnUEBn3mLej3WPXpLyvBT7f0Ggaj00dSZCSB3zWM0jtZCxd3aiWYv4ZBf58DL1Ymj49XeBLhPN50UzHNJSIdOZBivnKC4sVygjBmPKXZA6MePf7v5rSxRLPYtVCuOgAsbbxzIZAFNwsI9qkzjbGVsQlkis319KQFZBQZAaP51I",
+          "category_list": [
+            {
+              "id": "673445767199285",
+              "name": "Scienza e tecnologia"
+            }
+          ],
+          "created_at": 1752160102719,
+          "display_name": "Viralyst 2 ",
+          "followers_count": 0,
+          "last_sync": 1752160102719,
+          "name": "Viralyst 2 ",
+          "page_id": "716823178174553",
+          "page_type": "Scienza e tecnologia",
+          "profile_image_url": "https://pub-3d945eb681944ec5965fecf275e41a9b.r2.dev/profilePictures/716823178174553.jpg",
+          "status": "active",
+          "verification_status": "not_verified"
+        }
+      },
+      "instagram_pending_auth": {
+        "status": "pending",
+        "timestamp": 1752159562272
+      }
+    }
+  }
+}
