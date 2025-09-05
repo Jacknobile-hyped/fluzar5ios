@@ -99,13 +99,7 @@ class _AboutPageState extends State<AboutPage> {
                              ),
                           ],
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Version $_version',
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: isDark ? Colors.grey[400] : Colors.grey[600],
-                          ),
-                        ),
+
                         const SizedBox(height: 32),
                         Container(
                           padding: const EdgeInsets.all(20),

@@ -736,7 +736,7 @@ class _SocialAccountsPageState extends State<SocialAccountsPage> with WidgetsBin
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(20),
             child: InkWell(
-              onTap: title.toLowerCase() == 'twitter' ? null : () async {
+              onTap: (title.toLowerCase() == 'twitter' || title.toLowerCase() == 'tiktok') ? null : () async {
                 final result = await Navigator.pushNamed(context, '/$title'.toLowerCase());
                 if (result == true) {
                   _loadConnectedAccountsCount();
@@ -784,7 +784,7 @@ class _SocialAccountsPageState extends State<SocialAccountsPage> with WidgetsBin
                         ],
                       ),
                     ),
-                    if (title.toLowerCase() != 'twitter')
+                    if (title.toLowerCase() != 'twitter' && title.toLowerCase() != 'tiktok')
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(

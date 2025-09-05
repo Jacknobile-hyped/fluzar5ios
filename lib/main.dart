@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
+import 'dart:math';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -407,7 +411,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       print('Errore nell\'inizializzazione del video: $e');
       if (mounted) {
         setState(() {
-          _videoError = 'Errore nel caricamento del video';
+          _videoError = '';
         });
       }
     }
@@ -984,6 +988,314 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
         errorMessage = 'This account has been disabled';
       } else if (e.code == 'invalid-credential') {
         errorMessage = 'Invalid credentials';
+      }
+      
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.info_outline, color: Theme.of(context).colorScheme.primary, size: 20),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    errorMessage,
+                    style: TextStyle(color: Colors.black87, fontSize: 14),
+                  ),
+                ),
+              ],
+            ),
+            backgroundColor: Colors.white,
+            duration: const Duration(seconds: 5),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            margin: EdgeInsets.all(12),
+            elevation: 4,
+            action: SnackBarAction(
+              label: 'OK',
+              textColor: Theme.of(context).colorScheme.primary,
+              onPressed: () {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              },
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      print('Unexpected error: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.error_outline, color: Theme.of(context).colorScheme.primary, size: 20),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    'An unexpected error occurred: ${e.toString()}',
+                    style: TextStyle(color: Colors.black87, fontSize: 14),
+                  ),
+                ),
+              ],
+            ),
+            backgroundColor: Colors.white,
+            duration: const Duration(seconds: 5),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            margin: EdgeInsets.all(12),
+            elevation: 4,
+            action: SnackBarAction(
+              label: 'OK',
+              textColor: Theme.of(context).colorScheme.primary,
+              onPressed: () {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              },
+            ),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => isLoading = false);
+      }
+    }
+  }
+
+  // Generate a cryptographically secure nonce for Apple Sign-In
+  String _generateNonce([int length = 32]) {
+    const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+    final random = Random.secure();
+    return List.generate(length, (_) => charset[random.nextInt(charset.length)]).join();
+  }
+
+  // Generate SHA256 hash of the nonce
+  String _sha256ofString(String input) {
+    final bytes = utf8.encode(input);
+    final digest = sha256.convert(bytes);
+    return digest.toString();
+  }
+
+  Future<void> _signInWithApple() async {
+    try {
+      setState(() => isLoading = true);
+      
+      // Check if Apple Sign-In is available (only works on iOS)
+      bool isAvailable = false;
+      try {
+        isAvailable = await SignInWithApple.isAvailable();
+      } catch (e) {
+        // On Android, this will throw MissingPluginException
+        print('Apple Sign-In not available on this platform: $e');
+        isAvailable = false;
+      }
+      
+      if (!isAvailable) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.orange.shade100,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.apple, color: Colors.orange.shade700, size: 20),
+                  ),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      'Apple Sign-In is only available on iOS devices. Please use email or Google sign-in.',
+                      style: TextStyle(color: Colors.black87, fontSize: 14),
+                    ),
+                  ),
+                ],
+              ),
+              backgroundColor: Colors.white,
+              duration: const Duration(seconds: 4),
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              margin: EdgeInsets.all(12),
+              elevation: 4,
+            ),
+          );
+        }
+        return;
+      }
+      
+      // Generate nonce for security
+      final rawNonce = _generateNonce();
+      final hashedNonce = _sha256ofString(rawNonce);
+      
+      print('Starting Apple Sign In...');
+      
+      // Request Apple Sign-In
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: hashedNonce,
+        webAuthenticationOptions: WebAuthenticationOptions(
+          clientId: 'com.viralyst.online',
+          redirectUri: Uri.parse('https://share-magica.firebaseapp.com/__/auth/handler'),
+        ),
+      );
+      
+      print('Apple Sign In result: ${appleCredential.userIdentifier}');
+      
+      // Create Firebase credential
+      final oauthCredential = OAuthProvider("apple.com").credential(
+        idToken: appleCredential.identityToken,
+        rawNonce: rawNonce,
+      );
+      
+      print('Created Firebase Apple credential');
+      
+      // Sign in to Firebase with Apple credential
+      final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      
+      print('Firebase Apple sign in successful: ${userCredential.user?.email}');
+      
+      // Check if the sign in was successful
+      if (userCredential.user != null) {
+        final user = userCredential.user!;
+        final isNewUser = userCredential.additionalUserInfo?.isNewUser ?? false;
+        
+        // If this is a new user, create their Firestore document
+        if (isNewUser) {
+          try {
+            // For new Apple users, create the document directly
+            await _completeAppleRegistration(user, appleCredential);
+          } catch (e) {
+            print('Error creating Apple user document: $e');
+            // Continue even if document creation fails
+          }
+        } else {
+          // Existing user, check if onboarding is completed
+          final profileSnapshot = await FirebaseDatabase.instance
+              .ref()
+              .child('users')
+              .child('users')
+              .child(user.uid)
+              .child('profile')
+              .child('onboardingCompleted')
+              .get();
+          
+          final onboardingCompleted = profileSnapshot.value as bool? ?? false;
+          
+          if (mounted) {
+            if (onboardingCompleted) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MainScreen()),
+              );
+            } else {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const OnboardingProfilePage()),
+              );
+            }
+          }
+        }
+      }
+    } on SignInWithAppleAuthorizationException catch (e) {
+      print('Apple Sign In Error: ${e.code} - ${e.message}');
+      String errorMessage = 'An error occurred during Apple sign in';
+      
+      switch (e.code) {
+        case AuthorizationErrorCode.canceled:
+          errorMessage = 'Apple sign in was canceled';
+          break;
+        case AuthorizationErrorCode.failed:
+          errorMessage = 'Apple sign in failed. Please try again';
+          break;
+        case AuthorizationErrorCode.invalidResponse:
+          errorMessage = 'Invalid response from Apple. Please try again';
+          break;
+        case AuthorizationErrorCode.notHandled:
+          errorMessage = 'Apple sign in not handled. Please try again';
+          break;
+        case AuthorizationErrorCode.notInteractive:
+          errorMessage = 'Apple sign in is not available in this context';
+          break;
+        case AuthorizationErrorCode.unknown:
+          errorMessage = 'Unknown error occurred during Apple sign in';
+          break;
+      }
+      
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.info_outline, color: Theme.of(context).colorScheme.primary, size: 20),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    errorMessage,
+                    style: TextStyle(color: Colors.black87, fontSize: 14),
+                  ),
+                ),
+              ],
+            ),
+            backgroundColor: Colors.white,
+            duration: const Duration(seconds: 5),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            margin: EdgeInsets.all(12),
+            elevation: 4,
+            action: SnackBarAction(
+              label: 'OK',
+              textColor: Theme.of(context).colorScheme.primary,
+              onPressed: () {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              },
+            ),
+          ),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      print('Firebase Auth Error: ${e.code} - ${e.message}');
+      String errorMessage = 'An error occurred during Apple sign in';
+      if (e.code == 'network-request-failed') {
+        errorMessage = 'Please check your internet connection and try again';
+      } else if (e.code == 'user-disabled') {
+        errorMessage = 'This account has been disabled';
+      } else if (e.code == 'invalid-credential') {
+        errorMessage = 'Invalid Apple credentials';
+      } else if (e.code == 'operation-not-allowed') {
+        errorMessage = 'Apple sign in is not enabled for this app';
       }
       
       if (mounted) {
@@ -2033,6 +2345,39 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                                           ),
                                         ),
                                       ),
+                                      const SizedBox(height: 16),
+                                      // Apple Sign In button
+                                      SizedBox(
+                                        height: 50,
+                                        child: OutlinedButton.icon(
+                                          onPressed: isLoading ? null : _signInWithApple,
+                                          icon: Padding(
+                                            padding: const EdgeInsets.only(right: 8.0),
+                                            child: Image.asset(
+                                              'assets/loghi/LogoAppleNeroNoSfondo.png',
+                                              height: 23,
+                                              width: 23,
+                                            ),
+                                          ),
+                                          label: Text(
+                                            'Continue with Apple',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              color: isDark ? Colors.white : Colors.black87,
+                                            ),
+                                          ),
+                                          style: OutlinedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15),
+                                            ),
+                                            side: BorderSide(
+                                              color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
+                                            ),
+                                            backgroundColor: isDark ? Colors.grey[800] : Colors.white,
+                                          ),
+                                        ),
+                                      ),
                                       const SizedBox(height: 24),
                                       // Sign up/Login link
                                       Row(
@@ -2272,6 +2617,218 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                 Expanded(
                   child: Text(
                     'Errore durante la registrazione: ${e.toString()}',
+                    style: TextStyle(color: Colors.black87, fontSize: 14),
+                  ),
+                ),
+              ],
+            ),
+            backgroundColor: Colors.white,
+            duration: const Duration(seconds: 5),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            margin: EdgeInsets.all(12),
+            elevation: 4,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => isLoading = false);
+      }
+    }
+  }
+
+  // Metodo per completare la registrazione degli utenti Apple
+  Future<void> _completeAppleRegistration(User user, AuthorizationCredentialAppleID appleCredential) async {
+    try {
+      setState(() => isLoading = true);
+      
+      // Generate a unique referral code
+      final referralCode = _generateReferralCode(user.uid);
+      
+      // Get Firebase Realtime Database reference
+      final database = FirebaseDatabase.instance;
+      
+      // Check if push notifications are enabled
+      final pushNotificationsEnabled = await OneSignalService.areNotificationsEnabled();
+      
+      // Get display name from Apple credential if available
+      String? displayName;
+      if (appleCredential.givenName != null && appleCredential.familyName != null) {
+        displayName = '${appleCredential.givenName} ${appleCredential.familyName}';
+      } else if (appleCredential.givenName != null) {
+        displayName = appleCredential.givenName;
+      }
+      
+      // Initialize the user data with default values
+      final userData = {
+        'uid': user.uid,
+        'email': user.email, // Apple may provide a private relay email
+        'displayName': displayName, // Store Apple display name
+        'referral_code': referralCode,
+        'invited_by': null,
+        'referred_users': [],
+        'referral_count': 0, // Initialize referral count
+        'credits': 500, // Default credits
+        'push_notifications_enabled': pushNotificationsEnabled, // Save push notification state
+      };
+      
+      // Check if a referral code was provided
+      final referralCodeInput = _referralCodeController.text.trim();
+      if (referralCodeInput.isNotEmpty) {
+        try {
+          print('DEBUG REFERRAL: Processing referral code: $referralCodeInput');
+          
+          // Look for the referrer in Realtime Database
+          final referrerQuery = await database
+              .ref()
+              .child('users')
+              .child('users')
+              .orderByChild('referral_code')
+              .equalTo(referralCodeInput)
+              .limitToFirst(1)
+              .get();
+          
+          print('DEBUG REFERRAL: Query result exists: ${referrerQuery.exists}');
+          print('DEBUG REFERRAL: Query children count: ${referrerQuery.children.length}');
+          
+          // If a referrer was found
+          if (referrerQuery.exists && referrerQuery.children.isNotEmpty) {
+            final referrerSnapshot = referrerQuery.children.first;
+            final referrerData = Map<String, dynamic>.from(referrerSnapshot.value as Map);
+            final referrerUid = referrerData['uid'] as String;
+            
+            print('DEBUG REFERRAL: Found referrer with UID: $referrerUid');
+            print('DEBUG REFERRAL: Referrer current credits: ${referrerData['credits']}');
+            print('DEBUG REFERRAL: Referrer current referral_count: ${referrerData['referral_count']}');
+            
+            // Update the new user's data with the referrer's UID
+            userData['invited_by'] = referrerUid;
+            userData['credits'] = 1000; // 500 default + 500 bonus
+            
+            // Update referrer in a safe way
+            final referrerUserRef = database.ref().child('users').child('users').child(referrerUid);
+            
+            // Read current referrer data
+            final currentReferrerSnapshot = await referrerUserRef.get();
+            if (currentReferrerSnapshot.exists && currentReferrerSnapshot.value is Map) {
+              final currentData = Map<String, dynamic>.from(currentReferrerSnapshot.value as Map);
+              print('DEBUG REFERRAL: Current referrer data loaded successfully');
+              
+              List<String> referredUsers = [];
+              if (currentData.containsKey('referred_users') && currentData['referred_users'] != null) {
+                if (currentData['referred_users'] is List) {
+                  referredUsers = List<String>.from(currentData['referred_users']);
+                  print('DEBUG REFERRAL: Current referred_users (List): $referredUsers');
+                } else if (currentData['referred_users'] is Map) {
+                  referredUsers = (currentData['referred_users'] as Map).values.map((v) => v.toString()).toList();
+                  print('DEBUG REFERRAL: Current referred_users (Map): $referredUsers');
+                }
+              } else {
+                print('DEBUG REFERRAL: No referred_users found, starting with empty list');
+              }
+              
+              if (!referredUsers.contains(user.uid)) {
+                print('DEBUG REFERRAL: Adding new user ${user.uid} to referred_users');
+                referredUsers.add(user.uid);
+                
+                int rewardAmount;
+                switch (referredUsers.length) {
+                  case 1: rewardAmount = 1000; break;
+                  case 2: rewardAmount = 1500; break;
+                  case 3: rewardAmount = 3000; break;
+                  default: rewardAmount = 1000; break;
+                }
+                
+                final currentCredits = currentData['credits'] as int? ?? 0;
+                final newCredits = currentCredits + rewardAmount;
+                final newReferralCount = referredUsers.length;
+                
+                print('DEBUG REFERRAL: Current credits: $currentCredits');
+                print('DEBUG REFERRAL: Reward amount: $rewardAmount');
+                print('DEBUG REFERRAL: New credits: $newCredits');
+                print('DEBUG REFERRAL: New referral_count: $newReferralCount');
+                print('DEBUG REFERRAL: Updated referred_users: $referredUsers');
+                
+                // Update the referrer
+                await referrerUserRef.update({
+                  'referred_users': referredUsers,
+                  'credits': newCredits,
+                  'referral_count': newReferralCount,
+                });
+                
+                print('DEBUG REFERRAL: Successfully updated referrer $referrerUid');
+                
+                // Verify the update was successful
+                final verifySnapshot = await referrerUserRef.get();
+                if (verifySnapshot.exists && verifySnapshot.value is Map) {
+                  final verifyData = Map<String, dynamic>.from(verifySnapshot.value as Map);
+                  print('DEBUG REFERRAL: Verification - credits: ${verifyData['credits']}');
+                  print('DEBUG REFERRAL: Verification - referral_count: ${verifyData['referral_count']}');
+                  print('DEBUG REFERRAL: Verification - referred_users: ${verifyData['referred_users']}');
+                }
+              } else {
+                print('DEBUG REFERRAL: User ${user.uid} already in referred_users list');
+              }
+            } else {
+              print('DEBUG REFERRAL: Failed to load current referrer data');
+            }
+          } else {
+            print('DEBUG REFERRAL: No referrer found with code: $referralCodeInput');
+          }
+        } catch (e) {
+          print('DEBUG REFERRAL: Error processing referral: $e');
+          // Continue with registration even if referral processing fails
+        }
+      }
+      
+      // Create the new user document in Realtime Database
+      await database
+          .ref()
+          .child('users')
+          .child('users')
+          .child(user.uid)
+          .set(userData);
+      
+      // Save user in registered_emails folder for future verifications
+      try {
+        if (user.email != null && user.email!.isNotEmpty) {
+          await EmailService.saveRegisteredUser(user.email!, user.uid, userData);
+          print('Apple user saved in registered_emails folder');
+        } else {
+          print('Apple user email not available, skipping save in registered_emails');
+        }
+      } catch (e) {
+        print('Error saving Apple user in registered_emails: $e');
+        // Don't block registration if this fails
+      }
+      
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const OnboardingProfilePage()),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.red.withOpacity(0.2),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.error_outline, color: Colors.red, size: 20),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    'Error during Apple registration: ${e.toString()}',
                     style: TextStyle(color: Colors.black87, fontSize: 14),
                   ),
                 ),

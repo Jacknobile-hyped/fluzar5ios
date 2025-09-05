@@ -39,6 +39,7 @@ dependencies:
   firebase_database: ^10.3.8
   firebase_storage: ^11.5.6
   google_sign_in: ^6.1.6
+  sign_in_with_apple: ^4.3.0
   image_picker: ^1.0.5
   package_info_plus: ^5.0.1
   url_launcher: ^6.3.1
@@ -119,6 +120,7 @@ flutter:
     - assets/animations/upload/3upload.json
     - assets/animations/Ai loading model.json
     - assets/loghi/
+    - assets/loghi/LogoAppleNeroNoSfondo.png
     - assets/animations/spash_loadingcircle.json
     - assets/animations/tutorial/tiktok.mp4
     - assets/animations/tutorial/youtube.mp4

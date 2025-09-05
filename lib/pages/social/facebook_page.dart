@@ -540,14 +540,6 @@ class _FacebookPageState extends State<FacebookPage> with TickerProviderStateMix
         
         await _loadAccounts();
 
-        // Logout from Facebook session after completing OAuth to allow switching profiles next time
-        try {
-          await FacebookAuth.instance.logOut();
-          print('Facebook session logged out after OAuth completion');
-        } catch (e) {
-          print('Warning: failed to logout Facebook session after OAuth: $e');
-        }
-
         if (mounted) {
           // SnackBar rimossa come richiesto
         }
@@ -566,7 +558,16 @@ class _FacebookPageState extends State<FacebookPage> with TickerProviderStateMix
         // SnackBar rimossa come richiesto
       }
     } finally {
-      setState(() => _isLoading = false);
+      // Ensure logout at the end of the flow so user can switch account next time
+      try {
+        await FacebookAuth.instance.logOut();
+        print('Facebook session logged out at the end of connection flow');
+      } catch (e) {
+        print('Warning: failed to logout Facebook session at end of flow: $e');
+      }
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 
@@ -852,6 +853,11 @@ class _FacebookPageState extends State<FacebookPage> with TickerProviderStateMix
                             'Interactive Details',
                             'Click on any account to view the videos published with Viralyst.',
                             Icons.touch_app,
+                          ),
+                          _buildInfoItem(
+                            'Account Switching',
+                            'To connect a different Facebook account, you need to logout from the Facebook app and then reconnect here in Viralyst.',
+                            Icons.swap_horiz,
                           ),
                           _buildInfoItem(
                             'Account Visibility',
@@ -1432,6 +1438,33 @@ class _FacebookPageState extends State<FacebookPage> with TickerProviderStateMix
           ),
           Row(
             children: [
+              // Info button for account switching help
+              Container(
+                margin: const EdgeInsets.only(right: 8),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(20),
+                    onTap: _showInfoBottomSheet,
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF1877F2).withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: Color(0xFF1877F2).withOpacity(0.3),
+                          width: 1,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.info_outline,
+                        size: 16,
+                        color: Color(0xFF1877F2),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
@@ -1582,5 +1615,202 @@ class _FacebookPageState extends State<FacebookPage> with TickerProviderStateMix
         ],
       ),
     );
+  }
+
+  // Show info bottom sheet for account switching help
+  void _showInfoBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        final theme = Theme.of(context);
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.53,
+          decoration: BoxDecoration(
+            color: theme.brightness == Brightness.dark ? Colors.grey[900]! : Colors.white,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+            ),
+          ),
+          child: Column(
+            children: [
+              // Handle bar
+              Container(
+                margin: const EdgeInsets.only(top: 12, bottom: 12),
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey[400],
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              // Header
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  'Account Switching Help',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: theme.brightness == Brightness.dark ? Colors.white : Colors.black87,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Content
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      // First instruction
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: theme.brightness == Brightness.dark 
+                              ? Color(0xFF1877F2).withOpacity(0.1)
+                              : Color(0xFF1877F2).withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Color(0xFF1877F2).withOpacity(0.2),
+                            width: 1,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.logout,
+                              size: 24,
+                              color: Color(0xFF1877F2),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'Step 1: Logout from Facebook',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: theme.brightness == Brightness.dark ? Colors.white : Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              'To connect a different Facebook account, you need to logout from the Facebook app first.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: theme.brightness == Brightness.dark ? Colors.grey[400] : Colors.grey[600],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      // Second instruction
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: theme.brightness == Brightness.dark 
+                              ? Color(0xFF1877F2).withOpacity(0.1)
+                              : Color(0xFF1877F2).withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Color(0xFF1877F2).withOpacity(0.2),
+                            width: 1,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.login,
+                              size: 24,
+                              color: Color(0xFF1877F2),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'Step 2: Reconnect in Viralyst',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: theme.brightness == Brightness.dark ? Colors.white : Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              'After logging out from Facebook, come back to Viralyst and tap "Connect Facebook Page" to reconnect with your new account.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: theme.brightness == Brightness.dark ? Colors.grey[400] : Colors.grey[600],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      // Open Facebook button
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton.icon(
+                          onPressed: () async {
+                            Navigator.of(context).pop();
+                            await _openFacebookApp();
+                          },
+                          icon: Image.asset(
+                            'assets/loghi/logo_facebook.png',
+                            width: 20,
+                            height: 20,
+                            fit: BoxFit.contain,
+                          ),
+                          label: const Text(
+                            'Open Facebook',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF1877F2),
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 0,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  // Method to open Facebook app
+  Future<void> _openFacebookApp() async {
+    try {
+      // Try to open Facebook app first
+      const facebookAppUrl = 'fb://';
+      const facebookWebUrl = 'https://www.facebook.com';
+      
+      if (await canLaunchUrl(Uri.parse(facebookAppUrl))) {
+        await launchUrl(Uri.parse(facebookAppUrl));
+      } else if (await canLaunchUrl(Uri.parse(facebookWebUrl))) {
+        await launchUrl(Uri.parse(facebookWebUrl));
+      } else {
+        print('Could not launch Facebook app or website');
+      }
+    } catch (e) {
+      print('Error opening Facebook: $e');
+    }
   }
 } 

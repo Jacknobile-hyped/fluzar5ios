@@ -1633,7 +1633,7 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
                                                 ),
                                                 SizedBox(width: 4),
                                                 Text(
-                                                  'Generato con AI',
+                                                  'Generated with AI',
                                                   style: TextStyle(
                                                     color: theme.colorScheme.primary,
                                                     fontSize: 12,

@@ -2407,17 +2407,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                       
                       const SizedBox(height: 40),
                       
-                      // App version at the bottom
-                      Center(
-                        child: Text(
-                          'Fluzar v1.1.3',
-                          style: TextStyle(
-                            color: Colors.grey[500],
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
+
                     ],
                   ),
                 ),
