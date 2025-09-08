@@ -9,6 +9,7 @@ import 'upload_video_page.dart';
 import 'dart:io';
 import 'social/social_account_details_page.dart';
 import 'upgrade_premium_page.dart';
+import 'upgrade_premium_ios_page.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
 import 'scheduled_posts_page.dart';
@@ -470,7 +471,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const UpgradePremiumPage(suppressExtraPadding: true),
+                builder: (context) => Platform.isIOS
+                    ? const UpgradePremiumIOSPage(suppressExtraPadding: true)
+                    : const UpgradePremiumPage(suppressExtraPadding: true),
               ),
             ).then((_) {
               // Check progress when returning, ma non ricarichiamo i crediti
@@ -1553,7 +1556,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const UpgradePremiumPage(suppressExtraPadding: true),
+              builder: (context) => Platform.isIOS
+                  ? const UpgradePremiumIOSPage(suppressExtraPadding: true)
+                  : const UpgradePremiumPage(suppressExtraPadding: true),
             ),
           ).then((_) {
             // Check progress when returning, ma non ricarichiamo i crediti

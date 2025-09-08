@@ -16,7 +16,7 @@ import 'credits_page.dart';
 
 // Servizio per ChatGPT copiato dalla video_stats_page.dart
 class ChatGptService {
-  static const String apiKey = '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';
+  static const String apiKey = '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';
   static const String apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   // Funzione per calcolare i token utilizzati

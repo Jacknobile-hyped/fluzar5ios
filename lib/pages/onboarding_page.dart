@@ -262,8 +262,11 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: isDark ? Color(0xFF121212) : Colors.white,
       body: Stack(
         children: [
           // Animated Background with multiple layers
@@ -349,6 +352,9 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
   }
 
   Widget _buildAnimatedBackground() {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    
     return Stack(
                           children: [
         // Base gradient layer
@@ -362,12 +368,18 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
                                   gradient: LinearGradient(
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
-                                    colors: [
+                                    colors: isDark ? [
                   Colors.purple.withOpacity(0.15),
                   Colors.blue.withOpacity(0.08),
                   Colors.transparent,
                   Colors.purple.withOpacity(0.12),
                   Colors.blue.withOpacity(0.06),
+                ] : [
+                  Color(0xFF667eea).withOpacity(0.08),
+                  Color(0xFF764ba2).withOpacity(0.05),
+                  Colors.transparent,
+                  Color(0xFF667eea).withOpacity(0.06),
+                  Color(0xFF764ba2).withOpacity(0.03),
                 ],
                 stops: const [0.0, 0.2, 0.5, 0.8, 1.0],
                                   ),
@@ -382,10 +394,14 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
   }
 
   Widget _buildGeometricShape(int index) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     final random = math.Random(index);
     final size = random.nextDouble() * 100 + 50;
     final opacity = random.nextDouble() * 0.1 + 0.05;
-    final color = index % 2 == 0 ? Colors.purple : Colors.blue;
+    final color = isDark 
+        ? (index % 2 == 0 ? Colors.purple : Colors.blue)
+        : (index % 2 == 0 ? Color(0xFF667eea) : Color(0xFF764ba2));
     final speed = random.nextDouble() * 0.3 + 0.1;
     
     return Positioned(
@@ -415,6 +431,8 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
   }
 
   Widget _buildFloatingParticle(int index) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     final random = math.Random(index);
     final size = random.nextDouble() * 6 + 3;
     final speed = random.nextDouble() * 0.5 + 0.1;
@@ -431,11 +449,15 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
               width: size,
               height: size,
                               decoration: BoxDecoration(
-                color: Colors.purple.withOpacity(0.4),
+                color: isDark 
+                    ? Colors.purple.withOpacity(0.4)
+                    : Color(0xFF667eea).withOpacity(0.3),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.purple.withOpacity(0.6),
+                    color: isDark 
+                        ? Colors.purple.withOpacity(0.6)
+                        : Color(0xFF667eea).withOpacity(0.4),
                     blurRadius: 15,
                     spreadRadius: 3,
                   ),
@@ -562,6 +584,9 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
     required String description,
     required int index,
   }) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    
     return TweenAnimationBuilder<double>(
       duration: Duration(milliseconds: 800 + (index * 200)),
       tween: Tween(begin: 0.0, end: 1.0),
@@ -573,15 +598,21 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
             child: Container(
               width: 320,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.08),
+                color: isDark 
+                    ? Colors.white.withOpacity(0.08)
+                    : Colors.white.withOpacity(0.9),
                 borderRadius: BorderRadius.circular(25),
                 border: Border.all(
-                  color: Colors.purple.withOpacity(0.3 * value),
+                  color: isDark 
+                      ? Colors.purple.withOpacity(0.3 * value)
+                      : Color(0xFF667eea).withOpacity(0.2 * value),
                   width: 1.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.purple.withOpacity(0.15 * value),
+                    color: isDark 
+                        ? Colors.purple.withOpacity(0.15 * value)
+                        : Color(0xFF667eea).withOpacity(0.1 * value),
                     blurRadius: 25,
                     spreadRadius: 8,
                   ),
@@ -598,12 +629,16 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
                       borderRadius: const BorderRadius.vertical(top: Radius.circular(25)),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.purple.withOpacity(0.2 * value),
+                          color: isDark 
+                              ? Colors.purple.withOpacity(0.2 * value)
+                              : Color(0xFF667eea).withOpacity(0.1 * value),
                           blurRadius: 20,
                           spreadRadius: 5,
                         ),
                         BoxShadow(
-                          color: Colors.purple.withOpacity(0.1 * value),
+                          color: isDark 
+                              ? Colors.purple.withOpacity(0.1 * value)
+                              : Color(0xFF667eea).withOpacity(0.05 * value),
                           blurRadius: 40,
                           spreadRadius: 10,
                         ),
@@ -648,10 +683,10 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
                       children: [
                         Text(
                           title,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14, // Ridotto da 24 a 20 per titoli più compatti
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: isDark ? Colors.white : Colors.black87,
                             fontFamily: 'Ethnocentric',
                             letterSpacing: 0.5,
                           ),
@@ -702,6 +737,9 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
   }
 
   Widget _buildFeatureCard(String text, int index) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    
     return TweenAnimationBuilder<double>(
       duration: Duration(milliseconds: 600),
       tween: Tween(begin: 0.0, end: 1.0),
@@ -714,15 +752,21 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.03),
+                color: isDark 
+                    ? Colors.white.withOpacity(0.03)
+                    : Colors.white.withOpacity(0.8),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Colors.white.withOpacity(0.08),
+                  color: isDark 
+                      ? Colors.white.withOpacity(0.08)
+                      : Color(0xFF667eea).withOpacity(0.1),
                   width: 0.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: isDark 
+                        ? Colors.black.withOpacity(0.1)
+                        : Color(0xFF667eea).withOpacity(0.05),
                     blurRadius: 6,
                     offset: Offset(0, 1),
                   ),
@@ -763,7 +807,9 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
                     child: Text(
                       text,
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.95),
+                        color: isDark 
+                            ? Colors.white.withOpacity(0.95)
+                            : Colors.black87.withOpacity(0.8),
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
                         height: 1.3,
@@ -781,6 +827,9 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
   }
 
   Widget _buildProgressIndicator() {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    
     // Progress based on horizontal page scrolling instead of vertical scroll
     final totalPages = 3; // Total number of cards
     final progress = (_currentPage + 1) / totalPages;
@@ -829,11 +878,15 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
           Container(
             height: 8,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
+              color: isDark 
+                  ? Colors.white.withOpacity(0.1)
+                  : Color(0xFF667eea).withOpacity(0.1),
               borderRadius: BorderRadius.circular(4),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: isDark 
+                      ? Colors.black.withOpacity(0.1)
+                      : Color(0xFF667eea).withOpacity(0.05),
                   blurRadius: 2,
                   offset: Offset(0, 1),
                 ),
@@ -847,7 +900,9 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
                   height: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: Colors.white.withOpacity(0.1),
+                    color: isDark 
+                        ? Colors.white.withOpacity(0.1)
+                        : Color(0xFF667eea).withOpacity(0.1),
                   ),
                 ),
                 

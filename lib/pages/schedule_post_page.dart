@@ -22,6 +22,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui'; // <--- AGGIUNTO per ImageFilter
 import './credits_page.dart';
 import './upgrade_premium_page.dart';
+import './upgrade_premium_ios_page.dart';
 
 class SchedulePostPage extends StatefulWidget {
   final File videoFile;
@@ -374,7 +375,9 @@ class _SchedulePostPageState extends State<SchedulePostPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const UpgradePremiumPage(suppressExtraPadding: true),
+                          builder: (context) => Platform.isIOS
+                              ? const UpgradePremiumIOSPage(suppressExtraPadding: true)
+                              : const UpgradePremiumPage(suppressExtraPadding: true),
                         ),
                       );
                     },

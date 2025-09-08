@@ -160,7 +160,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs camera access to record videos</string>
 	<key>NSCameraUsageDescription</key>
-	<string>To scan cards</string>
+	<string>This app uses the camera to allow you to take photos and record videos to upload to your social media accounts and save content to your profile.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs photo library access to select videos</string>
 	<key>NSMicrophoneUsageDescription</key>

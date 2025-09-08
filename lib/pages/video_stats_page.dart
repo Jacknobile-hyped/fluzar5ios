@@ -11,6 +11,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:viralyst/pages/upgrade_premium_page.dart';
+import 'package:viralyst/pages/upgrade_premium_ios_page.dart';
+import 'dart:io';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:viralyst/pages/social/instagram_page.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -651,7 +653,7 @@ class VideoStatsService {
   }
 }
 class ChatGptService {
-  static const String apiKey = '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';
+  static const String apiKey = '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';
   static const String apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   // Funzione per calcolare i token utilizzati
@@ -8444,7 +8446,9 @@ These questions should be relevant to your response and help users explore relat
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const UpgradePremiumPage(suppressExtraPadding: true),
+                        builder: (context) => Platform.isIOS
+                            ? const UpgradePremiumIOSPage(suppressExtraPadding: true)
+                            : const UpgradePremiumPage(suppressExtraPadding: true),
                       ),
                     );
                   },
@@ -8654,7 +8658,9 @@ These questions should be relevant to your response and help users explore relat
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const UpgradePremiumPage(suppressExtraPadding: true),
+                        builder: (context) => Platform.isIOS
+                            ? const UpgradePremiumIOSPage(suppressExtraPadding: true)
+                            : const UpgradePremiumPage(suppressExtraPadding: true),
                       ),
                     );
                   },
@@ -8809,7 +8815,9 @@ These questions should be relevant to your response and help users explore relat
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const UpgradePremiumPage(suppressExtraPadding: true),
+                              builder: (context) => Platform.isIOS
+                                  ? const UpgradePremiumIOSPage(suppressExtraPadding: true)
+                                  : const UpgradePremiumPage(suppressExtraPadding: true),
                             ),
                           );
                         },

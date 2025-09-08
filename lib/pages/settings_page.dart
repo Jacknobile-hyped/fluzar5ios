@@ -22,6 +22,7 @@ import 'onboarding_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart'; // <--- AGGIUNTO
 import 'package:google_sign_in/google_sign_in.dart';
+import 'upgrade_premium_ios_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -2223,6 +2224,20 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                             Icons.payment_outlined,
                             onTap: _handlePaymentRedirect,
                           ),
+                          if (_isAuthorizedUser)
+                            _buildAnimatedTile(
+                              context,
+                              'Upgrade Premium (iOS)',
+                              Icons.workspace_premium_outlined,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const UpgradePremiumIOSPage(),
+                                  ),
+                                );
+                              },
+                            ),
                           _buildAnimatedTile(
                             context,
                             'Delete Account',

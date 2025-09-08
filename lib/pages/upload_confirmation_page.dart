@@ -26,6 +26,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui'; // <--- AGGIUNTO per ImageFilter
 import './credits_page.dart';
 import './upgrade_premium_page.dart';
+import './upgrade_premium_ios_page.dart';
 
 // Aggiungiamo la classe AccountPanel prima della classe UploadConfirmationPage
 class AccountPanel {
@@ -385,7 +386,9 @@ class _UploadConfirmationPageState extends State<UploadConfirmationPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const UpgradePremiumPage(suppressExtraPadding: true),
+                          builder: (context) => Platform.isIOS
+                              ? const UpgradePremiumIOSPage(suppressExtraPadding: true)
+                              : const UpgradePremiumPage(suppressExtraPadding: true),
                         ),
                       );
                     },

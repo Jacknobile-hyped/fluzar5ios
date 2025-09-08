@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'dart:math';
-import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui';  // Add this import for ImageFilter
@@ -60,6 +60,7 @@ import 'pages/history_page.dart';
 import 'package:path_provider/path_provider.dart'; // Per gestione cache
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'services/navigation_service.dart';
+import 'pages/upgrade_premium_ios_page.dart';
 
 // Logger condizionale per debug/release
 class AppLogger {
@@ -1079,7 +1080,19 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     }
   }
 
-  // Generate a cryptographically secure nonce for Apple Sign-In
+  // Generate a unique referral code based on the user's UID
+  String _generateReferralCode(String uid) {
+    // Take the first 6 characters of the UID and convert to uppercase
+    final baseCode = uid.substring(0, 6).toUpperCase();
+    
+    // Add a random element to ensure uniqueness
+    final timestamp = DateTime.now().millisecondsSinceEpoch.toString().substring(7, 13);
+    
+    // Combine to create a unique but readable code
+    return 'VIR$baseCode$timestamp';
+  }
+
+  // Generate a cryptographically secure nonce for Apple Sign In
   String _generateNonce([int length = 32]) {
     const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
     final random = Random.secure();
@@ -1097,70 +1110,19 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     try {
       setState(() => isLoading = true);
       
-      // Check if Apple Sign-In is available (only works on iOS)
-      bool isAvailable = false;
-      try {
-        isAvailable = await SignInWithApple.isAvailable();
-      } catch (e) {
-        // On Android, this will throw MissingPluginException
-        print('Apple Sign-In not available on this platform: $e');
-        isAvailable = false;
-      }
-      
-      if (!isAvailable) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.orange.shade100,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(Icons.apple, color: Colors.orange.shade700, size: 20),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: Text(
-                      'Apple Sign-In is only available on iOS devices. Please use email or Google sign-in.',
-                      style: TextStyle(color: Colors.black87, fontSize: 14),
-                    ),
-                  ),
-                ],
-              ),
-              backgroundColor: Colors.white,
-              duration: const Duration(seconds: 4),
-              behavior: SnackBarBehavior.floating,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              margin: EdgeInsets.all(12),
-              elevation: 4,
-            ),
-          );
-        }
-        return;
-      }
-      
-      // Generate nonce for security
+      // Generate nonce and its hash
       final rawNonce = _generateNonce();
       final hashedNonce = _sha256ofString(rawNonce);
       
       print('Starting Apple Sign In...');
       
-      // Request Apple Sign-In
+      // Request Apple Sign In
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
         nonce: hashedNonce,
-        webAuthenticationOptions: WebAuthenticationOptions(
-          clientId: 'com.viralyst.online',
-          redirectUri: Uri.parse('https://share-magica.firebaseapp.com/__/auth/handler'),
-        ),
       );
       
       print('Apple Sign In result: ${appleCredential.userIdentifier}');
@@ -1183,17 +1145,17 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
         final user = userCredential.user!;
         final isNewUser = userCredential.additionalUserInfo?.isNewUser ?? false;
         
-        // If this is a new user, create their Firestore document
+        // If this is a new user, create their document with referral code
         if (isNewUser) {
           try {
-            // For new Apple users, create the document directly
+            // Per i nuovi utenti Apple, crea direttamente il documento
             await _completeAppleRegistration(user, appleCredential);
           } catch (e) {
             print('Error creating Apple user document: $e');
             // Continue even if document creation fails
           }
         } else {
-          // Existing user, check if onboarding is completed
+          // Utente esistente, controlla se ha completato l'onboarding
           final profileSnapshot = await FirebaseDatabase.instance
               .ref()
               .child('users')
@@ -1229,19 +1191,19 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
           errorMessage = 'Apple sign in was canceled';
           break;
         case AuthorizationErrorCode.failed:
-          errorMessage = 'Apple sign in failed. Please try again';
+          errorMessage = 'Apple sign in failed';
           break;
         case AuthorizationErrorCode.invalidResponse:
-          errorMessage = 'Invalid response from Apple. Please try again';
+          errorMessage = 'Invalid response from Apple';
           break;
         case AuthorizationErrorCode.notHandled:
-          errorMessage = 'Apple sign in not handled. Please try again';
+          errorMessage = 'Apple sign in not handled';
           break;
         case AuthorizationErrorCode.notInteractive:
-          errorMessage = 'Apple sign in is not available in this context';
+          errorMessage = 'Apple sign in not interactive';
           break;
         case AuthorizationErrorCode.unknown:
-          errorMessage = 'Unknown error occurred during Apple sign in';
+          errorMessage = 'Unknown Apple sign in error';
           break;
       }
       
@@ -1294,8 +1256,6 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
         errorMessage = 'This account has been disabled';
       } else if (e.code == 'invalid-credential') {
         errorMessage = 'Invalid Apple credentials';
-      } else if (e.code == 'operation-not-allowed') {
-        errorMessage = 'Apple sign in is not enabled for this app';
       }
       
       if (mounted) {
@@ -1339,7 +1299,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
         );
       }
     } catch (e) {
-      print('Unexpected error: $e');
+      print('Unexpected Apple sign in error: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -1385,18 +1345,6 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
         setState(() => isLoading = false);
       }
     }
-  }
-
-  // Generate a unique referral code based on the user's UID
-  String _generateReferralCode(String uid) {
-    // Take the first 6 characters of the UID and convert to uppercase
-    final baseCode = uid.substring(0, 6).toUpperCase();
-    
-    // Add a random element to ensure uniqueness
-    final timestamp = DateTime.now().millisecondsSinceEpoch.toString().substring(7, 13);
-    
-    // Combine to create a unique but readable code
-    return 'VIR$baseCode$timestamp';
   }
 
   Future<void> _launchURL(String url) async {
@@ -2355,8 +2303,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                                             padding: const EdgeInsets.only(right: 8.0),
                                             child: Image.asset(
                                               'assets/loghi/LogoAppleNeroNoSfondo.png',
-                                              height: 23,
-                                              width: 23,
+                                              height: 20,
                                             ),
                                           ),
                                           label: Text(
@@ -2640,7 +2587,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     }
   }
 
-  // Metodo per completare la registrazione degli utenti Apple
+  // Metodo per completare la registrazione degli utenti Apple dopo l'autenticazione
   Future<void> _completeAppleRegistration(User user, AuthorizationCredentialAppleID appleCredential) async {
     try {
       setState(() => isLoading = true);
@@ -2654,25 +2601,16 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
       // Check if push notifications are enabled
       final pushNotificationsEnabled = await OneSignalService.areNotificationsEnabled();
       
-      // Get display name from Apple credential if available
-      String? displayName;
-      if (appleCredential.givenName != null && appleCredential.familyName != null) {
-        displayName = '${appleCredential.givenName} ${appleCredential.familyName}';
-      } else if (appleCredential.givenName != null) {
-        displayName = appleCredential.givenName;
-      }
-      
       // Initialize the user data with default values
       final userData = {
         'uid': user.uid,
-        'email': user.email, // Apple may provide a private relay email
-        'displayName': displayName, // Store Apple display name
+        'email': user.email ?? 'apple_user_${user.uid}', // Apple può fornire email anonima
         'referral_code': referralCode,
         'invited_by': null,
         'referred_users': [],
         'referral_count': 0, // Initialize referral count
         'credits': 500, // Default credits
-        'push_notifications_enabled': pushNotificationsEnabled, // Save push notification state
+        'push_notifications_enabled': pushNotificationsEnabled, // Salva lo stato delle notifiche push
       };
       
       // Check if a referral code was provided
@@ -2708,10 +2646,10 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
             userData['invited_by'] = referrerUid;
             userData['credits'] = 1000; // 500 default + 500 bonus
             
-            // Update referrer in a safe way
+            // Aggiorna il referrer in modo sicuro
             final referrerUserRef = database.ref().child('users').child('users').child(referrerUid);
             
-            // Read current referrer data
+            // Leggi i dati attuali del referrer
             final currentReferrerSnapshot = await referrerUserRef.get();
             if (currentReferrerSnapshot.exists && currentReferrerSnapshot.value is Map) {
               final currentData = Map<String, dynamic>.from(currentReferrerSnapshot.value as Map);
@@ -2752,7 +2690,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                 print('DEBUG REFERRAL: New referral_count: $newReferralCount');
                 print('DEBUG REFERRAL: Updated referred_users: $referredUsers');
                 
-                // Update the referrer
+                // Aggiorna il referrer
                 await referrerUserRef.update({
                   'referred_users': referredUsers,
                   'credits': newCredits,
@@ -2761,7 +2699,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                 
                 print('DEBUG REFERRAL: Successfully updated referrer $referrerUid');
                 
-                // Verify the update was successful
+                // Verifica che l'aggiornamento sia avvenuto
                 final verifySnapshot = await referrerUserRef.get();
                 if (verifySnapshot.exists && verifySnapshot.value is Map) {
                   final verifyData = Map<String, dynamic>.from(verifySnapshot.value as Map);
@@ -2792,18 +2730,20 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
           .child(user.uid)
           .set(userData);
       
-      // Save user in registered_emails folder for future verifications
+      // Salva l'utente nella cartella registered_emails per future verifiche
       try {
-        if (user.email != null && user.email!.isNotEmpty) {
+        if (user.email != null && user.email!.isNotEmpty && !user.email!.contains('privaterelay.appleid.com')) {
           await EmailService.saveRegisteredUser(user.email!, user.uid, userData);
-          print('Apple user saved in registered_emails folder');
+          print('Utente Apple salvato nella cartella registered_emails');
         } else {
-          print('Apple user email not available, skipping save in registered_emails');
+          print('Email utente Apple anonima o non disponibile, salto salvataggio in registered_emails');
         }
       } catch (e) {
-        print('Error saving Apple user in registered_emails: $e');
-        // Don't block registration if this fails
+        print('Errore nel salvare l\'utente Apple in registered_emails: $e');
+        // Non bloccare la registrazione se questo fallisce
       }
+      
+      // Email di benvenuto verrà inviata dopo il completamento del setup del profilo
       
       if (mounted) {
         Navigator.pushReplacement(
@@ -2828,7 +2768,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                 SizedBox(width: 16),
                 Expanded(
                   child: Text(
-                    'Error during Apple registration: ${e.toString()}',
+                    'Errore durante la registrazione Apple: ${e.toString()}',
                     style: TextStyle(color: Colors.black87, fontSize: 14),
                   ),
                 ),
@@ -3125,7 +3065,7 @@ class _MainScreenState extends State<MainScreen> {
       const UploadVideoPage(),
       const HistoryPage(),
       ScheduledPostsPage(key: _scheduledPostsPageKey),
-      const UpgradePremiumPage(),
+      Platform.isIOS ? const UpgradePremiumIOSPage() : const UpgradePremiumPage(),
     ];
     return DefaultTabController(
       length: _pages.length,

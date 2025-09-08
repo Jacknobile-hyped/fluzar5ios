@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'dart:ui'; // <--- AGGIUNTO per ImageFilter
 import 'dart:io'; // <--- AGGIUNTO per Platform
 import 'upgrade_premium_page.dart';
+import 'upgrade_premium_ios_page.dart';
 import 'refeeral_code_page.dart';
 
 class CreditsPage extends StatefulWidget {
@@ -991,7 +992,9 @@ class _CreditsPageState extends State<CreditsPage> with TickerProviderStateMixin
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const UpgradePremiumPage(suppressExtraPadding: true),
+                                      builder: (context) => Platform.isIOS
+                                          ? const UpgradePremiumIOSPage(suppressExtraPadding: true)
+                                          : const UpgradePremiumPage(suppressExtraPadding: true),
                                     ),
                                   ).then((_) => _loadUserCredits());
                                 },
