@@ -174,7 +174,7 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
   };
 
   // ChatGPT Configuration
-  static const String _apiKey = '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';
+  static const String _apiKey = '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';
   static const int _maxTokens = 150;
 
   Map<String, UploadStatus> _uploadStatuses = {};
