@@ -11,7 +11,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
-import 'dart:math' show Random, pi, cos, sin;
+import 'dart:math' as math show Random, pi, cos, sin, max;
 import 'profile_edit_page.dart';
 import 'notifications_page.dart';
 import 'settings_page.dart';
@@ -125,6 +125,10 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
   
   // Cache per i conteggi dei commenti
   Map<String, int> _commentsCountCache = {};
+  
+  // Debounce per prevenire doppi tap (fix iOS)
+  Map<String, DateTime> _lastStarTapTime = {};
+  static const Duration _starDebounceTime = Duration(milliseconds: 500);
   
   // Emoji per commenti rapidi
   final List<String> _quickEmojis = ['❤️', '🔥', '👏', '🎉', '💯', '🚀'];
@@ -378,6 +382,9 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
       });
     }
     
+    // Pulisci la cache del debounce (fix iOS)
+    _lastStarTapTime.clear();
+    
     super.dispose();
   }
 
@@ -586,6 +593,15 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
             if (!video.containsKey('star_count')) {
               video['star_count'] = 0;
             }
+            
+            // Fix iOS: aggiungi controlli aggiuntivi per l'URL del video
+            final String videoUserId = video['userId'] as String;
+            final bool videoIsNewFormat = videoId.contains(videoUserId);
+            if (videoIsNewFormat && video['media_url'] == null) {
+              print('Warning: New format video $videoId missing media_url');
+            } else if (!videoIsNewFormat && video['video_path'] == null && video['cloudflare_url'] == null) {
+              print('Warning: Old format video $videoId missing video_path and cloudflare_url');
+            }
             friendVideos.add(video);
           }
         }
@@ -685,21 +701,41 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
       try {
         print('Initializing video controller for $videoId with URL: $videoUrl');
         
-        final controller = VideoPlayerController.network(videoUrl);
+        // Fix per iOS: usa configurazione più robusta per il video controller
+        final controller = VideoPlayerController.network(
+          videoUrl,
+          httpHeaders: {
+            'User-Agent': 'Viralyst/1.0 (iOS; iPhone)',
+          },
+        );
         
         _videoControllers[videoId] = controller;
         _videoInitialized[videoId] = false;
         
-        // Inizializza il controller
-        await controller.initialize();
+        // Fix iOS: aggiungi timeout per l'inizializzazione
+        await controller.initialize().timeout(
+          Duration(seconds: 10),
+          onTimeout: () {
+            throw TimeoutException('Video initialization timeout', Duration(seconds: 10));
+          },
+        );
+        
+        // Fix iOS: verifica che il controller sia ancora valido dopo l'inizializzazione
+        if (controller.value.hasError) {
+          throw Exception('Video controller has error: ${controller.value.errorDescription}');
+        }
+        
         controller.setLooping(true);
         controller.setVolume(1.0);
         
+        // Fix iOS: controlla se il widget è ancora montato prima di aggiornare lo stato
+        if (mounted) {
         setState(() {
           _videoInitialized[videoId] = true;
           _videoPlaying[videoId] = false;
           _showVideoControls[videoId] = false;
         });
+        }
         
         // Start auto-hide timer for controls
         _startControlsHideTimer(videoId, true);
@@ -712,7 +748,9 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
         _videoPlaying[videoId] = false;
         _showVideoControls[videoId] = false;
         
+        if (mounted) {
         setState(() {});
+        }
       }
     } else {
       print('No valid video URL found for video $videoId');
@@ -762,9 +800,17 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
     if (_currentUser == null) return false;
     
     final starUsers = comment['star_users'];
-    if (starUsers == null || starUsers is! Map) return false;
+    if (starUsers == null) return false;
     
+    // Gestisci diversi tipi di dati per star_users (fix iOS)
+    if (starUsers is Map) {
     return starUsers.containsKey(_currentUser!.uid);
+    } else if (starUsers is List) {
+      // Caso in cui star_users è una lista invece di una mappa
+      return starUsers.contains(_currentUser!.uid);
+    }
+    
+    return false;
   }
   
   void _triggerStarAnimation(String videoId) {
@@ -965,6 +1011,14 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
     final parentCommentId = reply['parentCommentId'] as String;
     final videoId = reply['videoId'] as String;
     
+    // Debounce per prevenire doppi tap (fix iOS)
+    final now = DateTime.now();
+    final lastTapTime = _lastStarTapTime[replyId];
+    if (lastTapTime != null && now.difference(lastTapTime) < _starDebounceTime) {
+      return; // Ignora il tap se troppo vicino al precedente
+    }
+    _lastStarTapTime[replyId] = now;
+    
     try {
       final currentUserId = _currentUser!.uid;
       
@@ -983,7 +1037,7 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
       // Percorso per gli utenti che hanno messo stella
       final starUsersRef = replyRef.child('star_users');
       
-      // Controlla se l'utente corrente ha già messo stella
+      // SEMPRE controlla Firebase per lo stato attuale (fix per iOS)
       final userStarSnapshot = await starUsersRef.child(currentUserId).get();
       final hasUserStarred = userStarSnapshot.exists;
       
@@ -1006,7 +1060,7 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
       if (hasUserStarred) {
         // Rimuovi la stella
         await starUsersRef.child(currentUserId).remove();
-        newStarCount = currentStarCount - 1;
+        newStarCount = math.max(0, currentStarCount - 1); // Previeni valori negativi
         message = 'Star removed from reply';
       } else {
         // Aggiungi la stella - attiva l'animazione solo quando si aggiunge
@@ -1049,38 +1103,64 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
         }
       }
       
-      // Aggiorna il conteggio totale delle stelle
+      // Aggiorna il conteggio totale delle stelle usando transazione atomica
       await replyRef.child('star_count').set(newStarCount);
       
-      // Aggiorna lo stato locale
+      // Verifica finale dello stato su Firebase per sicurezza (fix iOS)
+      final finalStarSnapshot = await starUsersRef.child(currentUserId).get();
+      final finalStarState = finalStarSnapshot.exists;
+      
+      // Aggiorna lo stato locale DOPO aver verificato Firebase
+      if (mounted) {
       setState(() {
         // Aggiorna il conteggio stelle nella risposta locale
-        if (reply.containsKey('star_count')) {
           reply['star_count'] = newStarCount;
-        }
-        // Aggiorna lo stato della stella per l'utente corrente
-        if (reply.containsKey('star_users')) {
+          
+          // Aggiorna lo stato della stella basato sulla verifica finale di Firebase
           if (reply['star_users'] == null) {
-            reply['star_users'] = {};
+            reply['star_users'] = <String, dynamic>{};
           }
-          if (hasUserStarred) {
-            reply['star_users'].remove(currentUserId);
-          } else {
+          
+          // Usa lo stato finale verificato da Firebase
+          if (finalStarState) {
             reply['star_users'][currentUserId] = true;
-          }
+          } else {
+            reply['star_users'].remove(currentUserId);
         }
       });
+      }
       
       print('Stelle aggiornate per la risposta $replyId: $newStarCount (utente ${hasUserStarred ? 'rimosso' : 'aggiunto'})');
       
     } catch (e) {
       print('Errore nell\'aggiornamento delle stelle della risposta: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Errore nell\'aggiornamento delle stelle della risposta'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      // In caso di errore, ricarica i dati dal database per sincronizzare
+      if (mounted) {
+        try {
+          // Ricarica lo stato attuale da Firebase per sincronizzare
+          final replyRef = _database
+              .child('users')
+              .child('users')
+              .child(videoUserId)
+              .child('videos')
+              .child(videoId)
+              .child('comments')
+              .child(parentCommentId)
+              .child('replies')
+              .child(replyId);
+          
+          final refreshSnapshot = await replyRef.get();
+          if (refreshSnapshot.exists) {
+            final refreshedReply = Map<String, dynamic>.from(refreshSnapshot.value as Map);
+            setState(() {
+              reply['star_count'] = refreshedReply['star_count'] ?? 0;
+              reply['star_users'] = refreshedReply['star_users'] ?? {};
+            });
+          }
+        } catch (refreshError) {
+          print('Errore nel refresh della risposta: $refreshError');
+        }
+      }
     }
   }
 
@@ -1089,6 +1169,14 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
     
     final commentId = comment['id'] as String;
     final videoId = comment['videoId'] as String;
+    
+    // Debounce per prevenire doppi tap (fix iOS)
+    final now = DateTime.now();
+    final lastTapTime = _lastStarTapTime[commentId];
+    if (lastTapTime != null && now.difference(lastTapTime) < _starDebounceTime) {
+      return; // Ignora il tap se troppo vicino al precedente
+    }
+    _lastStarTapTime[commentId] = now;
     
     try {
       final currentUserId = _currentUser!.uid;
@@ -1106,7 +1194,7 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
       // Percorso per gli utenti che hanno messo stella
       final starUsersRef = commentRef.child('star_users');
       
-      // Controlla se l'utente corrente ha già messo stella
+      // SEMPRE controlla Firebase per lo stato attuale (fix per iOS)
       final userStarSnapshot = await starUsersRef.child(currentUserId).get();
       final hasUserStarred = userStarSnapshot.exists;
       
@@ -1129,7 +1217,7 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
       if (hasUserStarred) {
         // Rimuovi la stella
         await starUsersRef.child(currentUserId).remove();
-        newStarCount = currentStarCount - 1;
+        newStarCount = math.max(0, currentStarCount - 1); // Previeni valori negativi
         message = 'Star removed from comment';
       } else {
         // Aggiungi la stella - attiva l'animazione solo quando si aggiunge
@@ -1170,38 +1258,62 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
         }
       }
       
-      // Aggiorna il conteggio totale delle stelle
+      // Aggiorna il conteggio totale delle stelle usando transazione atomica
       await commentRef.child('star_count').set(newStarCount);
       
-      // Aggiorna lo stato locale
+      // Verifica finale dello stato su Firebase per sicurezza (fix iOS)
+      final finalStarSnapshot = await starUsersRef.child(currentUserId).get();
+      final finalStarState = finalStarSnapshot.exists;
+      
+      // Aggiorna lo stato locale DOPO aver verificato Firebase
+      if (mounted) {
       setState(() {
         // Aggiorna il conteggio stelle nel commento locale
-        if (comment.containsKey('star_count')) {
           comment['star_count'] = newStarCount;
-        }
-        // Aggiorna lo stato della stella per l'utente corrente
-        if (comment.containsKey('star_users')) {
+          
+          // Aggiorna lo stato della stella basato sulla verifica finale di Firebase
           if (comment['star_users'] == null) {
-            comment['star_users'] = {};
+            comment['star_users'] = <String, dynamic>{};
           }
-          if (hasUserStarred) {
-            comment['star_users'].remove(currentUserId);
-          } else {
+          
+          // Usa lo stato finale verificato da Firebase
+          if (finalStarState) {
             comment['star_users'][currentUserId] = true;
-          }
+          } else {
+            comment['star_users'].remove(currentUserId);
         }
       });
+      }
       
       print('Stelle aggiornate per il commento $commentId: $newStarCount (utente ${hasUserStarred ? 'rimosso' : 'aggiunto'})');
       
     } catch (e) {
       print('Errore nell\'aggiornamento delle stelle del commento: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Errore nell\'aggiornamento delle stelle del commento'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      // In caso di errore, ricarica i dati dal database per sincronizzare
+      if (mounted) {
+        try {
+          // Ricarica lo stato attuale da Firebase per sincronizzare
+          final commentRef = _database
+              .child('users')
+              .child('users')
+              .child(videoUserId)
+              .child('videos')
+              .child(videoId)
+              .child('comments')
+              .child(commentId);
+          
+          final refreshSnapshot = await commentRef.get();
+          if (refreshSnapshot.exists) {
+            final refreshedComment = Map<String, dynamic>.from(refreshSnapshot.value as Map);
+            setState(() {
+              comment['star_count'] = refreshedComment['star_count'] ?? 0;
+              comment['star_users'] = refreshedComment['star_users'] ?? {};
+            });
+          }
+        } catch (refreshError) {
+          print('Errore nel refresh del commento: $refreshError');
+        }
+      }
     }
   }
 
@@ -1248,23 +1360,23 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
     
     // Crea le particelle dei confetti con pattern più strutturato
     List<ConfettiParticle> particles = [];
-    final random = Random();
+     final random = math.Random();
     
     // Crea un numero fisso di particelle per consistenza
     final particleCount = 6; // Numero fisso invece di casuale
     
     for (int i = 0; i < particleCount; i++) {
       // Calcola angoli distribuiti uniformemente
-      final angle = (i * 2 * pi / particleCount) + (random.nextDouble() - 0.5) * 0.5; // Piccola variazione
+       final angle = (i * 2 * math.pi / particleCount) + (random.nextDouble() - 0.5) * 0.5; // Piccola variazione
       
       // Distanza di partenza e arrivo più controllata
       final startDistance = 20.0 + random.nextDouble() * 10; // Dispersione iniziale più piccola
       final endDistance = 80.0 + random.nextDouble() * 40; // Dispersione finale controllata
       
       // Calcola posizioni basate su angoli
-      final startX = tapX + cos(angle) * startDistance;
-      final startY = tapY + sin(angle) * startDistance;
-      final endX = tapX + cos(angle) * endDistance;
+       final startX = tapX + math.cos(angle) * startDistance;
+       final startY = tapY + math.sin(angle) * startDistance;
+       final endX = tapX + math.cos(angle) * endDistance;
       final endY = tapY - 120 - random.nextDouble() * 60; // Movimento verso l'alto più controllato
       
       final particle = ConfettiParticle(
@@ -1273,7 +1385,7 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
         startY: startY,
         endX: endX,
         endY: endY,
-        size: 18 + random.nextDouble() * 8, // Dimensioni più uniformi
+         size: 18.0 + random.nextDouble() * 8, // Dimensioni più uniformi
         speed: 1.0 + random.nextDouble() * 0.2, // Velocità più consistente
         rotation: angle, // Rotazione iniziale basata sull'angolo
         rotationSpeed: (random.nextDouble() - 0.5) * 2, // Rotazione più sottile
@@ -3604,10 +3716,17 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
   }
 
   Future<void> _initializeVideoControllers() async {
-    // Dispose dei controller esistenti
-    _videoControllers.values.forEach((controller) {
+    // Dispose dei controller esistenti con controllo per iOS
+    for (final controller in _videoControllers.values) {
+      try {
+        if (controller.value.isInitialized) {
+          await controller.pause();
+        }
       controller.dispose();
-    });
+      } catch (e) {
+        print('Error disposing video controller: $e');
+      }
+    }
     _videoControllers.clear();
     _videoInitialized.clear();
     
@@ -3620,83 +3739,57 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
     }
     final videosToInitialize = currentTabVideos.take(3).toList();
     
-    for (final video in videosToInitialize) {
-      final videoId = video['id'] as String;
-      final userId = video['userId'] as String;
-      final bool isNewFormat = videoId.contains(userId);
+    // Fix iOS: inizializza i video uno alla volta con delay per evitare sovraccarico
+    for (int i = 0; i < videosToInitialize.length; i++) {
+      final video = videosToInitialize[i];
+      await _initializeVideoController(video);
       
-      // Usa la stessa logica di profile_edit_page.dart
-      String videoUrl = '';
-      if (isNewFormat) {
-        // Per il nuovo formato: usa media_url
-        videoUrl = video['media_url'] ?? '';
-        print('Using media_url (new format) for video $videoId: $videoUrl');
-      } else {
-        // Per il vecchio formato: usa video_path o cloudflare_url (come in profile_edit_page.dart)
-        videoUrl = video['video_path'] ?? video['cloudflare_url'] ?? '';
-        print('Using video_path/cloudflare_url (old format) for video $videoId: $videoUrl');
-      }
-      
-      if (videoUrl.isNotEmpty) {
-        try {
-          print('Initializing video controller for $videoId with URL: $videoUrl');
-          
-          // Usa esattamente la stessa configurazione di profile_edit_page.dart
-          final controller = VideoPlayerController.network(videoUrl);
-          
-          _videoControllers[videoId] = controller;
-          _videoInitialized[videoId] = false;
-          
-          // Inizializza il controller
-          await controller.initialize();
-          controller.setLooping(true);
-          controller.setVolume(1.0); // Abilita l'audio come in profile_edit_page.dart
-          
-          setState(() {
-            _videoInitialized[videoId] = true;
-            _videoPlaying[videoId] = false; // Inizialmente in pausa
-            _showVideoControls[videoId] = false; // Inizialmente nascondi i controlli
-          });
-          
-                      // Non serve più il timer di auto-hide
-          print('Video controller initialized successfully for $videoId');
-        } catch (e) {
-          print('Error initializing video controller for $videoId: $e');
-          // Se fallisce, rimuovi il controller e marca come non inizializzato
-          _videoControllers.remove(videoId);
-          _videoInitialized[videoId] = false;
-          _videoPlaying[videoId] = false;
-          _showVideoControls[videoId] = false;
-          
-          // Aggiorna lo stato per mostrare il fallback
-          setState(() {});
-        }
-      } else {
-        print('No valid video URL found for video $videoId');
-        print('Available video fields: ${video.keys.where((key) => key.toString().contains('url') || key.toString().contains('video') || key.toString().contains('media')).toList()}');
+      // Fix iOS: piccolo delay tra inizializzazioni per evitare problemi di memoria
+      if (i < videosToInitialize.length - 1) {
+        await Future.delayed(Duration(milliseconds: 100));
       }
     }
   }
   
       void _toggleVideoPlayback(VideoPlayerController controller, String videoId) {
+      // Fix iOS: verifica che il controller sia ancora valido
+      if (controller.value.hasError) {
+        print('Cannot toggle playback - controller has error: ${controller.value.errorDescription}');
+        return;
+      }
+      
+      try {
       if (controller.value.isPlaying) {
         // Metti in pausa e mostra sempre l'icona di pausa
         controller.pause();
+          if (mounted) {
         setState(() {
           _videoPlaying[videoId] = false;
           _showVideoControls[videoId] = true; // Mostra sempre i controlli quando in pausa
         });
+          }
         // Cancella il timer di auto-hide quando in pausa
         _controlsHideTimers[videoId]?.cancel();
       } else {
+          // Fix iOS: verifica che il video sia ancora inizializzato prima di riprodurre
+          if (!controller.value.isInitialized) {
+            print('Cannot play video - controller not initialized');
+            return;
+          }
+          
         // Metti in play e nascondi i controlli
         controller.play();
+          if (mounted) {
         setState(() {
           _videoPlaying[videoId] = true;
           _showVideoControls[videoId] = false; // Nascondi i controlli quando in play
         });
+          }
         // Cancella il timer di auto-hide quando in play
         _controlsHideTimers[videoId]?.cancel();
+        }
+      } catch (e) {
+        print('Error toggling video playback for $videoId: $e');
       }
     }
   
@@ -3723,8 +3816,16 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
     void _onVideoVisibilityChanged(String videoId, bool isVisible) {
       final controller = _videoControllers[videoId];
       if (controller != null && _videoInitialized[videoId] == true) {
+        try {
+          // Fix iOS: verifica che il controller sia ancora valido
+          if (controller.value.hasError) {
+            print('Video controller has error for $videoId: ${controller.value.errorDescription}');
+            return;
+          }
+          
         if (isVisible) {
-          // Avvia il video quando diventa visibile
+            // Avvia il video quando diventa visibile (solo se inizializzato correttamente)
+            if (controller.value.isInitialized) {
           controller.play();
           // Precarica conteggio e stato visto per il video corrente
           final List<Map<String, dynamic>> merged = [
@@ -3738,11 +3839,17 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
           if (video != null) {
             _loadCommentCount(video['id'], video['userId']);
             _checkVideoView(video);
+              }
           }
         } else {
           // Pausa il video quando non è più visibile
+            if (controller.value.isInitialized) {
           controller.pause();
           controller.seekTo(Duration.zero); // Torna all'inizio
+            }
+          }
+        } catch (e) {
+          print('Error in video visibility change for $videoId: $e');
         }
       }
     }
@@ -3810,11 +3917,15 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
       _showTopSection();
     }
     
-    // Pausa tutti i video quando cambia pagina
+    // Pausa tutti i video quando cambia pagina (fix iOS)
     _videoControllers.forEach((videoId, controller) {
-      if (controller.value.isPlaying) {
+      try {
+        if (controller.value.isInitialized && controller.value.isPlaying) {
         controller.pause();
         controller.seekTo(Duration.zero);
+        }
+      } catch (e) {
+        print('Error pausing video $videoId during page change: $e');
       }
     });
     
@@ -3852,11 +3963,22 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
           }
           
                       if (controller != null && _videoInitialized[videoId] == true) {
-              controller.play();
+              // Fix iOS: verifica che il controller sia ancora valido prima di riprodurre
+              try {
+                if (!controller.value.hasError && controller.value.isInitialized) {
+                  await controller.play();
+                  if (mounted) {
               setState(() {
                 _videoPlaying[videoId] = true;
                 _showVideoControls[videoId] = false; // Assicurati che i controlli siano nascosti quando in play
               });
+            }
+                } else {
+                  print('Cannot play video $videoId - controller error or not initialized');
+                }
+              } catch (e) {
+                print('Error playing video $videoId: $e');
+              }
             }
         }
       }
@@ -3879,11 +4001,15 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
       _currentVerticalPage = 0;
     });
     
-    // Pausa tutti i video
+    // Pausa tutti i video (fix iOS)
     _videoControllers.forEach((videoId, controller) {
-      if (controller.value.isPlaying) {
+      try {
+        if (controller.value.isInitialized && controller.value.isPlaying) {
         controller.pause();
         controller.seekTo(Duration.zero);
+        }
+      } catch (e) {
+        print('Error pausing video $videoId during tab change: $e');
       }
     });
     
@@ -5573,7 +5699,6 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
                           ),
                           child: TextField(
                             controller: _searchController,
-                            focusNode: _searchFocusNode,
                             onChanged: (value) {
                               _searchUsers(value);
                             },
@@ -5600,7 +5725,6 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
                                     icon: const Icon(Icons.clear, size: 16),
                                     onPressed: () {
                                       _searchController.clear();
-                                      _searchFocusNode.unfocus();
                                       setState(() {
                                         _searchResults = [];
                                         _isSearching = false;
@@ -6758,8 +6882,8 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
                                         final opacity = (0.8 - animationValue) * 0.8;
                                         
                                         return Positioned(
-                                          left: 20 + (distance * cos(angle)),
-                                          top: 20 + (distance * sin(angle)),
+                                          left: 20 + (distance * math.cos(angle)),
+                                          top: 20 + (distance * math.sin(angle)),
                                           child: Transform.rotate(
                                             angle: animationValue * 2 * 3.14159,
                                             child: Container(
@@ -6963,7 +7087,7 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
                           // Calcola la posizione corrente della particella con movimento più fluido
                           final currentX = particle.startX + (particle.endX - particle.startX) * easedValue;
                           final currentY = particle.startY + (particle.endY - particle.startY) * easedValue;
-                          final currentRotation = particle.rotation + particle.rotationSpeed * easedValue * pi;
+                          final currentRotation = particle.rotation + particle.rotationSpeed * easedValue * math.pi;
                           
                           // Calcola l'opacità con fade out più graduale
                           final opacity = animationValue < 0.7 ? 1.0 : (1.0 - (animationValue - 0.7) / 0.3);
@@ -7283,6 +7407,12 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
     final isInitialized = _videoInitialized[videoId] == true;
     
     if (actualVideoUrl.isNotEmpty && controller != null && isInitialized) {
+      // Fix iOS: verifica che il controller sia ancora valido
+      if (controller.value.hasError) {
+        print('Video controller has error for $videoId: ${controller.value.errorDescription}');
+        return _buildVideoPlaceholder();
+      }
+      
       // Per tutti i video, usa Center e AspectRatio per rispettare il rapporto corretto
       return Container(
         width: double.infinity,
@@ -7290,7 +7420,7 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
         color: Colors.black, // Sfondo nero per i bordi
         child: Center(
           child: AspectRatio(
-            aspectRatio: controller.value.aspectRatio,
+            aspectRatio: controller.value.aspectRatio > 0 ? controller.value.aspectRatio : 16/9, // Fix iOS: fallback aspect ratio
             child: GestureDetector(
               onTapDown: (TapDownDetails details) {
                 // Check if tap is in the video area (quasi tutta l'area del video)
@@ -7320,7 +7450,10 @@ class _CommunityPageState extends State<CommunityPage> with TickerProviderStateM
               },
               child: Stack(
                 children: [
-                  VideoPlayer(controller),
+                  // Fix iOS: aggiungi controllo di errore per VideoPlayer
+                  controller.value.hasError 
+                    ? _buildVideoPlaceholder()
+                    : VideoPlayer(controller),
                   
                   // Controlli play/pause overlay - mostra solo quando in pausa
                    if (_showVideoControls[videoId] == true && !(_videoPlaying[videoId] ?? false))

@@ -130,11 +130,25 @@
 				<string>viralyst</string>
 			</array>
 		</dict>
+		<!-- Google Sign-In URL scheme (REVERSED_CLIENT_ID) -->
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1095391771291-ner3467g5fqv14j0l5886qe5u7sho8a2</string>
+			</array>
+		</dict>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<!-- Apple Sign In capability key -->
+	<key>com.apple.developer.applesignin</key>
+	<array>
+		<string>Default</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -158,11 +172,9 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app needs camera access to record videos</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app uses the camera to allow you to take photos and record videos to upload to your social media accounts and save content to your profile.</string>
+	<string>This app uses the camera to allow you to take photos for your profile picture and record videos to upload to your social media accounts.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs photo library access to select videos</string>
+	<string>This app needs photo library access to select photos for your profile picture and videos for social media uploads.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app needs microphone access to record videos</string>
 	
@@ -185,6 +197,11 @@
 		<string>instagram</string>
 		<string>instagram-stories</string>
 	</array>
+	<!-- Google Sign-In configuration -->
+	<key>GIDClientID</key>
+	<string>1095391771291-ner3467g5fqv14j0l5886qe5u7sho8a2.apps.googleusercontent.com</string>
+	<key>GIDServerClientID</key>
+	<string>1095391771291-cqpq4ci6m4ahvqeea21u9c9g4r4ekr02.apps.googleusercontent.com</string>
 	<!-- Configurazione Google AdMob -->
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-7193745489519791~4083097078</string>

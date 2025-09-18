@@ -487,25 +487,27 @@ class _ReferralCodePageState extends State<ReferralCodePage> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: ShaderMask(
-                                shaderCallback: (Rect bounds) {
-                                  return LinearGradient(
-                                    colors: [
-                                      Color(0xFF667eea),
-                                      Color(0xFF764ba2),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    transform: GradientRotation(135 * 3.14159 / 180),
-                                  ).createShader(bounds);
-                                },
-                                child: Text(
-                                  _referralCode!,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1,
-                                    color: Colors.white,
+                              child: Center(
+                                child: ShaderMask(
+                                  shaderCallback: (Rect bounds) {
+                                    return LinearGradient(
+                                      colors: [
+                                        Color(0xFF667eea),
+                                        Color(0xFF764ba2),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      transform: GradientRotation(135 * 3.14159 / 180),
+                                    ).createShader(bounds);
+                                  },
+                                  child: Text(
+                                    _referralCode!,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1277,7 +1279,7 @@ class _ReferralCodePageState extends State<ReferralCodePage> {
             Text(
               title,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.bold,
                 color: theme.brightness == Brightness.dark 
                     ? Colors.white 
@@ -1289,7 +1291,7 @@ class _ReferralCodePageState extends State<ReferralCodePage> {
               description,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 11,
+                fontSize: 9,
                 color: theme.brightness == Brightness.dark 
                     ? Color(0xFF667eea)
                     : theme.textTheme.bodySmall?.color,

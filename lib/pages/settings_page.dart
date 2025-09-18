@@ -261,6 +261,14 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
         // Initialize dark mode from provider
         final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
         _darkModeEnabled = themeProvider.isDarkMode;
+        
+        // Attiva automaticamente la dark mode se il dispositivo iOS è in dark mode
+        if (Platform.isIOS) {
+          final brightness = MediaQuery.of(context).platformBrightness;
+          if (brightness == Brightness.dark && !themeProvider.isDarkMode) {
+            themeProvider.toggleTheme();
+          }
+        }
         // RIMOSSO: setState per _currentUser
       }
     });
@@ -540,7 +548,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
     
     return showDialog<void>(
       context: context,
-      barrierDismissible: false,
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -666,11 +674,13 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                           ),
                           elevation: 0,
                         ),
-                        child: Text(
-                          'Delete Account',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                        child: Center(
+                          child: Text(
+                            'Delete Account',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
@@ -825,7 +835,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
     
     final result = await showDialog<bool>(
       context: context,
-      barrierDismissible: false,
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
@@ -1008,7 +1018,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
     
     return await showDialog<bool>(
       context: context,
-      barrierDismissible: false,
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -1109,11 +1119,13 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                           ),
                           elevation: 0,
                         ),
-                        child: Text(
-                          'Yes, Delete',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                        child: Center(
+                          child: Text(
+                            'Yes, Delete',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
@@ -1130,85 +1142,131 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
 
   void _showLanguagePicker() {
     final theme = Theme.of(context);
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (context) {
-        return Container(
-          decoration: BoxDecoration(
-            color: theme.brightness == Brightness.dark ? Colors.grey[900] : Colors.white,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.08),
-                blurRadius: 10,
-                offset: const Offset(0, -2),
-              ),
-            ],
+    
+    // Controlla se il dispositivo è iOS
+    if (Platform.isIOS) {
+      // Usa il picker nativo iOS
+      showCupertinoModalPopup<void>(
+        context: context,
+        builder: (BuildContext context) => Container(
+          height: 216,
+          padding: const EdgeInsets.only(top: 6.0),
+          margin: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
-          padding: const EdgeInsets.only(top: 16, bottom: 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 40,
-                height: 5,
-                margin: const EdgeInsets.only(bottom: 16),
-                decoration: BoxDecoration(
-                  color: Colors.grey[400],
-                  borderRadius: BorderRadius.circular(10),
-                ),
+          color: CupertinoColors.systemBackground.resolveFrom(context),
+          child: SafeArea(
+            top: false,
+            child: CupertinoPicker(
+              magnification: 1.22,
+              squeeze: 1.2,
+              useMagnifier: true,
+              itemExtent: 32.0,
+              scrollController: FixedExtentScrollController(
+                initialItem: _languages.keys.toList().indexOf(_selectedLanguage),
               ),
-              ShaderMask(
-                shaderCallback: (Rect bounds) {
-                  return LinearGradient(
-                    colors: [
-                      Color(0xFF667eea),
-                      Color(0xFF764ba2),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    transform: GradientRotation(135 * 3.14159 / 180),
-                  ).createShader(bounds);
-                },
-                child: Text(
-                  'Select language AI',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
+              onSelectedItemChanged: (int selectedItem) async {
+                final lang = _languages.keys.elementAt(selectedItem);
+                setState(() {
+                  _selectedLanguage = lang;
+                });
+                await _saveLanguagePreference(lang);
+              },
+              children: List<Widget>.generate(_languages.length, (int index) {
+                final lang = _languages.keys.elementAt(index);
+                return Center(
+                  child: Text(
+                    _languages[lang]!,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                );
+              }),
+            ),
+          ),
+        ),
+      );
+    } else {
+      // Usa il picker Material Design per Android e altri
+      showModalBottomSheet(
+        context: context,
+        backgroundColor: Colors.transparent,
+        isScrollControlled: true,
+        builder: (context) {
+          return Container(
+            decoration: BoxDecoration(
+              color: theme.brightness == Brightness.dark ? Colors.grey[900] : Colors.white,
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.08),
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.only(top: 16, bottom: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 5,
+                  margin: const EdgeInsets.only(bottom: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[400],
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 180,
-                child: CupertinoPicker(
-                  backgroundColor: Colors.transparent,
-                  itemExtent: 40,
-                  scrollController: FixedExtentScrollController(
-                    initialItem: _languages.keys.toList().indexOf(_selectedLanguage),
-                  ),
-                  onSelectedItemChanged: (int index) async {
-                    final lang = _languages.keys.elementAt(index);
-                    setState(() {
-                      _selectedLanguage = lang;
-                    });
-                    await _saveLanguagePreference(lang);
+                ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      colors: [
+                        Color(0xFF667eea),
+                        Color(0xFF764ba2),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      transform: GradientRotation(135 * 3.14159 / 180),
+                    ).createShader(bounds);
                   },
-                  children: _languages.values.map((label) => Center(child: Text(label, style: TextStyle(fontSize: 18)))).toList(),
+                  child: Text(
+                    'Select language AI',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 12),
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Close'),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+                SizedBox(
+                  height: 180,
+                  child: CupertinoPicker(
+                    backgroundColor: Colors.transparent,
+                    itemExtent: 40,
+                    scrollController: FixedExtentScrollController(
+                      initialItem: _languages.keys.toList().indexOf(_selectedLanguage),
+                    ),
+                    onSelectedItemChanged: (int index) async {
+                      final lang = _languages.keys.elementAt(index);
+                      setState(() {
+                        _selectedLanguage = lang;
+                      });
+                      await _saveLanguagePreference(lang);
+                    },
+                    children: _languages.values.map((label) => Center(child: Text(label, style: TextStyle(fontSize: 18)))).toList(),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('Close'),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
   }
 
   void _showPrivacySettings() async {
@@ -1218,8 +1276,8 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
     final theme = Theme.of(context);
     showModalBottomSheet(
       context: context,
-      isDismissible: false, // Impedisce la chiusura accidentale
-      enableDrag: false, // Impedisce il drag per chiudere
+      isDismissible: true, // Permette la chiusura toccando fuori
+      enableDrag: true, // Permette il drag per chiudere
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       builder: (context) {
@@ -1254,54 +1312,28 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                   // Header
                   Padding(
                     padding: EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        ShaderMask(
-                          shaderCallback: (Rect bounds) {
-                            return LinearGradient(
-                              colors: [
-                                Color(0xFF667eea),
-                                Color(0xFF764ba2),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              transform: GradientRotation(135 * 3.14159 / 180),
-                            ).createShader(bounds);
-                          },
-                          child: Icon(
-                            Icons.privacy_tip,
+                    child: Center(
+                      child: ShaderMask(
+                        shaderCallback: (Rect bounds) {
+                          return LinearGradient(
+                            colors: [
+                              Color(0xFF667eea),
+                              Color(0xFF764ba2),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            transform: GradientRotation(135 * 3.14159 / 180),
+                          ).createShader(bounds);
+                        },
+                        child: Text(
+                          'Privacy Settings',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            size: 24,
                           ),
                         ),
-                        SizedBox(width: 12),
-                        ShaderMask(
-                          shaderCallback: (Rect bounds) {
-                            return LinearGradient(
-                              colors: [
-                                Color(0xFF667eea),
-                                Color(0xFF764ba2),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              transform: GradientRotation(135 * 3.14159 / 180),
-                            ).createShader(bounds);
-                          },
-                          child: Text(
-                            'Privacy Settings',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        Spacer(),
-                        IconButton(
-                          icon: Icon(Icons.close),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                   
@@ -2218,12 +2250,13 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                               );
                             },
                           ),
-                          _buildAnimatedTile(
-                            context,
-                            'Payment',
-                            Icons.payment_outlined,
-                            onTap: _handlePaymentRedirect,
-                          ),
+                          if (!Platform.isIOS)
+                            _buildAnimatedTile(
+                              context,
+                              'Payment',
+                              Icons.payment_outlined,
+                              onTap: _handlePaymentRedirect,
+                            ),
                           if (_isAuthorizedUser)
                             _buildAnimatedTile(
                               context,

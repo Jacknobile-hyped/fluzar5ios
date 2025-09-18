@@ -91,7 +91,7 @@ class _ContactSupportPageState extends State<ContactSupportPage> {
                 ? Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
                     padding: EdgeInsets.only(
-                      top: 100 + MediaQuery.of(context).size.height * 0.06, // Add top padding for floating header
+                      top: 70 + MediaQuery.of(context).size.height * 0.06, // Reduced by 30 pixels
                       left: 20, 
                       right: 20, 
                       bottom: 20

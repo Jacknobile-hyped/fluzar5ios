@@ -653,7 +653,7 @@ class VideoStatsService {
   }
 }
 class ChatGptService {
-  static const String apiKey = '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';
+  static const String apiKey = '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';
   static const String apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   // Funzione per calcolare i token utilizzati

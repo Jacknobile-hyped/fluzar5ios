@@ -104,8 +104,52 @@ class _AboutPageState extends State<AboutPage> {
                         Container(
                           padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                            color: isDark ? Colors.grey[800] : Colors.grey[50],
+                            // Effetto vetro semi-trasparente opaco
+                            color: isDark 
+                                ? Colors.white.withOpacity(0.15) 
+                                : Colors.white.withOpacity(0.25),
                             borderRadius: BorderRadius.circular(16),
+                            // Bordo con effetto vetro più sottile
+                            border: Border.all(
+                              color: isDark 
+                                  ? Colors.white.withOpacity(0.2)
+                                  : Colors.white.withOpacity(0.4),
+                              width: 1,
+                            ),
+                            // Ombra per effetto profondità e vetro
+                            boxShadow: [
+                              BoxShadow(
+                                color: isDark 
+                                    ? Colors.black.withOpacity(0.4)
+                                    : Colors.black.withOpacity(0.15),
+                                blurRadius: isDark ? 25 : 20,
+                                spreadRadius: isDark ? 1 : 0,
+                                offset: const Offset(0, 10),
+                              ),
+                              // Ombra interna per effetto vetro
+                              BoxShadow(
+                                color: isDark 
+                                    ? Colors.white.withOpacity(0.1)
+                                    : Colors.white.withOpacity(0.6),
+                                blurRadius: 2,
+                                spreadRadius: -2,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                            // Gradiente più sottile per effetto vetro
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: isDark 
+                                  ? [
+                                      Colors.white.withOpacity(0.2),
+                                      Colors.white.withOpacity(0.1),
+                                    ]
+                                  : [
+                                      Colors.white.withOpacity(0.3),
+                                      Colors.white.withOpacity(0.2),
+                                    ],
+                            ),
                           ),
                           child: Text(
                             'Your all-in-one platform for social media content management',
@@ -337,43 +381,106 @@ class _AboutPageState extends State<AboutPage> {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: isDark ? Colors.grey[800] : Colors.white,
+            // Effetto vetro semi-trasparente opaco
+            color: isDark 
+                ? Colors.white.withOpacity(0.15) 
+                : Colors.white.withOpacity(0.25),
             borderRadius: BorderRadius.circular(16),
+            // Bordo con effetto vetro più sottile
+            border: Border.all(
+              color: isDark 
+                  ? Colors.white.withOpacity(0.2)
+                  : Colors.white.withOpacity(0.4),
+              width: 1,
+            ),
+            // Ombra per effetto profondità e vetro
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 10,
+                color: isDark 
+                    ? Colors.black.withOpacity(0.4)
+                    : Colors.black.withOpacity(0.15),
+                blurRadius: isDark ? 25 : 20,
+                spreadRadius: isDark ? 1 : 0,
+                offset: const Offset(0, 10),
+              ),
+              // Ombra interna per effetto vetro
+              BoxShadow(
+                color: isDark 
+                    ? Colors.white.withOpacity(0.1)
+                    : Colors.white.withOpacity(0.6),
+                blurRadius: 2,
+                spreadRadius: -2,
                 offset: const Offset(0, 2),
               ),
             ],
+            // Gradiente più sottile per effetto vetro
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: isDark 
+                  ? [
+                      Colors.white.withOpacity(0.2),
+                      Colors.white.withOpacity(0.1),
+                    ]
+                  : [
+                      Colors.white.withOpacity(0.3),
+                      Colors.white.withOpacity(0.2),
+                    ],
+            ),
           ),
           child: Row(
             children: [
-                             Container(
-                 padding: const EdgeInsets.all(12),
-                 decoration: BoxDecoration(
-                   color: Color(0xFF667eea).withOpacity(0.1),
-                   shape: BoxShape.circle,
-                 ),
-                 child: ShaderMask(
-                   shaderCallback: (Rect bounds) {
-                     return LinearGradient(
-                       colors: [
-                         Color(0xFF667eea),
-                         Color(0xFF764ba2),
-                       ],
-                       begin: Alignment.topLeft,
-                       end: Alignment.bottomRight,
-                       transform: GradientRotation(135 * 3.14159 / 180),
-                     ).createShader(bounds);
-                   },
-                   child: Icon(
-                     icon,
-                     color: Colors.white,
-                     size: 24,
-                   ),
-                 ),
-               ),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  // Icona con effetto vetro semi-trasparente
+                  color: isDark 
+                      ? Colors.white.withOpacity(0.2)
+                      : Colors.white.withOpacity(0.3),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: isDark 
+                        ? Colors.white.withOpacity(0.3)
+                        : Colors.white.withOpacity(0.5),
+                    width: 1,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: isDark 
+                        ? Colors.black.withOpacity(0.3)
+                        : Colors.black.withOpacity(0.15),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                    BoxShadow(
+                      color: isDark 
+                        ? Colors.white.withOpacity(0.1)
+                        : Colors.white.withOpacity(0.4),
+                      blurRadius: 1,
+                      spreadRadius: -1,
+                      offset: const Offset(0, 1),
+                    ),
+                  ],
+                ),
+                child: ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      colors: [
+                        Color(0xFF667eea),
+                        Color(0xFF764ba2),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      transform: GradientRotation(135 * 3.14159 / 180),
+                    ).createShader(bounds);
+                  },
+                  child: Icon(
+                    icon,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                ),
+              ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
@@ -382,7 +489,7 @@ class _AboutPageState extends State<AboutPage> {
                     Text(
                       title,
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: isDark ? Colors.grey[400] : Colors.grey[600],
+                        color: isDark ? Colors.white.withOpacity(0.7) : Colors.black87.withOpacity(0.7),
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -397,10 +504,23 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
               if (onTap != null)
-                Icon(
-                  Icons.arrow_forward_ios,
-                  color: isDark ? Colors.grey[400] : Colors.grey[600],
-                  size: 16,
+                ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      colors: [
+                        Color(0xFF667eea),
+                        Color(0xFF764ba2),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      transform: GradientRotation(135 * 3.14159 / 180),
+                    ).createShader(bounds);
+                  },
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                    size: 16,
+                  ),
                 ),
             ],
           ),

@@ -1949,7 +1949,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       description,
                       style: TextStyle(
                         color: isActive ? Colors.grey.shade600 : Colors.grey.shade400,
-                        fontSize: 14,
+                        fontSize: 12,
                       ),
                     ),
                     if (isActive && !isCompleted) ...[
@@ -3414,7 +3414,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   : Colors.white.withOpacity(0.4),
               width: 1,
             ),
-            // Ombre più sottili e moderne
+            // Ombra per effetto profondità e vetro
             boxShadow: [
               BoxShadow(
                 color: isDark 
@@ -3424,15 +3424,17 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 spreadRadius: isDark ? 1 : 0,
                 offset: const Offset(0, 10),
               ),
-              if (!isDark)
-                BoxShadow(
-                  color: Colors.white.withOpacity(0.8),
-                  blurRadius: 1,
-                  spreadRadius: -1,
-                  offset: const Offset(0, 1),
-                ),
+              // Ombra interna per effetto vetro
+              BoxShadow(
+                color: isDark 
+                    ? Colors.white.withOpacity(0.1)
+                    : Colors.white.withOpacity(0.6),
+                blurRadius: 2,
+                spreadRadius: -2,
+                offset: const Offset(0, 2),
+              ),
             ],
-            // Gradiente sottile per profondità
+            // Gradiente più sottile per effetto vetro
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,

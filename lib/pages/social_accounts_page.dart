@@ -451,7 +451,7 @@ class _SocialAccountsPageState extends State<SocialAccountsPage> with WidgetsBin
               _buildSocialAccountCard(
                 context,
                 'YouTube',
-                'Connect your YouTube channel',
+                'Connect YouTube channel',
                 'assets/loghi/logo_yt.png',
                 const Color(0xFFFF0000),
                 () => Navigator.pushNamed(context, '/youtube'),
@@ -459,7 +459,7 @@ class _SocialAccountsPageState extends State<SocialAccountsPage> with WidgetsBin
               _buildSocialAccountCard(
                 context,
                 'Instagram',
-                'Connect your Instagram account',
+                'Connect Instagram account',
                 'assets/loghi/logo_insta.png',
                 const Color(0xFFE1306C),
                 () => Navigator.pushNamed(context, '/instagram'),
@@ -467,7 +467,7 @@ class _SocialAccountsPageState extends State<SocialAccountsPage> with WidgetsBin
               _buildSocialAccountCard(
                 context,
                 'Facebook',
-                'Connect your Facebook page',
+                'Connect Facebook page',
                 'assets/loghi/logo_facebook.png',
                 const Color(0xFF1877F2),
                 () => Navigator.pushNamed(context, '/facebook'),
@@ -475,7 +475,7 @@ class _SocialAccountsPageState extends State<SocialAccountsPage> with WidgetsBin
               _buildSocialAccountCard(
                 context,
                 'Threads',
-                'Connect your Threads account',
+                'Connect Threads account',
                 'assets/loghi/threads_logo.png',
                 const Color(0xFF000000),
                 () => Navigator.pushNamed(context, '/threads'),
@@ -627,7 +627,11 @@ class _SocialAccountsPageState extends State<SocialAccountsPage> with WidgetsBin
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Your accounts are linked ${_isLoading ? "..." : (_connectedAccountsCount > 0 ? "to Fluzar" : "no accounts linkedyet")}',
+                      _isLoading 
+                        ? 'Loading your accounts...'
+                        : _connectedAccountsCount > 0 
+                          ? 'Your accounts are linked to Fluzar'
+                          : 'No accounts linked yet',
                       style: TextStyle(
                         fontSize: 13,
                         color: theme.textTheme.bodySmall?.color,
@@ -777,7 +781,7 @@ class _SocialAccountsPageState extends State<SocialAccountsPage> with WidgetsBin
                           Text(
                             subtitle,
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 12,
                               color: theme.textTheme.bodySmall?.color,
                             ),
                           ),

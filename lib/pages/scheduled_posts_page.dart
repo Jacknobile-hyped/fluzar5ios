@@ -1713,15 +1713,52 @@ class ScheduledPostsPageState extends State<ScheduledPostsPage> with SingleTicke
             margin: const EdgeInsets.symmetric(vertical: 8.0),
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
             decoration: BoxDecoration(
-              color: isDark ? Colors.grey[800] : Colors.white,
-              borderRadius: BorderRadius.circular(12),
+              // Effetto vetro semi-trasparente opaco
+              color: isDark 
+                  ? Colors.white.withOpacity(0.15) 
+                  : Colors.white.withOpacity(0.25),
+              borderRadius: BorderRadius.circular(20),
+              // Bordo con effetto vetro più sottile
+              border: Border.all(
+                color: isDark 
+                    ? Colors.white.withOpacity(0.2)
+                    : Colors.white.withOpacity(0.4),
+                width: 1,
+              ),
+              // Ombre per effetto profondità e vetro
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 4,
-                  offset: const Offset(0, 1),
+                  color: isDark 
+                      ? Colors.black.withOpacity(0.4)
+                      : Colors.black.withOpacity(0.15),
+                  blurRadius: isDark ? 25 : 20,
+                  spreadRadius: isDark ? 1 : 0,
+                  offset: const Offset(0, 10),
+                ),
+                // Ombra interna per effetto vetro
+                BoxShadow(
+                  color: isDark 
+                      ? Colors.white.withOpacity(0.1)
+                      : Colors.white.withOpacity(0.6),
+                  blurRadius: 2,
+                  spreadRadius: -2,
+                  offset: const Offset(0, 2),
                 ),
               ],
+              // Gradiente più sottile per effetto vetro
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: isDark 
+                    ? [
+                        Colors.white.withOpacity(0.2),
+                        Colors.white.withOpacity(0.1),
+                      ]
+                    : [
+                        Colors.white.withOpacity(0.3),
+                        Colors.white.withOpacity(0.2),
+                      ],
+              ),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -1890,28 +1927,64 @@ class ScheduledPostsPageState extends State<ScheduledPostsPage> with SingleTicke
       eventCountsByDay[dateOnly] = _getEventsForDay(day).length;
     }
     
-    // Use a single scroll controller for both hour and event containers
-    // Spostato a livello di classe per poterlo utilizzare in _scrollToCurrentHour
+    // Check if there are any events for the selected day
+    final hasEventsForSelectedDay = _getEventsForDay(_selectedDay).isNotEmpty;
     
-    return SingleChildScrollView(
+    return CustomScrollView(
       physics: AlwaysScrollableScrollPhysics(),
-      padding: const EdgeInsets.only(top: 10), // Aggiunto padding superiore per la top bar
-      child: Column(
-        children: [
-          // Compact month selector with week navigation
-          Container(
+      slivers: [
+        // Compact month selector with week navigation - now as sliver
+        SliverToBoxAdapter(
+          child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            margin: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 12.0),
             decoration: BoxDecoration(
-              color: isDark ? Colors.grey[800] : Colors.white,
+              // Effetto vetro semi-trasparente opaco
+              color: isDark 
+                  ? Colors.white.withOpacity(0.15) 
+                  : Colors.white.withOpacity(0.25),
               borderRadius: BorderRadius.circular(24),
+              // Bordo con effetto vetro più sottile
+              border: Border.all(
+                color: isDark 
+                    ? Colors.white.withOpacity(0.2)
+                    : Colors.white.withOpacity(0.4),
+                width: 1,
+              ),
+              // Ombre per effetto profondità e vetro
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: isDark 
+                      ? Colors.black.withOpacity(0.4)
+                      : Colors.black.withOpacity(0.15),
+                  blurRadius: isDark ? 25 : 20,
+                  spreadRadius: isDark ? 1 : 0,
+                  offset: const Offset(0, 10),
+                ),
+                // Ombra interna per effetto vetro
+                BoxShadow(
+                  color: isDark 
+                      ? Colors.white.withOpacity(0.1)
+                      : Colors.white.withOpacity(0.6),
+                  blurRadius: 2,
+                  spreadRadius: -2,
                   offset: const Offset(0, 2),
-                  blurRadius: 6,
                 ),
               ],
+              // Gradiente più sottile per effetto vetro
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: isDark 
+                    ? [
+                        Colors.white.withOpacity(0.2),
+                        Colors.white.withOpacity(0.1),
+                      ]
+                    : [
+                        Colors.white.withOpacity(0.3),
+                        Colors.white.withOpacity(0.2),
+                      ],
+              ),
             ),
             child: Column(
               children: [
@@ -2091,12 +2164,12 @@ class ScheduledPostsPageState extends State<ScheduledPostsPage> with SingleTicke
               ],
             ),
           ),
-          
-          const SizedBox(height: 16),
-          
-          // Container for timeline view - now with fixed height
-          Container(
-            height: MediaQuery.of(context).size.height - 350, // Fixed height to ensure scrollability
+        ),
+        
+        // Timeline container - now as sliver for better scrolling
+        SliverFillRemaining(
+          child: Container(
+            margin: const EdgeInsets.only(top: 16),
             decoration: BoxDecoration(
               color: isDark ? Colors.black.withOpacity(0.2) : Colors.grey[50],
               borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -2119,9 +2192,9 @@ class ScheduledPostsPageState extends State<ScheduledPostsPage> with SingleTicke
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Hours header row
+                        // Hours header row - now pinned at top
                         Container(
-                          height: 30,
+                          height: 40,
                           child: _buildHoursHeader(hours),
                         ),
                         
@@ -2132,9 +2205,15 @@ class ScheduledPostsPageState extends State<ScheduledPostsPage> with SingleTicke
                           color: Colors.grey[200],
                         ),
                         
-                        // Events area - integrated with the hours
+                        // Events area - integrated with the hours and scrollable
                         Expanded(
-                          child: _buildTimelineContent(hours),
+                          child: SingleChildScrollView(
+                            physics: AlwaysScrollableScrollPhysics(),
+                            child: Container(
+                              height: math.max(MediaQuery.of(context).size.height - 200, 800), // Altezza minima per scroll verticale
+                              child: _buildTimelineContent(hours),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -2143,8 +2222,8 @@ class ScheduledPostsPageState extends State<ScheduledPostsPage> with SingleTicke
               ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
   
@@ -3146,44 +3225,6 @@ class ScheduledPostsPageState extends State<ScheduledPostsPage> with SingleTicke
           ],
         ),
       ),
-      // Floating action button for adding new events
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 80), // Sposta il bottone 2 cm più in alto (circa 80px)
-        child: FloatingActionButton(
-          heroTag: 'scheduled_posts_fab',
-          onPressed: () {
-            // Navigate to UploadVideoPage to create a new post
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const UploadVideoPage(),
-              ),
-            );
-          },
-          backgroundColor: Colors.transparent,
-          elevation: 4,
-          child: Container(
-            width: 56,
-            height: 56,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF667eea), // Colore iniziale: blu violaceo
-                  Color(0xFF764ba2), // Colore finale: viola
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                transform: GradientRotation(135 * 3.14159 / 180), // 135 gradi
-              ),
-              shape: BoxShape.circle,
-              // boxShadow rimossa per eliminare l'ombra
-            ),
-            child: Center(
-              child: Icon(Icons.add, color: Colors.white),
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

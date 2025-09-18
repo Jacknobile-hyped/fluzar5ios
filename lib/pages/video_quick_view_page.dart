@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math' show pi;
 import 'dart:convert' show jsonEncode;
 import 'package:http/http.dart' as http;
+import 'dart:math' as math;
 import 'package:viralyst/pages/profile_edit_page.dart'; // Added import for ProfileEditPage
 
 class VideoQuickViewPage extends StatefulWidget {
@@ -55,6 +56,10 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
 
   // Cache conteggio commenti
   Map<String, int> _commentsCountCache = {};
+  
+  // Debounce per prevenire doppi tap (fix iOS)
+  Map<String, DateTime> _lastStarTapTime = {};
+  static const Duration _starDebounceTime = Duration(milliseconds: 500);
   
   // Immagine profilo utente corrente
   String? _profileImageUrl;
@@ -139,41 +144,77 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
     try {
       _disposeController();
       _controller = VideoPlayerController.network(url);
-      await _controller!.initialize();
+      
+      // Fix iOS: Aggiungi timeout per l'inizializzazione
+      await _controller!.initialize().timeout(
+        Duration(seconds: 10),
+        onTimeout: () {
+          throw Exception('Video initialization timeout');
+        },
+      );
+      
       // Loop video alla fine
       _controller!.setLooping(true);
+      
+      // Fix iOS: Controlla che il controller sia ancora valido
+      if (!mounted || _controller == null) return;
+      
       setState(() {
         _isInitialized = true;
         _isLoading = false;
       });
+      
       _controller!.addListener(() {
+        if (!mounted || _controller == null) return;
+        
         final isPlaying = _controller!.value.isPlaying;
         if (isPlaying != _isPlaying && mounted) {
           setState(() {
             _isPlaying = isPlaying;
           });
         }
-        // Safety: if reaches end and somehow stops, restart
-        if (_controller!.value.position >= _controller!.value.duration && !_controller!.value.isPlaying) {
+        
+        // Safety: if reaches end and somehow stops, restart (fix iOS)
+        if (_controller!.value.position >= _controller!.value.duration && 
+            !_controller!.value.isPlaying && 
+            _controller!.value.isInitialized) {
           _controller!.seekTo(Duration.zero);
           _controller!.play();
         }
       });
-      await _controller!.play();
-      setState(() {
-        _isPlaying = true;
-      });
+      
+      // Fix iOS: Verifica che il controller sia ancora inizializzato prima di riprodurre
+      if (_controller != null && _controller!.value.isInitialized && mounted) {
+        await _controller!.play();
+        if (mounted) {
+          setState(() {
+            _isPlaying = true;
+          });
+        }
+      }
     } catch (e) {
-      setState(() {
-        _errorMessage = 'Error in loading the media';
-        _isLoading = false;
-      });
+      print('Error initializing video controller: $e');
+      if (mounted) {
+        setState(() {
+          _errorMessage = 'Error in loading the media';
+          _isLoading = false;
+        });
+      }
     }
   }
 
   void _disposeController() {
-    _controller?.removeListener(() {});
-    _controller?.dispose();
+    try {
+      // Fix iOS: Pausa il video prima di disporre del controller
+      if (_controller != null && _controller!.value.isInitialized) {
+        if (_controller!.value.isPlaying) {
+          _controller!.pause();
+        }
+        _controller!.dispose();
+      }
+    } catch (e) {
+      print('Error disposing video controller: $e');
+    }
     _controller = null;
     _isInitialized = false;
     _isPlaying = false;
@@ -1092,12 +1133,20 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
   }
 
   bool _isCommentStarredByCurrentUser(Map<String, dynamic> item) {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) return false;
+    
     final starUsers = item['star_users'];
+    if (starUsers == null) return false;
+    
+    // Gestisci diversi tipi di dati per star_users (fix iOS)
     if (starUsers is Map) {
-      // In QuickView non abbiamo l'UID corrente qui; limitiamoci a contare il campo locale se presente
-      // Questa funzione è usata solo per UI statica; il toggle aggiornerà l'oggetto localmente.
-      return false;
+      return starUsers.containsKey(currentUser.uid);
+    } else if (starUsers is List) {
+      // Caso in cui star_users è una lista invece di una mappa
+      return starUsers.contains(currentUser.uid);
     }
+    
     return false;
   }
 
@@ -1108,6 +1157,15 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
     final commentId = comment['id']?.toString();
     final videoId = widget.videoId;
     if (commentId == null) return;
+    
+    // Debounce per prevenire doppi tap (fix iOS)
+    final now = DateTime.now();
+    final lastTapTime = _lastStarTapTime[commentId];
+    if (lastTapTime != null && now.difference(lastTapTime) < _starDebounceTime) {
+      return; // Ignora il tap se troppo vicino al precedente
+    }
+    _lastStarTapTime[commentId] = now;
+    
     try {
       final currentUserId = currentUser.uid;
 
@@ -1121,12 +1179,12 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
           .child('comments')
           .child(commentId);
 
-      // Star users
+      // Star users - Controlla sempre Firebase per lo stato attuale (fix iOS)
       final starUsersRef = commentRef.child('star_users');
       final userStarSnapshot = await starUsersRef.child(currentUserId).get();
       final hasUserStarred = userStarSnapshot.exists;
 
-      // Star count
+      // Star count - Leggi sempre da Firebase per sincronizzazione (fix iOS)
       final starCountSnap = await commentRef.child('star_count').get();
       int currentStarCount = 0;
       if (starCountSnap.exists) {
@@ -1139,7 +1197,7 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
          // Toggle off
          _triggerCommentStarAnimation(commentId);
         await starUsersRef.child(currentUserId).remove();
-        newStarCount = currentStarCount - 1;
+        newStarCount = math.max(0, currentStarCount - 1); // Previeni valori negativi (fix iOS)
       } else {
          // Toggle on
         _triggerCommentStarAnimation(commentId);
@@ -1174,21 +1232,54 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
         }
       }
 
+      // Aggiorna il conteggio totale delle stelle usando transazione atomica
       await commentRef.child('star_count').set(newStarCount);
 
-      setState(() {
-        comment['star_count'] = newStarCount;
-        if (comment['star_users'] == null) comment['star_users'] = {};
-        if (hasUserStarred) {
-          comment['star_users']?.remove(currentUserId);
-        } else {
-          comment['star_users']?[currentUserId] = true;
-        }
-      });
+      // Aggiorna lo stato locale DOPO aver verificato Firebase (fix iOS)
+      if (mounted) {
+        setState(() {
+          comment['star_count'] = newStarCount;
+          if (comment['star_users'] == null) comment['star_users'] = {};
+          
+          // Forza l'aggiornamento dello stato locale basato su Firebase
+          if (hasUserStarred) {
+            comment['star_users']?.remove(currentUserId);
+          } else {
+            comment['star_users']?[currentUserId] = true;
+          }
+        });
+      }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Errore nell\'aggiornamento delle stelle del commento')),
-      );
+      print('Errore nell\'aggiornamento delle stelle del commento: $e');
+      // In caso di errore, ricarica i dati dal database per sincronizzare (fix iOS)
+      if (mounted) {
+        try {
+          // Ricarica lo stato attuale da Firebase per sincronizzare
+          final commentRef = _database
+              .child('users')
+              .child('users')
+              .child(widget.videoOwnerId)
+              .child('videos')
+              .child(videoId)
+              .child('comments')
+              .child(commentId);
+          
+          final refreshSnapshot = await commentRef.get();
+          if (refreshSnapshot.exists && refreshSnapshot.value is Map && mounted) {
+            final refreshedComment = Map<String, dynamic>.from(refreshSnapshot.value as Map);
+            setState(() {
+              comment['star_count'] = refreshedComment['star_count'] ?? 0;
+              comment['star_users'] = refreshedComment['star_users'] ?? {};
+            });
+          }
+        } catch (refreshError) {
+          print('Error refreshing comment state: $refreshError');
+        }
+        
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Errore nell\'aggiornamento delle stelle del commento')),
+        );
+      }
     }
   }
 
@@ -1200,6 +1291,15 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
     final videoId = widget.videoId;
     final parentCommentId = reply['parentCommentId']?.toString();
     if (replyId == null || parentCommentId == null) return;
+    
+    // Debounce per prevenire doppi tap (fix iOS)
+    final now = DateTime.now();
+    final lastTapTime = _lastStarTapTime[replyId];
+    if (lastTapTime != null && now.difference(lastTapTime) < _starDebounceTime) {
+      return; // Ignora il tap se troppo vicino al precedente
+    }
+    _lastStarTapTime[replyId] = now;
+    
     try {
       final currentUserId = currentUser.uid;
 
@@ -1214,10 +1314,12 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
           .child('replies')
           .child(replyId);
 
+      // Star users - Controlla sempre Firebase per lo stato attuale (fix iOS)
       final starUsersRef = replyRef.child('star_users');
       final userStarSnapshot = await starUsersRef.child(currentUserId).get();
       final hasUserStarred = userStarSnapshot.exists;
 
+      // Star count - Leggi sempre da Firebase per sincronizzazione (fix iOS)
       final starCountSnap = await replyRef.child('star_count').get();
       int currentStarCount = 0;
       if (starCountSnap.exists) {
@@ -1227,8 +1329,9 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
 
       int newStarCount;
       if (hasUserStarred) {
+        _triggerCommentStarAnimation(replyId);
         await starUsersRef.child(currentUserId).remove();
-        newStarCount = currentStarCount - 1;
+        newStarCount = math.max(0, currentStarCount - 1); // Previeni valori negativi (fix iOS)
       } else {
         _triggerCommentStarAnimation(replyId);
         await starUsersRef.child(currentUserId).set(true);
@@ -1262,21 +1365,56 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
         }
       }
 
+      // Aggiorna il conteggio totale delle stelle usando transazione atomica
       await replyRef.child('star_count').set(newStarCount);
 
-      setState(() {
-        reply['star_count'] = newStarCount;
-        if (reply['star_users'] == null) reply['star_users'] = {};
-        if (hasUserStarred) {
-          reply['star_users']?.remove(currentUserId);
-        } else {
-          reply['star_users']?[currentUserId] = true;
-        }
-      });
+      // Aggiorna lo stato locale DOPO aver verificato Firebase (fix iOS)
+      if (mounted) {
+        setState(() {
+          reply['star_count'] = newStarCount;
+          if (reply['star_users'] == null) reply['star_users'] = {};
+          
+          // Forza l'aggiornamento dello stato locale basato su Firebase
+          if (hasUserStarred) {
+            reply['star_users']?.remove(currentUserId);
+          } else {
+            reply['star_users']?[currentUserId] = true;
+          }
+        });
+      }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Errore nell\'aggiornamento delle stelle della risposta')),
-      );
+      print('Errore nell\'aggiornamento delle stelle della risposta: $e');
+      // In caso di errore, ricarica i dati dal database per sincronizzare (fix iOS)
+      if (mounted) {
+        try {
+          // Ricarica lo stato attuale da Firebase per sincronizzare
+          final replyRef = _database
+              .child('users')
+              .child('users')
+              .child(widget.videoOwnerId)
+              .child('videos')
+              .child(videoId)
+              .child('comments')
+              .child(parentCommentId)
+              .child('replies')
+              .child(replyId);
+          
+          final refreshSnapshot = await replyRef.get();
+          if (refreshSnapshot.exists && refreshSnapshot.value is Map && mounted) {
+            final refreshedReply = Map<String, dynamic>.from(refreshSnapshot.value as Map);
+            setState(() {
+              reply['star_count'] = refreshedReply['star_count'] ?? 0;
+              reply['star_users'] = refreshedReply['star_users'] ?? {};
+            });
+          }
+        } catch (refreshError) {
+          print('Error refreshing reply state: $refreshError');
+        }
+        
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Errore nell\'aggiornamento delle stelle della risposta')),
+        );
+      }
     }
   }
 
@@ -2029,6 +2167,9 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
     _commentStarScaleAnimations.clear();
     _commentStarRotationAnimations.clear();
     
+    // Pulisci la cache del debounce (fix iOS)
+    _lastStarTapTime.clear();
+    
     super.dispose();
   }
 
@@ -2104,19 +2245,31 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
                                 child: GestureDetector(
                                   behavior: HitTestBehavior.opaque,
                                                                      onTap: () async {
-                                     if (_controller == null) return;
-                                     if (_controller!.value.isPlaying) {
-                                       await _controller!.pause();
-                                     } else {
-                                       await _controller!.play();
+                                     // Fix iOS: Aggiungi controlli di sicurezza
+                                     if (_controller == null || !_controller!.value.isInitialized) return;
+                                     
+                                     try {
+                                       if (_controller!.value.isPlaying) {
+                                         await _controller!.pause();
+                                       } else {
+                                         await _controller!.play();
+                                       }
+                                       if (mounted) setState(() {});
+                                     } catch (e) {
+                                       print('Error toggling video playback: $e');
                                      }
-                                     if (mounted) setState(() {});
                                    },
                                    onDoubleTap: () async {
-                                     // restart quickly on double tap
-                                     if (_controller == null) return;
-                                     await _controller!.seekTo(Duration.zero);
-                                     await _controller!.play();
+                                     // restart quickly on double tap (fix iOS)
+                                     if (_controller == null || !_controller!.value.isInitialized) return;
+                                     
+                                     try {
+                                       await _controller!.seekTo(Duration.zero);
+                                       await _controller!.play();
+                                       if (mounted) setState(() {});
+                                     } catch (e) {
+                                       print('Error restarting video: $e');
+                                     }
                                    },
                                   child: AnimatedOpacity(
                                     opacity: _controller!.value.isPlaying ? 0.0 : 1.0,
@@ -2197,23 +2350,27 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
                                                    final progressBarWidth = renderBox.size.width - 32; // Sottrai il padding
                                                    final tapPosition = localPosition.dx - 16; // Sottrai il padding sinistro
                                                    
-                                                   // Calcola la percentuale e il tempo corrispondente
-                                                   if (progressBarWidth > 0) {
-                                                     final percentage = (tapPosition / progressBarWidth).clamp(0.0, 1.0);
-                                                     final newTime = (max * percentage).toInt();
-                                                     _controller?.seekTo(Duration(milliseconds: newTime));
-                                                     
-                                                     // Attiva l'effetto di interazione
-                                                     if (!_isProgressInteracting) {
-                                                       setState(() => _isProgressInteracting = true);
-                                                     }
-                                                     
-                                                     // Disattiva l'effetto dopo un breve delay
-                                                     Future.delayed(Duration(milliseconds: 300), () {
-                                                       if (mounted && _isProgressInteracting) {
-                                                         setState(() => _isProgressInteracting = false);
+                                                   // Calcola la percentuale e il tempo corrispondente (fix iOS)
+                                                   if (progressBarWidth > 0 && _controller != null && _controller!.value.isInitialized) {
+                                                     try {
+                                                       final percentage = (tapPosition / progressBarWidth).clamp(0.0, 1.0);
+                                                       final newTime = (max * percentage).toInt();
+                                                       _controller!.seekTo(Duration(milliseconds: newTime));
+                                                       
+                                                       // Attiva l'effetto di interazione
+                                                       if (!_isProgressInteracting && mounted) {
+                                                         setState(() => _isProgressInteracting = true);
                                                        }
-                                                     });
+                                                       
+                                                       // Disattiva l'effetto dopo un breve delay
+                                                       Future.delayed(Duration(milliseconds: 300), () {
+                                                         if (mounted && _isProgressInteracting) {
+                                                           setState(() => _isProgressInteracting = false);
+                                                         }
+                                                       });
+                                                     } catch (e) {
+                                                       print('Error seeking video: $e');
+                                                     }
                                                    }
                                                  },
                                                  child: Align(
@@ -2237,19 +2394,26 @@ class _VideoQuickViewPageState extends State<VideoQuickViewPage> with TickerProv
                                           min: 0.0,
                                           max: max,
                                           onChanged: (v) {
-                                            _controller?.seekTo(Duration(milliseconds: v.toInt()));
-                                            if (!_isProgressInteracting) {
-                                              setState(() => _isProgressInteracting = true);
+                                            // Fix iOS: Aggiungi controlli di sicurezza
+                                            if (_controller != null && _controller!.value.isInitialized) {
+                                              try {
+                                                _controller!.seekTo(Duration(milliseconds: v.toInt()));
+                                                if (!_isProgressInteracting && mounted) {
+                                                  setState(() => _isProgressInteracting = true);
+                                                }
+                                              } catch (e) {
+                                                print('Error seeking video via slider: $e');
+                                              }
                                             }
                                           },
                                           onChangeEnd: (_) {
-                                            if (_isProgressInteracting) {
+                                            if (_isProgressInteracting && mounted) {
                                               setState(() => _isProgressInteracting = false);
                                             }
                                           },
                                                          // Permette di cliccare ovunque nella progress bar per navigare
                                                          onChangeStart: (_) {
-                                                           if (!_isProgressInteracting) {
+                                                           if (!_isProgressInteracting && mounted) {
                                                              setState(() => _isProgressInteracting = true);
                                                            }
                                                          },

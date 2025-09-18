@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'contact_support_page.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -96,7 +97,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
             const SizedBox(height: 12),
             const Text(
-              'Attenzione',
+              'Incorrect email',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -168,7 +169,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
             const SizedBox(height: 12),
             const Text(
-              'Email Inviata',
+              'Email Sent',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -213,6 +214,90 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           ),
         ],
         actionsPadding: EdgeInsets.only(bottom: 20),
+      ),
+    );
+  }
+
+  Widget _buildSupportCard(ThemeData theme) {
+    final isDark = theme.brightness == Brightness.dark;
+    
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ContactSupportPage(),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(22),
+        decoration: BoxDecoration(
+          color: isDark ? Colors.grey[800] : Colors.grey[50],
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 3),
+            ),
+          ],
+          border: Border.all(
+            color: isDark ? Colors.grey[700]! : Colors.grey[200]!,
+            width: 1.5,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.secondary.withOpacity(0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: ShaderMask(
+                    shaderCallback: (Rect bounds) {
+                      return LinearGradient(
+                        colors: [
+                          Color(0xFF667eea),
+                          Color(0xFF764ba2),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        transform: GradientRotation(135 * 3.14159 / 180),
+                      ).createShader(bounds);
+                    },
+                    child: Icon(
+                      Icons.support_agent,
+                      color: Colors.white,
+                      size: 22,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 14),
+                Text(
+                  'Contact Support',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Get direct help from our support team',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                height: 1.5,
+                fontSize: 15,
+                color: isDark ? Colors.grey[300] : Colors.grey[700],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -376,7 +461,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       ),
                     ),
                     
-                                            const SizedBox(height: 70),
+                                            const SizedBox(height: 30),
                     
                     // Reset password form
                     Form(
@@ -452,7 +537,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               },
                             ),
                           ),
-                          const SizedBox(height: 32),
+                          const SizedBox(height: 18),
                           
                                                      // Reset password button
                            SizedBox(
@@ -543,15 +628,28 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   color: theme.colorScheme.secondary.withOpacity(0.1),
                                   shape: BoxShape.circle,
                                 ),
-                                child: Icon(
-                                  Icons.help_outline,
-                                  color: theme.colorScheme.secondary,
-                                  size: 22,
+                                child: ShaderMask(
+                                  shaderCallback: (Rect bounds) {
+                                    return LinearGradient(
+                                      colors: [
+                                        Color(0xFF667eea),
+                                        Color(0xFF764ba2),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      transform: GradientRotation(135 * 3.14159 / 180),
+                                    ).createShader(bounds);
+                                  },
+                                  child: Icon(
+                                    Icons.help_outline,
+                                    color: Colors.white,
+                                    size: 22,
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 14),
                               Text(
-                                'Need Help?',
+                                'Email not received?',
                                 style: theme.textTheme.titleMedium?.copyWith(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
@@ -561,7 +659,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'If you don\'t receive the email within a few minutes, please check your spam folder or try again with a different email address.',
+                            'If you don\'t receive the email, please check your spam folder or try again with a different email address',
                             style: theme.textTheme.bodyMedium?.copyWith(
                               height: 1.5,
                               fontSize: 15,
@@ -571,6 +669,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         ],
                       ),
                     ),
+                    
+                    const SizedBox(height: 20),
+                    
+                    // Support card
+                    _buildSupportCard(theme),
                   ],
                 ),
               ),

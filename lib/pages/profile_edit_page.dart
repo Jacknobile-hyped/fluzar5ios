@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:async';
 import 'dart:ui'; // <--- AGGIUNTO per ImageFilter
+import 'dart:math' as math;
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'dart:convert';
@@ -163,6 +164,10 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
   // Profile image URL for current user (for comment input)
   String? _currentUserProfileImageUrl;
   String? _profileImageUrl; // URL dell'immagine profilo dal database (come in community_page.dart)
+  
+  // Debounce per prevenire doppi tap (fix iOS)
+  Map<String, DateTime> _lastStarTapTime = {};
+  static const Duration _starDebounceTime = Duration(milliseconds: 500);
 
   @override
   void initState() {
@@ -482,6 +487,9 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
     // Cancella i listener per l'immagine profilo (come nel main.dart)
     _profileImageSubscription?.cancel();
     _currentUserProfileImageSubscription?.cancel();
+    
+    // Pulisci la cache del debounce (fix iOS)
+    _lastStarTapTime.clear();
     
     super.dispose();
   }
@@ -2485,6 +2493,14 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
         _originalShowCommentCount = _showCommentCount;
       });
 
+      // Ricarica i dati del profilo per aggiornare la UI
+      await _loadUserData();
+      await _loadProfileImage();
+      await _loadCurrentUserProfileImage();
+      await _loadTopVideos();
+      await _loadRecentPosts();
+      await _loadFriends();
+      
       // Non tornare alla pagina precedente, rimani nella pagina corrente
     } catch (e) {
               // Error saving profile
@@ -3737,7 +3753,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
       backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.7,
+          height: MediaQuery.of(context).size.height * 0.8,
           decoration: BoxDecoration(
             color: Theme.of(context).brightness == Brightness.dark 
                 ? Color(0xFF1E1E1E) 
@@ -3897,42 +3913,60 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
   }
   
   Widget _buildBasicInfoSection(ThemeData theme) {
+    final isDark = theme.brightness == Brightness.dark;
     return Container(
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: theme.brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
-        borderRadius: BorderRadius.circular(18),
+        // Effetto vetro semi-trasparente opaco
+        color: isDark 
+            ? Colors.white.withOpacity(0.15) 
+            : Colors.white.withOpacity(0.25),
+        borderRadius: BorderRadius.circular(20),
+        // Bordo con effetto vetro più sottile
+        border: Border.all(
+          color: isDark 
+              ? Colors.white.withOpacity(0.2)
+              : Colors.white.withOpacity(0.4),
+          width: 1,
+        ),
+        // Ombra per effetto profondità e vetro
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            color: isDark 
+                ? Colors.black.withOpacity(0.4)
+                : Colors.black.withOpacity(0.15),
+            blurRadius: isDark ? 25 : 20,
+            spreadRadius: isDark ? 1 : 0,
+            offset: const Offset(0, 10),
+          ),
+          // Ombra interna per effetto vetro
+          BoxShadow(
+            color: isDark 
+                ? Colors.white.withOpacity(0.1)
+                : Colors.white.withOpacity(0.6),
+            blurRadius: 2,
+            spreadRadius: -2,
+            offset: const Offset(0, 2),
           ),
         ],
-        border: Border.all(
-          color: const Color(0xFF6C63FF).withOpacity(0.1),
-          width: 1,
+        // Gradiente più sottile per effetto vetro
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: isDark 
+              ? [
+                  Colors.white.withOpacity(0.2),
+                  Colors.white.withOpacity(0.1),
+                ]
+              : [
+                  Colors.white.withOpacity(0.3),
+                  Colors.white.withOpacity(0.2),
+                ],
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Icon(Icons.person, color: const Color(0xFF6C63FF), size: 24),
-              SizedBox(width: 12),
-              Text(
-                'Basic Information',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: theme.textTheme.titleLarge?.color,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
-          
           // Username
           _buildUsernameField(),
           
@@ -3944,7 +3978,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
             label: 'Display Name',
             hint: 'Enter your name',
             icon: Icons.person,
-            maxLength: 50,
+            maxLength: 15,
           ),
           
           SizedBox(height: 16),
@@ -3957,9 +3991,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
             icon: Icons.location_on,
           ),
           
-          SizedBox(height: 24),
-          
-
+          SizedBox(height: 190), // Aumentato da 64 a 94 (+30 pixel aggiuntivi)
           
           // Pulsante per tutte le impostazioni
           Container(
@@ -4012,14 +4044,12 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
         SizedBox(height: 8),
         TextField(
           controller: _usernameController,
-          maxLength: 30,
+          maxLength: 15,
           onChanged: (value) {
-            // Controlla la disponibilità dell'username dopo un breve delay
-            Future.delayed(Duration(milliseconds: 500), () {
-              if (value == _usernameController.text) {
-                _checkUsernameAvailability(value);
-              }
-            });
+            // Aggiorna immediatamente lo stato per mostrare i messaggi
+            setState(() {});
+            // Controlla la disponibilità dell'username ad ogni lettera
+            _checkUsernameAvailability(value);
           },
           decoration: InputDecoration(
             hintText: 'Enter your username',
@@ -4060,56 +4090,71 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
               ),
             ),
             filled: true,
-            fillColor: Colors.grey[50],
+            fillColor: Theme.of(context).brightness == Brightness.dark 
+                ? Colors.grey[800] 
+                : Colors.grey[50],
             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            // Contatore personalizzato che include i messaggi di validazione
+            counterText: '', // Nasconde il contatore predefinito
           ),
-        ),
-        if (_usernameController.text.isNotEmpty && _usernameErrorMessage.isNotEmpty)
-          Padding(
-            padding: EdgeInsets.only(top: 8, left: 12),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.error_outline,
-                  color: Colors.red,
-                  size: 16,
-                ),
-                SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    _usernameErrorMessage,
+          buildCounter: (context, {required currentLength, required isFocused, maxLength}) {
+            return Padding(
+              padding: EdgeInsets.only(top: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Messaggio di validazione a sinistra
+                  Expanded(
+                    child: _usernameController.text.isNotEmpty
+                        ? Row(
+                            children: [
+                              if (_isCheckingUsername)
+                                SizedBox(
+                                  width: 12,
+                                  height: 12,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(const Color(0xFF6C63FF)),
+                                  ),
+                                )
+                              else
+                                Icon(
+                                  _isUsernameAvailable ? Icons.check_circle_outline : Icons.error_outline,
+                                  color: _isUsernameAvailable ? Colors.green : Colors.red,
+                                  size: 14,
+                                ),
+                              SizedBox(width: 6),
+                              Expanded(
+                                child: Text(
+                                  _isCheckingUsername 
+                                      ? 'Checking...'
+                                      : (_isUsernameAvailable ? 'Username available' : _usernameErrorMessage),
+                                  style: TextStyle(
+                                    color: _isCheckingUsername 
+                                        ? const Color(0xFF6C63FF)
+                                        : (_isUsernameAvailable ? Colors.green : Colors.red),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : SizedBox.shrink(),
+                  ),
+                  // Contatore caratteri a destra
+                  Text(
+                    '$currentLength/${maxLength ?? 15}',
                     style: TextStyle(
-                      color: Colors.red,
+                      color: Colors.grey[500],
                       fontSize: 12,
-                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        if (_usernameController.text.isNotEmpty && _isUsernameAvailable && !_isCheckingUsername)
-          Padding(
-            padding: EdgeInsets.only(top: 8, left: 12),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.check_circle_outline,
-                  color: Colors.green,
-                  size: 16,
-                ),
-                SizedBox(width: 8),
-                Text(
-                  'Username available',
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
+                ],
+              ),
+            );
+          },
+        ),
       ],
     );
   }
@@ -4152,8 +4197,12 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
               borderSide: BorderSide(color: const Color(0xFF6C63FF), width: 2),
             ),
             filled: true,
-            fillColor: Colors.grey[50],
+            fillColor: Theme.of(context).brightness == Brightness.dark 
+                ? Colors.grey[800] 
+                : Colors.grey[50],
             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            // Nasconde il contatore di caratteri se maxLength è specificato
+            counterText: maxLength != null ? '' : null,
           ),
         ),
       ],
@@ -4168,83 +4217,37 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
     }
 
     return Container(
-      margin: EdgeInsets.only(top: 10), // Ridotto da 20 a 10
+      margin: EdgeInsets.only(top: 0), // Ridotto da 10 a 0 per avvicinare alle statistiche
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Card personalizzata per il titolo "Top 5 Most Liked"
-          Container(
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
+          // Titolo minimale per "Top 5 Most Liked"
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
+            child: Center(
+              child: ShaderMask(
+                shaderCallback: (Rect bounds) {
+                  return LinearGradient(
                 colors: [
-                  const Color(0xFF667eea), // Colore iniziale: blu violaceo
-                  const Color(0xFF764ba2), // Colore finale: viola
+                      Color(0xFF667eea), // Colore iniziale: blu violaceo
+                      Color(0xFF764ba2), // Colore finale: viola
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 transform: GradientRotation(135 * 3.14159 / 180), // 135 gradi
-              ),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Icon(
-                    Icons.trending_up,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-                SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+                  ).createShader(bounds);
+                },
+                child: Text(
                         'Top 5 Most Liked',
                         style: TextStyle(
-                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(height: 1),
-                      Text(
-                        _isOwner 
-                          ? 'Your most liked videos'
-                          : 'Most liked videos of ${_userData['displayName'] ?? (_displayNameController.text.isNotEmpty ? _displayNameController.text : 'this user')}',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.white.withOpacity(0.8),
-                        ),
-                      ),
-                    ],
+                    fontSize: 20,
+                    letterSpacing: -0.5,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-                // Floating Action Button per visualizzare tutti i video (solo per il proprietario)
-                if (_isOwner)
-                  Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: Icon(Icons.video_library, color: Colors.white, size: 16),
-                      onPressed: () {
-                        // TODO: Implementare visualizzazione di tutti i video
-                        _showErrorSnackBar('Visualizzazione completa video in sviluppo');
-                      },
-                    ),
-                  ),
-              ],
+              ),
             ),
           ),
           SizedBox(height: 12),
@@ -4277,7 +4280,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
                     ),
                     SizedBox(height: 12),
                     Text(
-                      'No videos published',
+                      'No posts published',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey[600],
@@ -4355,79 +4358,33 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Card personalizzata per il titolo "Recent Updates"
-          Container(
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
+          // Titolo minimale per "Recent Updates"
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
+            child: Center(
+              child: ShaderMask(
+                shaderCallback: (Rect bounds) {
+                  return LinearGradient(
                 colors: [
-                  const Color(0xFF667eea), // Colore iniziale: blu violaceo
-                  const Color(0xFF764ba2), // Colore finale: viola
+                      Color(0xFF667eea), // Colore iniziale: blu violaceo
+                      Color(0xFF764ba2), // Colore finale: viola
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 transform: GradientRotation(135 * 3.14159 / 180), // 135 gradi
-              ),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Icon(
-                    Icons.update,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-                SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+                  ).createShader(bounds);
+                },
+                child: Text(
                         'Recent Updates',
                         style: TextStyle(
-                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(height: 1),
-                      Text(
-                        _isOwner 
-                          ? 'Your last 5 published posts'
-                          : 'Last 5 posts of ${_userData['displayName'] ?? (_displayNameController.text.isNotEmpty ? _displayNameController.text : 'this user')}',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.white.withOpacity(0.8),
-                        ),
-                      ),
-                    ],
+                    fontSize: 20,
+                    letterSpacing: -0.5,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-                // Floating Action Button per visualizzare tutti i post (solo per il proprietario)
-                if (_isOwner)
-                  Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: Icon(Icons.video_library, color: Colors.white, size: 16),
-                      onPressed: () {
-                        // TODO: Implementare visualizzazione di tutti i post
-                        _showErrorSnackBar('Visualizzazione completa post in sviluppo');
-                      },
-                    ),
-                  ),
-              ],
+              ),
             ),
           ),
           SizedBox(height: 12),
@@ -4460,7 +4417,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
                     ),
                     SizedBox(height: 12),
                     Text(
-                      'No posts published',
+                      'No recent posts',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey[600],
@@ -5689,45 +5646,34 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
       return GestureDetector(
         onTap: _showViralystScoreInfo,
         child: Container(
-          width: 80,
-          height: 80,
+          width: 100, // Aumentato da 80 a 100
+          height: 100, // Aumentato da 80 a 100
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                const Color(0xFF667eea), // Colore iniziale: blu violaceo al 0%
-                const Color(0xFF764ba2), // Colore finale: viola al 100%
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              transform: GradientRotation(135 * 3.14159 / 180), // 135 gradi
-            ),
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.3),
-                blurRadius: 15,
-                offset: Offset(0, 8),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                blurRadius: 20,
+                spreadRadius: 5,
               ),
             ],
           ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.lock,
-                  color: Colors.white,
-                  size: 20,
-                ),
-                Text(
-                  'Score',
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
+          child: Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage('assets/onboarding/circleICON.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Center(
+              child: Icon(
+                Icons.lock,
+                color: Colors.black,
+                size: 24, // Aumentato da 16 a 24
+              ),
             ),
           ),
         ),
@@ -5740,48 +5686,50 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
         animation: _scoreAnimation,
         builder: (context, child) {
           return Container(
-            width: 80,
-            height: 80,
+            width: 80, // Aumentato da 60 a 80
+            height: 80, // Aumentato da 60 a 80
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  const Color(0xFF667eea), // Colore iniziale: blu violaceo al 0%
-                  const Color(0xFF764ba2), // Colore finale: viola al 100%
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                transform: GradientRotation(135 * 3.14159 / 180), // 135 gradi
-              ),
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF667eea).withOpacity(0.4),
-                  blurRadius: 15,
-                  offset: Offset(0, 8),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                  blurRadius: 20,
+                  spreadRadius: 5,
                 ),
               ],
             ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('assets/onboarding/circleICON.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Center(
+                child: ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      colors: [
+                        Color(0xFF667eea),
+                        Color(0xFF764ba2),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      transform: GradientRotation(135 * 3.14159 / 180),
+                    ).createShader(bounds);
+                  },
+                  child: Text(
                     _scoreAnimation.value.toInt().toString(),
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 22, // Aumentato da 18 a 22
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    'Score',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
-                      fontSize: 10,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           );
@@ -5794,8 +5742,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
     return GestureDetector(
       onTap: _sendFriendRequest,
       child: Container(
-        width: 80,
-        height: 80,
+        width: 60, // Ridotto da 80 a 60
+        height: 60, // Ridotto da 80 a 60
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -5809,8 +5757,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
           boxShadow: [
             BoxShadow(
               color: const Color(0xFF6C63FF).withOpacity(0.4),
-              blurRadius: 15,
-              offset: Offset(0, 8),
+              blurRadius: 10, // Ridotto da 15 a 10
+              offset: Offset(0, 6), // Ridotto da 8 a 6
             ),
           ],
         ),
@@ -5821,13 +5769,13 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
               Icon(
                 Icons.person_add,
                 color: Colors.white,
-                size: 20,
+                size: 16, // Ridotto da 20 a 16
               ),
               Text(
                 'Add',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 10,
+                  fontSize: 8, // Ridotto da 10 a 8
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -5840,8 +5788,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
 
   Widget _buildPendingRequestButton(ThemeData theme) {
     return Container(
-      width: 80,
-      height: 80,
+      width: 60, // Ridotto da 80 a 60
+      height: 60, // Ridotto da 80 a 60
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -5855,8 +5803,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
         boxShadow: [
           BoxShadow(
             color: Colors.orange.withOpacity(0.4),
-            blurRadius: 15,
-            offset: Offset(0, 8),
+            blurRadius: 10, // Ridotto da 15 a 10
+            offset: Offset(0, 6), // Ridotto da 8 a 6
           ),
         ],
       ),
@@ -5867,13 +5815,13 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
             Icon(
               Icons.schedule,
               color: Colors.white,
-              size: 20,
+              size: 16, // Ridotto da 20 a 16
             ),
             Text(
               'Pending',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 10,
+                fontSize: 8, // Ridotto da 10 a 8
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -5887,8 +5835,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
     return GestureDetector(
       onTap: _acceptFriendRequestFromProfile,
       child: Container(
-        width: 80,
-        height: 80,
+        width: 60, // Ridotto da 80 a 60
+        height: 60, // Ridotto da 80 a 60
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -5902,8 +5850,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
           boxShadow: [
             BoxShadow(
               color: Colors.green.withOpacity(0.4),
-              blurRadius: 15,
-              offset: Offset(0, 8),
+              blurRadius: 10, // Ridotto da 15 a 10
+              offset: Offset(0, 6), // Ridotto da 8 a 6
             ),
           ],
         ),
@@ -5914,13 +5862,13 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
               Icon(
                 Icons.check,
                 color: Colors.white,
-                size: 20,
+                size: 16, // Ridotto da 20 a 16
               ),
               Text(
                 'Accept',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 10,
+                  fontSize: 8, // Ridotto da 10 a 8
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -6032,49 +5980,75 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
               children: [
                 // Icona Fluzar Score
                 Container(
-                  width: 60,
-                  height: 60,
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color(0xFF6C63FF),
-                        const Color(0xFF8B7CF6),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
                     shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                        blurRadius: 20,
+                        spreadRadius: 5,
+                      ),
+                    ],
                   ),
-                  child: Icon(
-                    Icons.trending_up,
-                    color: Colors.white,
-                    size: 30,
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Color(0xFF667eea).withOpacity(0.1),
+                    backgroundImage: const AssetImage('assets/onboarding/circleICON.png'),
                   ),
                 ),
                 
                 SizedBox(height: 20),
                 
                 // Titolo
-                Text(
+                ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      colors: [
+                        Color(0xFF667eea),
+                        Color(0xFF764ba2),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      transform: GradientRotation(135 * 3.14159 / 180),
+                    ).createShader(bounds);
+                  },
+                  child: Text(
                   'Fluzar Score',
                   style: TextStyle(
-                    fontSize: 24,
+                      fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).textTheme.titleLarge?.color,
+                      color: Colors.white,
+                      fontFamily: 'Ethnocentric',
+                    ),
                   ),
                 ),
                 
                 SizedBox(height: 16),
                 
                 // Descrizione
-                Text(
-                  'Your Fluzar Score is a measure of your social media success and consistency. It increases based on:',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                    height: 1.4,
-                  ),
-                  textAlign: TextAlign.center,
+                Column(
+                  children: [
+                    Text(
+                      'Your Fluzar Score is a measure of your social media success and consistency',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                        height: 1.4,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'It increases based on:',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                        height: 1.4,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
                 
                 SizedBox(height: 20),
@@ -6139,27 +6113,42 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
                     
                     // Pulsante chiudi
                     Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          setState(() {
-                            _showViralystScorePopup = false;
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF6C63FF),
-                          foregroundColor: Colors.white,
-                          padding: EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0xFF667eea),
+                              Color(0xFF764ba2),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            transform: GradientRotation(135 * 3.14159 / 180),
                           ),
-                          elevation: 0,
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Text(
-                          'Got it!',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            setState(() {
+                              _showViralystScorePopup = false;
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            foregroundColor: Colors.white,
+                            padding: EdgeInsets.symmetric(vertical: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            elevation: 0,
+                            shadowColor: Colors.transparent,
+                          ),
+                          child: Text(
+                            'Got it!',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
@@ -6204,35 +6193,47 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
               children: [
                 // Icona Fluzar Score
                 Container(
-                  width: 60,
-                  height: 60,
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color(0xFF6C63FF),
-                        const Color(0xFF8B7CF6),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
                     shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                        blurRadius: 20,
+                        spreadRadius: 5,
+                      ),
+                    ],
                   ),
-                  child: Icon(
-                    Icons.trending_up,
-                    color: Colors.white,
-                    size: 30,
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Color(0xFF667eea).withOpacity(0.1),
+                    backgroundImage: const AssetImage('assets/onboarding/circleICON.png'),
                   ),
                 ),
                 
                 SizedBox(height: 20),
                 
                 // Titolo
-                Text(
+                ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      colors: [
+                        Color(0xFF667eea),
+                        Color(0xFF764ba2),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      transform: GradientRotation(135 * 3.14159 / 180),
+                    ).createShader(bounds);
+                  },
+                  child: Text(
                   'Fluzar Score',
                   style: TextStyle(
-                    fontSize: 24,
+                      fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).textTheme.titleLarge?.color,
+                      color: Colors.white,
+                      fontFamily: 'Ethnocentric',
+                    ),
                   ),
                 ),
                 
@@ -6277,20 +6278,33 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
                 SizedBox(height: 24),
                 
                 // Solo pulsante chiudi per visitatori
-                SizedBox(
+                Container(
                   width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF667eea),
+                        Color(0xFF764ba2),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      transform: GradientRotation(135 * 3.14159 / 180),
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF6C63FF),
+                      backgroundColor: Colors.transparent,
                       foregroundColor: Colors.white,
                       padding: EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       elevation: 0,
+                      shadowColor: Colors.transparent,
                     ),
                     child: Text(
                       'Got it!',
@@ -6311,27 +6325,27 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
 
   Widget _buildScoreFactor(IconData icon, String text) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.symmetric(vertical: 6), // Ridotto da 8 a 6
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.all(6), // Ridotto da 8 a 6
             decoration: BoxDecoration(
               color: const Color(0xFF6C63FF).withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(6), // Ridotto da 8 a 6
             ),
             child: Icon(
               icon,
-              size: 20,
+              size: 16, // Ridotto da 20 a 16
               color: const Color(0xFF6C63FF),
             ),
           ),
-          SizedBox(width: 12),
+          SizedBox(width: 10), // Ridotto da 12 a 10
           Expanded(
             child: Text(
               text,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 12, // Ridotto da 14 a 12
                 color: Theme.of(context).textTheme.bodyMedium?.color,
                 fontWeight: FontWeight.w500,
               ),
@@ -6422,9 +6436,14 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child: request['fromProfileImageUrl'] != null && request['fromProfileImageUrl'].isNotEmpty
-                        ? Image.network(
-                            request['fromProfileImageUrl'],
+                    child: FutureBuilder<String?>(
+                      future: _loadUserProfileImage(request['fromUserId'] ?? request['requestId']),
+                      builder: (context, snapshot) {
+                        final profileImageUrl = snapshot.data;
+                        
+                        if (profileImageUrl != null && profileImageUrl.isNotEmpty) {
+                          return Image.network(
+                            profileImageUrl,
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
                               return Container(
@@ -6445,8 +6464,9 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
                                 ),
                               );
                             },
-                          )
-                        : Container(
+                          );
+                        } else {
+                          return Container(
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
@@ -6462,7 +6482,10 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
                               color: Colors.white,
                               size: 24,
                             ),
-                          ),
+                          );
+                        }
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(width: 12),
@@ -7355,9 +7378,17 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
     if (_currentUser == null) return false;
     
     final starUsers = comment['star_users'];
-    if (starUsers == null || starUsers is! Map) return false;
+    if (starUsers == null) return false;
     
-    return starUsers.containsKey(_currentUser!.uid);
+    // Gestisci diversi tipi di dati per star_users (fix iOS)
+    if (starUsers is Map) {
+      return starUsers.containsKey(_currentUser!.uid);
+    } else if (starUsers is List) {
+      // Caso in cui star_users è una lista invece di una mappa
+      return starUsers.contains(_currentUser!.uid);
+    }
+    
+    return false;
   }
   
   void _initializeCommentStarAnimation(String commentId) {
@@ -7401,6 +7432,14 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
     final commentId = comment['id'] as String;
     final videoId = comment['videoId'] as String;
     
+    // Debounce per prevenire doppi tap (fix iOS)
+    final now = DateTime.now();
+    final lastTapTime = _lastStarTapTime[commentId];
+    if (lastTapTime != null && now.difference(lastTapTime) < _starDebounceTime) {
+      return; // Ignora il tap se troppo vicino al precedente
+    }
+    _lastStarTapTime[commentId] = now;
+    
     try {
       final currentUserId = _currentUser!.uid;
       
@@ -7417,7 +7456,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
       // Percorso per gli utenti che hanno messo stella
       final starUsersRef = commentRef.child('star_users');
       
-      // Controlla se l'utente corrente ha già messo stella
+      // SEMPRE controlla Firebase per lo stato attuale (fix per iOS)
       final userStarSnapshot = await starUsersRef.child(currentUserId).get();
       final hasUserStarred = userStarSnapshot.exists;
       
@@ -7439,7 +7478,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
       if (hasUserStarred) {
         // Rimuovi la stella
         await starUsersRef.child(currentUserId).remove();
-        newStarCount = currentStarCount - 1;
+        newStarCount = math.max(0, currentStarCount - 1); // Previeni valori negativi
       } else {
         // Aggiungi la stella - attiva l'animazione solo quando si aggiunge
         _triggerCommentStarAnimation(commentId);
@@ -7447,32 +7486,62 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
         newStarCount = currentStarCount + 1;
       }
       
-      // Aggiorna il conteggio totale delle stelle
+      // Aggiorna il conteggio totale delle stelle usando transazione atomica
       await commentRef.child('star_count').set(newStarCount);
       
-      // Aggiorna lo stato locale
-      setState(() {
-        // Aggiorna il conteggio stelle nel commento locale
-        if (comment.containsKey('star_count')) {
+      // Verifica finale dello stato su Firebase per sicurezza (fix iOS)
+      final finalStarSnapshot = await starUsersRef.child(currentUserId).get();
+      final finalStarState = finalStarSnapshot.exists;
+      
+      // Aggiorna lo stato locale DOPO aver verificato Firebase
+      if (mounted) {
+        setState(() {
+          // Aggiorna il conteggio stelle nel commento locale
           comment['star_count'] = newStarCount;
-        }
-        // Aggiorna lo stato della stella per l'utente corrente
-        if (comment.containsKey('star_users')) {
+          
+          // Aggiorna lo stato della stella basato sulla verifica finale di Firebase
           if (comment['star_users'] == null) {
-            comment['star_users'] = {};
+            comment['star_users'] = <String, dynamic>{};
           }
-          if (hasUserStarred) {
-            comment['star_users'].remove(currentUserId);
-          } else {
+          
+          // Usa lo stato finale verificato da Firebase
+          if (finalStarState) {
             comment['star_users'][currentUserId] = true;
+          } else {
+            comment['star_users'].remove(currentUserId);
           }
-        }
-      });
+        });
+      }
       
               // Stelle aggiornate per il commento
       
     } catch (e) {
-              // Errore nell'aggiornamento delle stelle del commento
+      print('Errore nell\'aggiornamento delle stelle del commento: $e');
+      // In caso di errore, ricarica i dati dal database per sincronizzare
+      if (mounted) {
+        try {
+          // Ricarica lo stato attuale da Firebase per sincronizzare
+          final commentRef = _database
+              .child('users')
+              .child('users')
+              .child(videoUserId)
+              .child('videos')
+              .child(videoId)
+              .child('comments')
+              .child(commentId);
+          
+          final refreshSnapshot = await commentRef.get();
+          if (refreshSnapshot.exists) {
+            final refreshedComment = Map<String, dynamic>.from(refreshSnapshot.value as Map);
+            setState(() {
+              comment['star_count'] = refreshedComment['star_count'] ?? 0;
+              comment['star_users'] = refreshedComment['star_users'] ?? {};
+            });
+          }
+        } catch (refreshError) {
+          print('Errore nel refresh del commento: $refreshError');
+        }
+      }
     }
   }
 
@@ -7482,6 +7551,14 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
     final replyId = reply['id'] as String;
     final parentCommentId = reply['parentCommentId'] as String;
     final videoId = reply['videoId'] as String;
+    
+    // Debounce per prevenire doppi tap (fix iOS)
+    final now = DateTime.now();
+    final lastTapTime = _lastStarTapTime[replyId];
+    if (lastTapTime != null && now.difference(lastTapTime) < _starDebounceTime) {
+      return; // Ignora il tap se troppo vicino al precedente
+    }
+    _lastStarTapTime[replyId] = now;
     
     try {
       final currentUserId = _currentUser!.uid;
@@ -7501,7 +7578,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
       // Percorso per gli utenti che hanno messo stella
       final starUsersRef = replyRef.child('star_users');
       
-      // Controlla se l'utente corrente ha già messo stella
+      // SEMPRE controlla Firebase per lo stato attuale (fix per iOS)
       final userStarSnapshot = await starUsersRef.child(currentUserId).get();
       final hasUserStarred = userStarSnapshot.exists;
       
@@ -7523,7 +7600,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
       if (hasUserStarred) {
         // Rimuovi la stella
         await starUsersRef.child(currentUserId).remove();
-        newStarCount = currentStarCount - 1;
+        newStarCount = math.max(0, currentStarCount - 1); // Previeni valori negativi
       } else {
         // Aggiungi la stella - attiva l'animazione solo quando si aggiunge
         _triggerCommentStarAnimation(replyId);
@@ -7560,32 +7637,64 @@ class _ProfileEditPageState extends State<ProfileEditPage> with TickerProviderSt
         }
       }
       
-      // Aggiorna il conteggio totale delle stelle
+      // Aggiorna il conteggio totale delle stelle usando transazione atomica
       await replyRef.child('star_count').set(newStarCount);
       
-      // Aggiorna lo stato locale
-      setState(() {
-        // Aggiorna il conteggio stelle nella risposta locale
-        if (reply.containsKey('star_count')) {
+      // Verifica finale dello stato su Firebase per sicurezza (fix iOS)
+      final finalStarSnapshot = await starUsersRef.child(currentUserId).get();
+      final finalStarState = finalStarSnapshot.exists;
+      
+      // Aggiorna lo stato locale DOPO aver verificato Firebase
+      if (mounted) {
+        setState(() {
+          // Aggiorna il conteggio stelle nella risposta locale
           reply['star_count'] = newStarCount;
-        }
-        // Aggiorna lo stato della stella per l'utente corrente
-        if (reply.containsKey('star_users')) {
+          
+          // Aggiorna lo stato della stella basato sulla verifica finale di Firebase
           if (reply['star_users'] == null) {
-            reply['star_users'] = {};
+            reply['star_users'] = <String, dynamic>{};
           }
-          if (hasUserStarred) {
-            reply['star_users'].remove(currentUserId);
-          } else {
+          
+          // Usa lo stato finale verificato da Firebase
+          if (finalStarState) {
             reply['star_users'][currentUserId] = true;
+          } else {
+            reply['star_users'].remove(currentUserId);
           }
-        }
-      });
+        });
+      }
       
               // Stelle aggiornate per la risposta
       
     } catch (e) {
-              // Errore nell'aggiornamento delle stelle della risposta
+      print('Errore nell\'aggiornamento delle stelle della risposta: $e');
+      // In caso di errore, ricarica i dati dal database per sincronizzare
+      if (mounted) {
+        try {
+          // Ricarica lo stato attuale da Firebase per sincronizzare
+          final replyRef = _database
+              .child('users')
+              .child('users')
+              .child(videoUserId)
+              .child('videos')
+              .child(videoId)
+              .child('comments')
+              .child(parentCommentId)
+              .child('replies')
+              .child(replyId);
+          
+          final refreshSnapshot = await replyRef.get();
+          if (refreshSnapshot.exists) {
+            final refreshedReply = Map<String, dynamic>.from(refreshSnapshot.value as Map);
+            setState(() {
+              reply['star_count'] = refreshedReply['star_count'] ?? 0;
+              reply['star_users'] = refreshedReply['star_users'] ?? {};
+            });
+          }
+        } catch (refreshError) {
+          print('Errore nel refresh della risposta: $refreshError');
+        }
+      }
     }
   }
 

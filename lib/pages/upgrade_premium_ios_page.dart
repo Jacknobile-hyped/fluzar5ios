@@ -8,6 +8,7 @@ import 'package:geocoding/geocoding.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:flutter/services.dart';
 
 class UpgradePremiumIOSPage extends StatefulWidget {
   const UpgradePremiumIOSPage({super.key, this.suppressExtraPadding = false});
@@ -44,10 +45,15 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
     'com.fluzar.premium.month4.online',
     'com.fluzar.premium.annual1.online',
   };
+  
+  // Runtime UI log panel for In-App Purchase errors (especially on iOS)
+  final List<String> _iapLogs = [];
+  final List<String> _allIAPLogs = []; // Lista completa senza limite
 
   @override
   void initState() {
     super.initState();
+    _appendIAPLog('🚀 UpgradePremiumIOSPage initialized');
     _loadCurrentUserPlan();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -65,29 +71,89 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
     super.dispose();
   }
 
+  void _appendIAPLog(String message) {
+    final timestamp = DateTime.now().toIso8601String();
+    final line = '[$timestamp] $message';
+    print('IAP: $line');
+    
+    // Aggiungi sempre alla lista completa (senza limite)
+    _allIAPLogs.add(line);
+    
+    if (mounted) {
+      setState(() {
+        _iapLogs.add(line);
+        // Limita la crescita del log UI per evitare UI pesante
+        if (_iapLogs.length > 200) {
+          _iapLogs.removeRange(0, _iapLogs.length - 200);
+        }
+      });
+    } else {
+      // Fallback if not mounted
+      _iapLogs.add(line);
+      if (_iapLogs.length > 200) {
+        _iapLogs.removeRange(0, _iapLogs.length - 200);
+      }
+    }
+    
+    // Copia automaticamente TUTTI i log completi nel clipboard
+    final allLogs = _allIAPLogs.join('\n');
+    Clipboard.setData(ClipboardData(text: allLogs));
+  }
+
   Future<void> _initIAP() async {
-    if (!Platform.isIOS) return; // Limita agli iPhone/iPad
+    if (!Platform.isIOS) {
+      _appendIAPLog('⚠️ IAP only available on iOS devices');
+      _showInfoSnackBar('⚠️ IAP only available on iOS devices');
+      return; // Limita agli iPhone/iPad
+    }
+    
+    _appendIAPLog('🚀 Initializing In-App Purchases...');
+    _showInfoSnackBar('🚀 Initializing In-App Purchases...');
+    
     try {
       final available = await _inAppPurchase.isAvailable();
+      _appendIAPLog('Store availability check result: $available');
       setState(() {
         _storeAvailable = available;
       });
+      
       if (!available) {
+        _appendIAPLog('❌ App Store not available on this device');
+        _showErrorSnackBar('❌ App Store not available on this device');
         return;
       }
+      
+      _appendIAPLog('✅ App Store connection established');
+      _showInfoSnackBar('✅ App Store connection established');
 
       // Ascolta gli aggiornamenti degli acquisti
       _purchaseSub = _inAppPurchase.purchaseStream.listen(
         _onPurchaseUpdated,
         onError: (Object error) {
+          _appendIAPLog('Purchase stream error: $error');
           _showErrorSnackBar('Purchase error: $error');
         },
-        onDone: () {},
+        onDone: () {
+          _appendIAPLog('Purchase stream completed');
+        },
       );
+
+      // Tenta di ripristinare eventuali acquisti (utile in caso di reinstallazioni)
+      _appendIAPLog('🔄 Checking for previous purchases...');
+      _showInfoSnackBar('🔄 Checking for previous purchases...');
+      try {
+        await _inAppPurchase.restorePurchases();
+        _appendIAPLog('✅ Purchase restoration completed');
+        _showInfoSnackBar('✅ Purchase restoration completed');
+      } catch (e) {
+        _appendIAPLog('⚠️ No previous purchases found: $e');
+        _showInfoSnackBar('⚠️ No previous purchases found');
+      }
 
       await _queryProducts();
     } catch (e) {
-      _showErrorSnackBar('Store not available: $e');
+      _appendIAPLog('❌ Store initialization failed: $e');
+      _showErrorSnackBar('❌ Store initialization failed: $e');
     }
   }
 
@@ -96,22 +162,55 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
     setState(() {
       _isQueryingProducts = true;
     });
+    
+    _appendIAPLog('🔍 Querying IAP products...');
+    _showInfoSnackBar('🔍 Querying IAP products...');
+    
     try {
-      final response = await _inAppPurchase.queryProductDetails(_kProductIds);
+      // A volte la prima query può tornare vuota: aggiungiamo un retry semplice
+      _appendIAPLog('Querying product IDs: ${_kProductIds.join(', ')}');
+      ProductDetailsResponse response = await _inAppPurchase.queryProductDetails(_kProductIds);
+      
+      _appendIAPLog('📦 First query: ${response.productDetails.length} products found');
+      _showInfoSnackBar('📦 First query: ${response.productDetails.length} products found');
+      
+      if (response.productDetails.isEmpty && response.error == null) {
+        _appendIAPLog('🔄 Retrying query in 2 seconds...');
+        _showInfoSnackBar('🔄 Retrying query in 2 seconds...');
+        // piccolo backoff prima del retry
+        await Future.delayed(const Duration(seconds: 2));
+        response = await _inAppPurchase.queryProductDetails(_kProductIds);
+        _appendIAPLog('📦 Retry query: ${response.productDetails.length} products found');
+        _showInfoSnackBar('📦 Retry query: ${response.productDetails.length} products found');
+      }
+      
       if (response.error != null) {
+        _appendIAPLog('Products error: ${response.error!.message}');
         _showErrorSnackBar('Products error: ${response.error!.message}');
       }
+      
       if (response.productDetails.isEmpty) {
         // Alcuni ID non trovati o non approvati su App Store Connect
         if (response.notFoundIDs.isNotEmpty) {
-          _showErrorSnackBar('Products not found: ${response.notFoundIDs.join(', ')}');
+          _appendIAPLog('❌ Products not found: ${response.notFoundIDs.join(', ')}');
+          _showErrorSnackBar('❌ Products not found: ${response.notFoundIDs.join(', ')}\n\nPossible causes:\n• Products pending Apple approval\n• Wrong Bundle ID\n• Missing IAP capability in Xcode');
+        } else {
+          _appendIAPLog('❌ No products available. Verify App Store Connect configuration and product state.');
+          _showErrorSnackBar('❌ No products available. Verify App Store Connect configuration and product state.');
         }
+      } else {
+        // Mostra i prodotti trovati
+        final productNames = response.productDetails.map((p) => '${p.id}: ${p.price}').join(', ');
+        _appendIAPLog('✅ Products loaded successfully: $productNames');
+        _showSuccessSnackBar('✅ Products loaded successfully:\n$productNames');
       }
+      
       setState(() {
         _products = response.productDetails;
       });
     } catch (e) {
-      _showErrorSnackBar('Failed to fetch products: $e');
+      _appendIAPLog('❌ Failed to fetch products: $e');
+      _showErrorSnackBar('❌ Failed to fetch products: $e');
     } finally {
       if (mounted) {
         setState(() {
@@ -137,29 +236,39 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
 
   Future<void> _startPurchaseForSelectedPlan() async {
     if (!Platform.isIOS) {
+      _appendIAPLog('Available on iOS only.');
       _showErrorSnackBar('Available on iOS only.');
       return;
     }
     if (!_storeAvailable) {
+      _appendIAPLog('App Store not available.');
       _showErrorSnackBar('App Store not available.');
       return;
     }
     if (_selectedPlan == 0) {
+      _appendIAPLog('Please select a Premium plan.');
       _showErrorSnackBar('Please select a Premium plan.');
       return;
     }
     if (_products.isEmpty) {
+      _appendIAPLog('🔄 Refreshing products...');
+      _showInfoSnackBar('🔄 Refreshing products...');
       await _queryProducts();
       if (_products.isEmpty) {
+        _appendIAPLog('No products available after refresh.');
         _showErrorSnackBar('No products available.');
         return;
       }
     }
     final product = _productForSelectedPlan();
     if (product == null) {
+      _appendIAPLog('Product not available for the selected plan. Selected plan: $_selectedPlan');
       _showErrorSnackBar('Product not available for the selected plan.');
       return;
     }
+
+    _appendIAPLog('💳 Starting purchase for ${product.title} (${product.id})...');
+    _showInfoSnackBar('💳 Starting purchase for ${product.title}...');
 
     setState(() {
       _isLoading = true;
@@ -167,13 +276,23 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
 
     try {
       final purchaseParam = PurchaseParam(productDetails: product);
+      _appendIAPLog('Created PurchaseParam for product: ${product.id}');
       // Abbonamenti e non-consumabili usano buyNonConsumable su iOS
       final success = await _inAppPurchase.buyNonConsumable(purchaseParam: purchaseParam);
+      _appendIAPLog('buyNonConsumable result: $success');
       if (!success) {
-        _showErrorSnackBar('Purchase not started.');
+        _appendIAPLog('❌ Purchase not started.');
+        _showErrorSnackBar('❌ Purchase not started.');
+        setState(() {
+          _isLoading = false;
+        });
+      } else {
+        _appendIAPLog('⏳ Purchase initiated, waiting for user confirmation...');
+        _showInfoSnackBar('⏳ Purchase initiated, waiting for user confirmation...');
       }
     } catch (e) {
-      _showErrorSnackBar('Purchase failed: $e');
+      _appendIAPLog('❌ Purchase failed: $e');
+      _showErrorSnackBar('❌ Purchase failed: $e');
       setState(() {
         _isLoading = false;
       });
@@ -182,36 +301,47 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
 
   Future<void> _onPurchaseUpdated(List<PurchaseDetails> purchases) async {
     for (final purchase in purchases) {
+      _appendIAPLog('📱 Purchase status update: ${purchase.status.name} for ${purchase.productID}');
+      _showInfoSnackBar('📱 Purchase status update: ${purchase.status.name} for ${purchase.productID}');
+      
       switch (purchase.status) {
         case PurchaseStatus.pending:
+          _appendIAPLog('⏳ Purchase pending approval...');
+          _showInfoSnackBar('⏳ Purchase pending approval...');
           setState(() {
             _isLoading = true;
           });
           break;
         case PurchaseStatus.canceled:
-          _showErrorSnackBar('Purchase cancelled.');
+          _appendIAPLog('❌ Purchase cancelled by user.');
+          _showErrorSnackBar('❌ Purchase cancelled by user.');
           if (mounted) {
             setState(() {
               _isLoading = false;
             });
           }
           if (purchase.pendingCompletePurchase) {
+            _appendIAPLog('Completing cancelled purchase...');
             await _inAppPurchase.completePurchase(purchase);
           }
           break;
         case PurchaseStatus.error:
-          _showErrorSnackBar('Error: ${purchase.error?.message ?? 'unknown'}');
+          _appendIAPLog('❌ Purchase error: ${purchase.error?.message ?? 'unknown error'} | Code: ${purchase.error?.code ?? 'no code'} | Details: ${purchase.error?.details ?? 'no details'}');
+          _showErrorSnackBar('❌ Purchase error: ${purchase.error?.message ?? 'unknown error'}');
           if (mounted) {
             setState(() {
               _isLoading = false;
             });
           }
           if (purchase.pendingCompletePurchase) {
+            _appendIAPLog('Completing failed purchase...');
             await _inAppPurchase.completePurchase(purchase);
           }
           break;
         case PurchaseStatus.purchased:
         case PurchaseStatus.restored:
+          _appendIAPLog('✅ Purchase ${purchase.status == PurchaseStatus.purchased ? 'completed' : 'restored'}, activating premium...');
+          _showInfoSnackBar('✅ Purchase ${purchase.status == PurchaseStatus.purchased ? 'completed' : 'restored'}, activating premium...');
           try {
             // In produzione si dovrebbe validare la ricevuta lato server
             final product = _products.firstWhere(
@@ -219,6 +349,7 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
               orElse: () => _productForSelectedPlan() ?? (throw Exception('Prodotto non trovato')),
             );
             final planType = product.id.contains('annual') ? 'annual' : 'monthly';
+            _appendIAPLog('Delivering purchase to user: ${purchase.productID} -> $planType');
             await _deliverPurchaseToUser(purchase, planType, product);
             if (mounted) {
               setState(() {
@@ -227,12 +358,15 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
                 _isUserPremium = true;
                 _subscriptionStatus = 'active';
               });
-              _showSuccessSnackBar('Purchase successful. Premium activated.');
+              _appendIAPLog('🎉 Premium activated successfully! Welcome to Fluzar Pro.');
+              _showSuccessSnackBar('🎉 Premium activated successfully! Welcome to Fluzar Pro.');
             }
           } catch (e) {
-            _showErrorSnackBar('Failed to deliver purchase: $e');
+            _appendIAPLog('❌ Failed to activate premium: $e');
+            _showErrorSnackBar('❌ Failed to activate premium: $e');
           } finally {
             if (purchase.pendingCompletePurchase) {
+              _appendIAPLog('Completing successful purchase...');
               await _inAppPurchase.completePurchase(purchase);
             }
           }
@@ -247,15 +381,22 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
     ProductDetails product,
   ) async {
     final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
+    if (user == null) {
+      _appendIAPLog('❌ No current user found when delivering purchase');
+      return;
+    }
+    
+    _appendIAPLog('Delivering purchase to user: ${user.uid}');
     final ref = FirebaseDatabase.instance.ref('users/users/${user.uid}');
     final subscriptionRef = ref.child('subscription');
 
     final nowMs = DateTime.now().millisecondsSinceEpoch;
+    _appendIAPLog('Updating user isPremium status...');
     await ref.update({
       'isPremium': true,
     });
 
+    _appendIAPLog('Updating subscription data: $planType, ${product.id}, ${purchase.purchaseID}');
     await subscriptionRef.update({
       'isPremium': true,
       'status': 'active',
@@ -266,6 +407,7 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
       'transaction_date_ms': nowMs,
     });
 
+    _appendIAPLog('✅ Purchase delivered successfully, syncing UI...');
     // Sincronizza UI con i nuovi dati
     await _loadCurrentUserPlan();
   }
@@ -513,9 +655,11 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
   }
 
   Future<void> _onUpgradePressed() async {
+    _appendIAPLog('🎯 User pressed upgrade button - Selected plan: $_selectedPlan');
     if (_selectedPlan == 1 || _selectedPlan == 2) {
       await _startPurchaseForSelectedPlan();
     } else {
+      _appendIAPLog('❌ No premium plan selected');
       _showErrorSnackBar('Please select a Premium plan.');
     }
   }
@@ -535,9 +679,183 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           margin: const EdgeInsets.all(16),
+          duration: const Duration(seconds: 4),
         ),
       );
     }
+  }
+
+  void _showInfoSnackBar(String message) {
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              const Icon(Icons.info_outline, color: Colors.white, size: 20),
+              const SizedBox(width: 12),
+              Expanded(child: Text(message)),
+            ],
+          ),
+          backgroundColor: Colors.blue[600],
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          margin: const EdgeInsets.all(16),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
+  }
+
+  void _showIAPLogsDialog() {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.7,
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.bug_report_outlined,
+                    size: 20,
+                    color: isDark ? Colors.white70 : Colors.black54,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'In-App Purchase Debug Logs',
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: const Icon(Icons.close),
+                    constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                    padding: EdgeInsets.zero,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'All logs are automatically copied to clipboard',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: isDark ? Colors.white70 : Colors.black54,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () {
+                        if (_allIAPLogs.isNotEmpty) {
+                          final allLogs = _allIAPLogs.join('\n');
+                          Clipboard.setData(ClipboardData(text: allLogs));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Row(
+                                children: [
+                                  const Icon(Icons.copy, color: Colors.white, size: 16),
+                                  const SizedBox(width: 8),
+                                  const Text('All IAP logs copied to clipboard'),
+                                ],
+                              ),
+                              backgroundColor: Colors.green,
+                              duration: const Duration(seconds: 2),
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      icon: const Icon(Icons.copy, size: 16),
+                      label: const Text('Copy All'),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          _iapLogs.clear();
+                          _allIAPLogs.clear();
+                        });
+                        Navigator.of(context).pop();
+                      },
+                      icon: const Icon(Icons.clear_all, size: 16),
+                      label: const Text('Clear All'),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.black.withOpacity(0.2) : Colors.grey[100],
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: isDark ? Colors.white24 : Colors.black12,
+                    ),
+                  ),
+                  child: _iapLogs.isEmpty
+                      ? Center(
+                          child: Text(
+                            'No IAP logs yet.\nTry making a purchase to see debug information.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: isDark ? Colors.white54 : Colors.black45,
+                              fontSize: 14,
+                            ),
+                          ),
+                        )
+                      : Scrollbar(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.all(12),
+                            itemCount: _iapLogs.length,
+                            itemBuilder: (context, index) {
+                              final log = _iapLogs[index];
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: SelectableText(
+                                  log,
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    height: 1.3,
+                                    color: isDark ? Colors.white70 : Colors.black87,
+                                    fontFamily: 'monospace',
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -704,11 +1022,6 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
             'icon': Icons.support_agent_outlined,
             'isAvailable': false,
           },
-          {
-            'text': 'Climate support: Not available',
-            'icon': Icons.eco_outlined,
-            'isAvailable': false,
-          },
         ],
       },
       {
@@ -735,14 +1048,6 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
             'text': 'Priority support: Premium',
             'icon': Icons.support_agent,
             'isAvailable': true,
-          },
-          {
-            'text': '5% for CO2 reduction',
-            'icon': Icons.eco,
-            'isAvailable': true,
-            'hasLink': true,
-            'linkText': 'see more',
-            'linkUrl': 'https://fluzar.com/climate',
           },
           if (!_hasUsedTrial)
             {
@@ -781,14 +1086,6 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
             'text': 'Priority support: Premium',
             'icon': Icons.support_agent,
             'isAvailable': true,
-          },
-          {
-            'text': '5% for CO2 reduction',
-            'icon': Icons.eco,
-            'isAvailable': true,
-            'hasLink': true,
-            'linkText': 'see more',
-            'linkUrl': 'https://fluzar.com/climate',
           },
           if (!_hasUsedTrial)
             {
@@ -1176,6 +1473,38 @@ class _UpgradePremiumIOSPageState extends State<UpgradePremiumIOSPage> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 16),
+                  // Pulsante per visualizzare i log IAP
+                  if (Platform.isIOS) ...[
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton.icon(
+                        onPressed: () => _showIAPLogsDialog(),
+                        icon: Icon(
+                          Icons.bug_report_outlined,
+                          size: 16,
+                          color: isDark ? Colors.white70 : Colors.black54,
+                        ),
+                        label: Text(
+                          'View IAP Debug Logs (${_iapLogs.length})',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: isDark ? Colors.white70 : Colors.black87,
+                          ),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          side: BorderSide(
+                            color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
+                          ),
+                          backgroundColor: isDark ? Colors.grey[800] : Colors.grey[50],
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                        ),
+                      ),
+                    ),
+                  ],
                   SizedBox(height: widget.suppressExtraPadding ? 0 : MediaQuery.of(context).size.height * 0.10),
                 ],
               ),

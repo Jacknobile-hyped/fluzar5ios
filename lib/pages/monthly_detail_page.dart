@@ -126,15 +126,52 @@ class _MonthlyDetailPageState extends State<MonthlyDetailPage> {
                     height: MediaQuery.of(context).size.height * 0.5,
                   margin: const EdgeInsets.symmetric(horizontal: 16.0),
                   decoration: BoxDecoration(
-                      color: isDark ? Colors.grey[800] : Colors.white,
-                    borderRadius: BorderRadius.circular(16),
+                    // Effetto vetro semi-trasparente opaco
+                    color: isDark 
+                        ? Colors.white.withOpacity(0.15) 
+                        : Colors.white.withOpacity(0.25),
+                    borderRadius: BorderRadius.circular(20),
+                    // Bordo con effetto vetro più sottile
+                    border: Border.all(
+                      color: isDark 
+                          ? Colors.white.withOpacity(0.2)
+                          : Colors.white.withOpacity(0.4),
+                      width: 1,
+                    ),
+                    // Ombra per effetto profondità e vetro
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 6,
+                        color: isDark 
+                            ? Colors.black.withOpacity(0.4)
+                            : Colors.black.withOpacity(0.15),
+                        blurRadius: isDark ? 25 : 20,
+                        spreadRadius: isDark ? 1 : 0,
+                        offset: const Offset(0, 10),
+                      ),
+                      // Ombra interna per effetto vetro
+                      BoxShadow(
+                        color: isDark 
+                            ? Colors.white.withOpacity(0.1)
+                            : Colors.white.withOpacity(0.6),
+                        blurRadius: 2,
+                        spreadRadius: -2,
                         offset: const Offset(0, 2),
                       ),
                     ],
+                    // Gradiente più sottile per effetto vetro
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: isDark 
+                          ? [
+                              Colors.white.withOpacity(0.2),
+                              Colors.white.withOpacity(0.1),
+                            ]
+                          : [
+                              Colors.white.withOpacity(0.3),
+                              Colors.white.withOpacity(0.2),
+                            ],
+                    ),
                   ),
                   child: TableCalendar(
                     firstDay: DateTime.utc(2020, 1, 1),

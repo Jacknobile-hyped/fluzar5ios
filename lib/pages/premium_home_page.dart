@@ -1138,7 +1138,7 @@ class PremiumHomePageState extends State<PremiumHomePage> with TickerProviderSta
                       description,
                       style: TextStyle(
                         color: isActive ? Colors.grey.shade600 : Colors.grey.shade400,
-                        fontSize: 14,
+                        fontSize: 12,
                       ),
                     ),
                     if (isActive && !isCompleted) ...[

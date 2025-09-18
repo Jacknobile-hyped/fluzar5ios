@@ -176,17 +176,16 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     final isDark = theme.brightness == Brightness.dark;
     
     return Scaffold(
-      backgroundColor: isDark ? Colors.grey[900] : Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            _buildHeader(context),
-            Expanded(
-              child: _isLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : SingleChildScrollView(
-                      padding: const EdgeInsets.all(24.0),
-                      child: Column(
+      backgroundColor: isDark ? Color(0xFF121212) : Colors.grey[50],
+      body: Stack(
+        children: [
+          // Main content area - no padding, content can scroll behind floating header
+          SafeArea(
+            child: _isLoading
+                ? Center(child: CircularProgressIndicator())
+                : SingleChildScrollView(
+                    padding: const EdgeInsets.fromLTRB(24, 100, 24, 24), // Aggiunto padding superiore per la top bar
+                    child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Header section
@@ -244,13 +243,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Change Password',
-                                  style: theme.textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
+                                const SizedBox(height: 14),
                                 
                                 // Current password field
                                 TextFormField(
@@ -427,10 +420,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                   ],
                                 ),
                                 const SizedBox(height: 12),
-                                Text(
-                                  'If you don\'t remember your current password, we can send a reset link to your email.',
-                                  style: theme.textTheme.bodyMedium,
-                                ),
+                                  Text(
+                                    'We will send a reset link.',
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
                                 const SizedBox(height: 16),
                                 SizedBox(
                                   width: double.infinity,
@@ -459,8 +452,17 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       ),
                     ),
             ),
-          ],
-        ),
+          
+          // Floating header
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              child: _buildHeader(context),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -531,7 +533,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   IconButton(
                     icon: Icon(
                       Icons.arrow_back,
-                      color: isDark ? Colors.white : Colors.black87,
+                      color: theme.brightness == Brightness.dark ? Colors.white : Colors.black87,
                       size: 22,
                     ),
                     onPressed: () => Navigator.pop(context),

@@ -537,7 +537,6 @@ class _CreditsPageState extends State<CreditsPage> with TickerProviderStateMixin
                 child: Column(
                   children: [
                     _buildCreditsIndicator(theme),
-                    SizedBox(height: 16),
                     _buildReferralInviteCard(theme),
                   ],
                  ),
@@ -841,7 +840,7 @@ class _CreditsPageState extends State<CreditsPage> with TickerProviderStateMixin
                             child: Text(
                               _isPremium ? '∞' : _displayedCredits.toString(),
                               style: TextStyle(
-                                fontSize: 48,
+                                fontSize: 40,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 height: 0.9,
@@ -851,7 +850,7 @@ class _CreditsPageState extends State<CreditsPage> with TickerProviderStateMixin
                           Text(
                             _isPremium ? 'Premium' : 'Credits',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: theme.brightness == Brightness.dark ? Color(0xFF6C63FF).withOpacity(0.7) : theme.textTheme.bodySmall?.color?.withOpacity(0.7),
                               fontWeight: FontWeight.w500,
                             ),
@@ -1093,7 +1092,7 @@ class _CreditsPageState extends State<CreditsPage> with TickerProviderStateMixin
         },
         borderRadius: BorderRadius.circular(20),
         child: Container(
-          margin: const EdgeInsets.fromLTRB(20, 18, 20, 10),
+          margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
           padding: const EdgeInsets.all(20),
            decoration: BoxDecoration(
              // Effetto vetro semi-trasparente opaco

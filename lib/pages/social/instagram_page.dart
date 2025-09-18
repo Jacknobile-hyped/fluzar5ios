@@ -3439,7 +3439,7 @@ class _InstagramPageState extends State<InstagramPage> with TickerProviderStateM
                            height: 1.3,
                          ),
                        ),
-                       const SizedBox(height: 24), // Spazio ridotto per avvicinare al bottone
+                       const SizedBox(height: 4), // Ridotto da 24 a 4 pixel (20 pixel in meno)
                      ],
                    ),
                  ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ThemeProvider extends ChangeNotifier {
   bool _isDarkMode = false;
@@ -20,7 +21,7 @@ class ThemeProvider extends ChangeNotifier {
       brightness: Brightness.light,
     ),
     useMaterial3: true,
-    fontFamily: 'Poppins',
+    textTheme: GoogleFonts.poppinsTextTheme(),
   );
 
   static final ThemeData _darkTheme = ThemeData(
@@ -36,7 +37,7 @@ class ThemeProvider extends ChangeNotifier {
       brightness: Brightness.dark,
     ),
     useMaterial3: true,
-    fontFamily: 'Poppins',
+    textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme),
     scaffoldBackgroundColor: const Color(0xFF121212),
     cardColor: const Color(0xFF1E1E1E),
     dialogBackgroundColor: const Color(0xFF1E1E1E),
@@ -52,17 +53,6 @@ class ThemeProvider extends ChangeNotifier {
     ),
     iconTheme: const IconThemeData(
       color: Colors.white,
-    ),
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.white),
-      bodyMedium: TextStyle(color: Colors.white),
-      bodySmall: TextStyle(color: Colors.white),
-      titleLarge: TextStyle(color: Colors.white),
-      titleMedium: TextStyle(color: Colors.white),
-      titleSmall: TextStyle(color: Colors.white),
-      labelLarge: TextStyle(color: Colors.white),
-      labelMedium: TextStyle(color: Colors.white),
-      labelSmall: TextStyle(color: Colors.white),
     ),
     switchTheme: SwitchThemeData(
       thumbColor: MaterialStateProperty.resolveWith<Color>(

@@ -174,7 +174,7 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
   };
 
   // ChatGPT Configuration
-  static const String _apiKey = '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';
+  static const String _apiKey = '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';
   static const int _maxTokens = 150;
 
   Map<String, UploadStatus> _uploadStatuses = {};
@@ -2469,37 +2469,13 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
   }
   // Method to pick YouTube thumbnail
   Future<void> _pickYouTubeThumbnail([void Function(void Function())? dialogSetState]) async {
-    // Gestione permessi per la galleria
-    PermissionStatus status;
-    bool isAndroid = false;
-    bool isIOS = false;
-    try {
-      isAndroid = Theme.of(context).platform == TargetPlatform.android;
-      isIOS = Theme.of(context).platform == TargetPlatform.iOS;
-    } catch (_) {}
-
-    if (isAndroid) {
-      // Per Android, usa i permessi corretti in base alla versione
-      final photosGranted = await Permission.photos.isGranted;
-      final mediaImagesGranted = await Permission.photos.isGranted;
-      final storageGranted = await Permission.storage.isGranted;
-      
-      if (photosGranted || mediaImagesGranted || storageGranted) {
-        status = PermissionStatus.granted;
-      } else {
-        // Prova prima con photos, poi con storage
-        status = await Permission.photos.request();
-        if (!status.isGranted) {
-          status = await Permission.storage.request();
-        }
-      }
-    } else if (isIOS) {
-      status = await Permission.photos.request();
-    } else {
-      status = await Permission.photos.request();
+    // Utilizza il metodo helper per richiedere i permessi della galleria
+    bool hasPermission = await _requestGalleryPermission();
+    if (!hasPermission) {
+      return; // Esci se i permessi non sono stati concessi
     }
 
-    if (status.isGranted) {
+    try {
       final XFile? image = await _picker.pickImage(
         source: ImageSource.gallery,
         maxWidth: 1280, // YouTube maxres thumbnail size
@@ -2520,38 +2496,10 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
             dialogSetState(() {});
           });
         }
-        
-
       }
-    } else if (status.isPermanentlyDenied) {
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Permesso richiesto'),
-            content: Text('Per selezionare una miniatura dalla galleria, devi concedere l\'accesso alle foto.'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text('Annulla'),
-              ),
-              TextButton(
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  await openAppSettings();
-                },
-                child: Text('Apri impostazioni'),
-              ),
-            ],
-          ),
-        );
-      }
-    } else {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Permesso richiesto per accedere alla galleria.')),
-        );
-      }
+    } catch (e) {
+      print('Error picking YouTube thumbnail: $e');
+      _showPermissionSnackBar('Error selecting thumbnail: $e');
     }
   }
 
@@ -2593,12 +2541,24 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
         }
       }
     } else if (isIOS) {
-      print('[PERMISSION] iOS: chiedo permesso photos e camera...');
-      status = await Permission.photos.request();
-      print('[PERMISSION] Dopo richiesta photos: ${status.toString()}');
-      if (!status.isGranted) {
-        status = await Permission.camera.request();
-        print('[PERMISSION] Dopo richiesta camera: ${status.toString()}');
+      print('[PERMISSION] iOS: controllo stato permessi...');
+      final photosGranted = await Permission.photos.isGranted;
+      final cameraGranted = await Permission.camera.isGranted;
+      print('[PERMISSION] Stato iOS: photos=$photosGranted, camera=$cameraGranted');
+      
+      if (photosGranted || cameraGranted) {
+        status = PermissionStatus.granted;
+      } else {
+        print('[PERMISSION] iOS: nessun permesso già concesso, chiedo in sequenza...');
+        // Prima richiedi accesso alle foto (per galleria)
+        status = await Permission.photos.request();
+        print('[PERMISSION] iOS dopo richiesta photos: ${status.toString()}');
+        
+        // Se non concesso, prova con la fotocamera
+        if (!status.isGranted) {
+          status = await Permission.camera.request();
+          print('[PERMISSION] iOS dopo richiesta camera: ${status.toString()}');
+        }
       }
     } else {
       print('[PERMISSION] Altro OS: chiedo permesso photos e camera...');
@@ -2713,15 +2673,18 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
                         ),
                         () async {
                           Navigator.pop(context);
-                          final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-                          if (image != null) {
-                            setState(() {
-                              _videoFile = File(image.path);
-                              _showCheckmark = true;
-                              _isImageFile = true;
-                            });
-                            // Go directly to step 2
-                            _goToNextStep();
+                          // Richiedi permesso specifico per la galleria
+                          if (await _requestGalleryPermission()) {
+                            final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+                            if (image != null) {
+                              setState(() {
+                                _videoFile = File(image.path);
+                                _showCheckmark = true;
+                                _isImageFile = true;
+                              });
+                              // Go directly to step 2
+                              _goToNextStep();
+                            }
                           }
                         },
                       ),
@@ -2735,16 +2698,19 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
                         null,
                         () async {
                           Navigator.pop(context);
-                          final XFile? video = await _picker.pickVideo(source: ImageSource.gallery);
-                          if (video != null) {
-                            final videoFile = File(video.path);
-                            setState(() {
-                              _videoFile = videoFile;
-                              _showCheckmark = true;
-                              _isImageFile = false;
-                            });
-                            // Open the video editor page immediately
-                            await _openVideoEditor(videoFile);
+                          // Richiedi permesso specifico per la galleria
+                          if (await _requestGalleryPermission()) {
+                            final XFile? video = await _picker.pickVideo(source: ImageSource.gallery);
+                            if (video != null) {
+                              final videoFile = File(video.path);
+                              setState(() {
+                                _videoFile = videoFile;
+                                _showCheckmark = true;
+                                _isImageFile = false;
+                              });
+                              // Open the video editor page immediately
+                              await _openVideoEditor(videoFile);
+                            }
                           }
                         },
                       ),
@@ -2758,15 +2724,18 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
                         null,
                         () async {
                           Navigator.pop(context);
-                          final XFile? image = await _picker.pickImage(source: ImageSource.camera);
-                          if (image != null) {
-                            setState(() {
-                              _videoFile = File(image.path);
-                              _showCheckmark = true;
-                              _isImageFile = true;
-                            });
-                            // Go directly to step 2
-                            _goToNextStep();
+                          // Richiedi permesso specifico per la fotocamera
+                          if (await _requestCameraPermission()) {
+                            final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+                            if (image != null) {
+                              setState(() {
+                                _videoFile = File(image.path);
+                                _showCheckmark = true;
+                                _isImageFile = true;
+                              });
+                              // Go directly to step 2
+                              _goToNextStep();
+                            }
                           }
                         },
                       ),
@@ -2783,16 +2752,19 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
                         ),
                         () async {
                           Navigator.pop(context);
-                          final XFile? video = await _picker.pickVideo(source: ImageSource.camera);
-                          if (video != null) {
-                            final videoFile = File(video.path);
-                            setState(() {
-                              _videoFile = videoFile;
-                              _showCheckmark = true;
-                              _isImageFile = false;
-                            });
-                            // Open the video editor page immediately
-                            await _openVideoEditor(videoFile);
+                          // Richiedi permesso specifico per la fotocamera
+                          if (await _requestCameraPermission()) {
+                            final XFile? video = await _picker.pickVideo(source: ImageSource.camera);
+                            if (video != null) {
+                              final videoFile = File(video.path);
+                              setState(() {
+                                _videoFile = videoFile;
+                                _showCheckmark = true;
+                                _isImageFile = false;
+                              });
+                              // Open the video editor page immediately
+                              await _openVideoEditor(videoFile);
+                            }
                           }
                         },
                       ),
@@ -2840,6 +2812,110 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
       }
       return;
     }
+  }
+
+  /// Richiede specificamente il permesso per accedere alla galleria foto/video
+  Future<bool> _requestGalleryPermission() async {
+    PermissionStatus status;
+    bool isAndroid = false;
+    bool isIOS = false;
+    
+    try {
+      isAndroid = Theme.of(context).platform == TargetPlatform.android;
+      isIOS = Theme.of(context).platform == TargetPlatform.iOS;
+    } catch (_) {}
+
+    if (isAndroid) {
+      print('[PERMISSION] Android: richiedo permesso galleria...');
+      final photosGranted = await Permission.photos.isGranted;
+      final storageGranted = await Permission.storage.isGranted;
+      
+      if (photosGranted || storageGranted) {
+        status = PermissionStatus.granted;
+      } else {
+        // Prova prima con photos, poi con storage per compatibilità
+        status = await Permission.photos.request();
+        if (!status.isGranted) {
+          status = await Permission.storage.request();
+        }
+      }
+    } else if (isIOS) {
+      print('[PERMISSION] iOS: richiedo permesso galleria foto...');
+      status = await Permission.photos.request();
+    } else {
+      status = await Permission.photos.request();
+    }
+
+    if (!status.isGranted) {
+      if (status.isPermanentlyDenied) {
+        _showPermissionDeniedDialog('Gallery', 'To select photos and videos from your gallery, you need to grant access to photos.');
+      } else {
+        _showPermissionSnackBar('Gallery permission required to access your photos and videos.');
+      }
+      return false;
+    }
+
+    return true;
+  }
+
+  /// Richiede specificamente il permesso per accedere alla fotocamera
+  Future<bool> _requestCameraPermission() async {
+    PermissionStatus status;
+    
+    print('[PERMISSION] Richiedo permesso fotocamera...');
+    status = await Permission.camera.request();
+
+    if (!status.isGranted) {
+      if (status.isPermanentlyDenied) {
+        _showPermissionDeniedDialog('Camera', 'To take photos and record videos, you need to grant access to the camera.');
+      } else {
+        _showPermissionSnackBar('Camera permission required to take photos and record videos.');
+      }
+      return false;
+    }
+
+    return true;
+  }
+
+  /// Mostra un dialog per permessi negati permanentemente
+  void _showPermissionDeniedDialog(String permissionType, String message) {
+    if (!mounted) return;
+    
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('$permissionType Permission Required'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.of(context).pop();
+              await openAppSettings();
+            },
+            child: Text('Open Settings'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Mostra una snackbar per permessi negati temporaneamente
+  void _showPermissionSnackBar(String message) {
+    if (!mounted) return;
+    
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.orange,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        duration: Duration(seconds: 3),
+      ),
+    );
   }
 
   // New method to open the video editor and go to next step after editing
@@ -5976,12 +6052,6 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
               ),
             ),
             
-            // Navigation button positioned at bottom with 12% offset from bottom
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.12, // 12% dal fondo dello schermo
-              right: 20,
-              child: _buildNavigationFab(theme) ?? Container(),
-            ),
             
             // Upload progress indicator - displayed when saving draft
             if (_isUploading)
@@ -6200,8 +6270,7 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
           ],
         ),
       ),
-      // Add floating action button for navigation between steps (keep for mobile users)
-      floatingActionButton: null, // Rimuovo il FAB standard per usare Positioned
+      floatingActionButton: null,
     );
   }
 
@@ -6369,64 +6438,6 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
     );
   }
 
-  // Build navigation FAB
-  Widget? _buildNavigationFab(ThemeData theme) {
-    // Don't show FAB on the last step
-    if (_currentStep == UploadStep.selectAccounts) return null;
-    
-    // Only enable button if a video is selected in the first step
-    bool canProceed = _currentStep == UploadStep.selectMedia ? _videoFile != null : true;
-    
-    return FloatingActionButton(
-      heroTag: 'upload_flow_fab',
-      onPressed: canProceed ? _goToNextStep : () {
-        // Show error if trying to proceed without selecting a video
-        if (_currentStep == UploadStep.selectMedia && _videoFile == null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Select a video before proceeding',
-                style: TextStyle(color: Colors.black),
-              ),
-              backgroundColor: Colors.white,
-              behavior: SnackBarBehavior.floating,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          );
-        }
-      },
-      backgroundColor: Colors.transparent,
-      elevation: 4,
-      child: Container(
-        width: 56,
-        height: 56,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF667eea),
-              Color(0xFF764ba2),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            transform: GradientRotation(135 * 3.14159 / 180),
-          ),
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: Color(0xFF667eea).withOpacity(0.3),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Center(
-          child: Icon(Icons.arrow_forward, color: Colors.white),
-        ),
-      ),
-    );
-  }
 
   // Build the content for the current step
   Widget _buildCurrentStepContent(ThemeData theme) {
@@ -10090,7 +10101,7 @@ class _UploadVideoPageState extends State<UploadVideoPage> with WidgetsBindingOb
                       ),
                       padding: const EdgeInsets.all(4),
                       child: Image.asset(
-                        'assets/app_logo_nosfondo.png',
+                        'assets/onboarding/circleICON.png',
                         width: 36,
                         height: 36,
                       ),

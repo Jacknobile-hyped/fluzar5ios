@@ -14,6 +14,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'home_page.dart';
 import '../main.dart';
 import '../services/email_service.dart';
@@ -92,6 +93,7 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
   @override
   void initState() {
     super.initState();
+    _checkOnboardingStatus();
     _initializeAnimations();
     _loadExistingData();
     
@@ -268,6 +270,43 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
     });
   }
 
+  // Verifica immediata se l'onboarding è già stato completato
+  Future<void> _checkOnboardingStatus() async {
+    if (_currentUser == null) return;
+
+    try {
+      final profileSnapshot = await _database
+          .child('users')
+          .child('users')
+          .child(_currentUser!.uid)
+          .child('profile')
+          .child('onboardingCompleted')
+          .get();
+      
+      final onboardingCompleted = profileSnapshot.value as bool? ?? false;
+      
+      if (onboardingCompleted && mounted) {
+        // Se l'onboarding è già completato, naviga immediatamente alla main screen
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const MainScreen(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            transitionDuration: const Duration(milliseconds: 500),
+          ),
+        );
+      }
+    } catch (e) {
+      print('Error checking onboarding status: $e');
+      // Continua con l'onboarding se c'è un errore
+    }
+  }
+
   @override
   void dispose() {
     _fadeAnimationController.dispose();
@@ -319,14 +358,15 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
           profileData = Map<String, dynamic>.from(profileSnapshot.value as Map<dynamic, dynamic>);
           profileImageUrl = profileData['profileImageUrl'] ?? profileImageUrl;
           
-          // Controlla se l'onboarding è già stato completato
+          // Controlla se l'onboarding è già stato completato con controllo più robusto
           final onboardingCompleted = profileData['onboardingCompleted'] as bool? ?? false;
-          if (onboardingCompleted) {
+          if (onboardingCompleted && mounted) {
             // Se l'onboarding è già completato, naviga direttamente alla main screen
+            print('Onboarding già completato, navigazione a MainScreen');
             Navigator.pushReplacement(
               context,
               PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) => MainScreen(initialArguments: null),
+                pageBuilder: (context, animation, secondaryAnimation) => const MainScreen(),
                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
                   return FadeTransition(
                     opacity: animation,
@@ -589,8 +629,65 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
     );
   }
 
+  /// Gestisce i permessi di sistema per fotocamera e galleria
+  Future<bool> _handleMediaPermissions(ImageSource source) async {
+    PermissionStatus status;
+    bool isAndroid = false;
+    bool isIOS = false;
+    
+    try {
+      isAndroid = Theme.of(context).platform == TargetPlatform.android;
+      isIOS = Theme.of(context).platform == TargetPlatform.iOS;
+    } catch (_) {}
+
+    if (source == ImageSource.camera) {
+      // Richiedi permesso fotocamera
+      if (isAndroid || isIOS) {
+        status = await Permission.camera.request();
+        if (!status.isGranted) {
+          _showErrorSnackBar('Permesso fotocamera necessario per scattare una foto');
+          return false;
+        }
+      }
+    } else {
+      // Richiedi permesso galleria/foto
+      if (isAndroid) {
+        print('[PERMISSION] Android: controllo permessi galleria...');
+        final photosGranted = await Permission.photos.isGranted;
+        final storageGranted = await Permission.storage.isGranted;
+        
+        if (photosGranted || storageGranted) {
+          status = PermissionStatus.granted;
+        } else {
+          // Prova prima con photos, poi con storage per compatibilità
+          status = await Permission.photos.request();
+          if (!status.isGranted) {
+            status = await Permission.storage.request();
+          }
+        }
+      } else if (isIOS) {
+        status = await Permission.photos.request();
+      } else {
+        status = await Permission.photos.request();
+      }
+      
+      if (!status.isGranted) {
+        _showErrorSnackBar('Permesso galleria necessario per selezionare una foto');
+        return false;
+      }
+    }
+    
+    return true;
+  }
+
   Future<void> _pickProfileImage(ImageSource source) async {
     try {
+      // Prima controlla e richiedi i permessi necessari
+      bool hasPermission = await _handleMediaPermissions(source);
+      if (!hasPermission) {
+        return; // Esci se i permessi non sono stati concessi
+      }
+      
       final XFile? image = await _picker.pickImage(
         source: source,
         maxWidth: 512,
@@ -809,6 +906,18 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
           .set(profileData);
           
       print('Dati profilo salvati in Firebase');
+      
+      // Verifica che onboardingCompleted sia stato salvato correttamente
+      final verifySnapshot = await _database
+          .child('users')
+          .child('users')
+          .child(_currentUser!.uid)
+          .child('profile')
+          .child('onboardingCompleted')
+          .get();
+      
+      final savedOnboardingStatus = verifySnapshot.value as bool? ?? false;
+      print('Verifica onboardingCompleted salvato: $savedOnboardingStatus');
       
       // Aggiorna il display name di Firebase Auth se necessario
       if (_displayNameController.text.trim().isNotEmpty) {
@@ -1260,8 +1369,8 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
   // Funzione per ottenere il testo del bottone Complete
   String _getCompleteButtonText() {
     if (_isSaving) return 'Setting up...';
-    if (_isLocationLoading) return 'Getting location...';
-    if (_currentStep == 3 && !_isLocationPermissionGranted) return 'Complete (Location needed)';
+    if (_isLocationLoading) return 'Loading...';
+    if (_currentStep == 3 && !_isLocationPermissionGranted) return 'Complete';
     return _currentStep < 3 ? 'Next' : 'Complete';
   }
 
@@ -1285,7 +1394,9 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
   String _getStepDescription() {
     switch (_currentStep) {
       case 1:
-        return 'Enter your display name                This is how others will see you.';
+        return Platform.isIOS 
+            ? 'This is how others will see you.'
+            : 'Enter your display name                This is how others will see you.';
       case 2:
         return 'Choose a unique username for your profile.';
       case 3:
@@ -1307,6 +1418,7 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
         return _buildDisplayNameStep(theme);
     }
   }
+
 
   void _showProfileImagePickerDialog() {
     showModalBottomSheet(
@@ -1429,6 +1541,15 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    
+    // Controllo di sicurezza aggiuntivo per evitare che la pagina si mostri se l'onboarding è completato
+    if (_currentUser == null) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     
     return Scaffold(
       backgroundColor: isDark ? Color(0xFF121212) : Colors.white,
@@ -2056,8 +2177,8 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
     
     return Column(
       children: [
-        // Spazio sopra per centrare il card (ridotto di 1 cm)
-        SizedBox(height: MediaQuery.of(context).size.height * 0.15 - 40),
+        // Spazio sopra per centrare il card (ridotto di 1 cm) - iOS: 45px più in alto
+        SizedBox(height: MediaQuery.of(context).size.height * 0.15 - 40 - (Platform.isIOS ? 45 : 0)),
         
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -2185,6 +2306,7 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
           TextFormField(
             controller: _displayNameController,
             focusNode: _displayNameFocusNode,
+            maxLength: 15,
             decoration: InputDecoration(
               labelText: 'Display Name',
               hintText: 'Enter display name',
@@ -2562,8 +2684,8 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
     
     return Column(
       children: [
-        // Spazio sopra per centrare il card (ridotto di 2 cm) + 20 pixel in più
-        SizedBox(height: MediaQuery.of(context).size.height * 0.15 - 60),
+        // Spazio sopra per centrare il card (ridotto di 2 cm) + 20 pixel in più - iOS: 45px più in alto
+        SizedBox(height: MediaQuery.of(context).size.height * 0.15 - 60 - (Platform.isIOS ? 45 : 0)),
         
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -2694,6 +2816,7 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
           TextFormField(
             controller: _usernameController,
             focusNode: _usernameFocusNode,
+            maxLength: 15,
                 onChanged: (value) {
                   // Controlla la disponibilità dell'username dopo un breve delay
                   Future.delayed(Duration(milliseconds: 500), () {
@@ -2828,7 +2951,7 @@ class _OnboardingProfilePageState extends State<OnboardingProfilePage> with Tick
                       ),
                       SizedBox(width: 8),
                       Text(
-                            'Username suggested automatically',
+                            'Username suggested by AI',
                         style: TextStyle(
                           color: Color(0xFF667eea),
                           fontSize: 12,
